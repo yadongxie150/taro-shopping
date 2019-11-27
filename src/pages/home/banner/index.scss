@@ -1,0 +1,11 @@
+.home-banner {
+  height: 220px;
+  overflow: hidden;
+  background-color:#ffffff;
+
+  &-image {
+    width: 690px;
+    height: 220px;
+    border-radius: 8px;
+  }
+}

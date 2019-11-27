@@ -1,0 +1,13 @@
+.home-feature-categary {
+  flex-direction: column;
+  background-color: #ffffff;
+
+  &-image {
+    width: 204px;
+    height: 204px;
+    overflow: hidden;
+  }
+  &-title {
+    // font-size: 21px;
+  }
+}
