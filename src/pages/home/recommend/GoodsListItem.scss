@@ -1,0 +1,35 @@
+.GoodsListItem {
+  display: flex;
+  background-color: #ffffff;
+  border-radius: 20px;
+  padding: 18px;
+
+  &-left {
+    width: 160px;
+    height: 160px;
+    background-color: red;
+    border-radius: 6px;
+  }
+
+  &-right {
+    display: flex;
+    flex-direction: column;
+    margin-left: 26px;
+
+    &-title {
+      font-weight:500;
+    }
+    &-des {
+      font-size: 18px;
+      color: #646464;
+    }
+    &-content {
+      font-size: 16px;
+      color: #272727;
+    }
+    &-author {
+      font-size: 16px;
+      color: #538DE0;
+    }
+  }
+}

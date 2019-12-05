@@ -1,14 +1,24 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View, Button, Text } from '@tarojs/components'
 
+import GoodsListItem from './GoodsListItem'
 import './index.scss'
 
-function Recommend () {
-  return (
-    <View className="recommend">
-      <Text>推荐组件</Text>
-    </View>
-  )
+class Recommend extends Component {
+  render() {
+    return (
+      <View className="recommend">
+        <GoodsListItem />
+        <GoodsListItem />
+        <GoodsListItem />
+        <GoodsListItem />
+        <GoodsListItem />
+        <GoodsListItem />
+        <GoodsListItem />
+        <GoodsListItem />
+      </View>
+    )
+  }
 }
 
 export default Recommend
