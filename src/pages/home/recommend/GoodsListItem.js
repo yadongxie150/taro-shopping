@@ -27,10 +27,14 @@ function GoodsListItem() {
         <Text>image</Text>
       </View>
       <View className="GoodsListItem-right">
-        <Text className="GoodsListItem-right-title">{title}</Text>
-        <Text className="GoodsListItem-right-des">{des}</Text>
-        <Text className="GoodsListItem-right-content">{goods}件商品 · {collect}人收藏 · 优惠 ¥{discount}</Text>
-        <Text className="GoodsListItem-right-author">@{author}</Text>
+        <View className="GoodsListItem-right-item">
+          <Text className="GoodsListItem-right-title">{title}</Text>
+          <Text className="GoodsListItem-right-des">{des}</Text>
+        </View>
+        <View className="GoodsListItem-right-item">
+          <Text className="GoodsListItem-right-content">{goods}件商品 · {collect}人收藏 · 优惠 ¥{discount}</Text>
+          <Text className="GoodsListItem-right-author">@{author}</Text>
+        </View>
       </View>
     </View>
   )

@@ -3,38 +3,37 @@ import { View, Button, Text } from '@tarojs/components'
 
 import Categary from './categary'
 import './index.scss'
+import '../home.scss'
 
 function Feature() {
   const list = [
     {
       title: '',
-      src: '',
+      src: 'http://yanxuan.nosdn.127.net/65091eebc48899298171c2eb6696fe27.jpg',
     },
     {
       title: '',
-      src: '',
+      src: 'http://yanxuan.nosdn.127.net/65091eebc48899298171c2eb6696fe27.jpg',
     },
     {
       title: '',
-      src: '',
+      src: 'http://yanxuan.nosdn.127.net/65091eebc48899298171c2eb6696fe27.jpg',
     },
   ]
   return (
     <View className="home-feature">
       <View className="home-feature-header">
-        <View>
+        <View className="home-feature-header-name">
           <Text>精选清单</Text>
         </View>
-        <View>
+        <View className="home-feature-header-action">
           <Text>更多</Text>
         </View>
       </View>
       <View className="home-feature-body">
         {
           list.map(item => (
-            <View>
-              <Categary />
-            </View>
+            <Categary />
           ))
         }
       </View>

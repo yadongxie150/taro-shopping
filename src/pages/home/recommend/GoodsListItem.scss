@@ -3,6 +3,7 @@
   background-color: #ffffff;
   border-radius: 20px;
   padding: 18px;
+  margin-bottom: 24px;
 
   &-left {
     width: 160px;
@@ -13,8 +14,14 @@
 
   &-right {
     display: flex;
+    justify-content: space-between;
     flex-direction: column;
     margin-left: 26px;
+
+    &-item {
+      display: flex;
+      flex-direction: column;
+    }
 
     &-title {
       font-weight:500;
@@ -22,6 +29,7 @@
     &-des {
       font-size: 18px;
       color: #646464;
+      padding: 6px 0 20px;
     }
     &-content {
       font-size: 16px;
@@ -30,6 +38,7 @@
     &-author {
       font-size: 16px;
       color: #538DE0;
+      padding-top: 6px;
     }
   }
 }

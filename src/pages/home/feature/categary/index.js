@@ -7,9 +7,7 @@ function Categary() {
   return (
     <View className="home-feature-categary">
       <Image className="home-feature-categary-image" src={url} />
-      <View>
-        <Text className="home-feature-categary-title">清单名称</Text>
-      </View>
+      <Text className="home-feature-categary-title">清单名称</Text>
     </View>
   )
 }

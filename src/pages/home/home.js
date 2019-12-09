@@ -36,9 +36,9 @@ class Home extends Component {
   render() {
     return (
       <View className='home'>
-        <View>
+        {/* <View>
           <Text>搜索全局组件</Text>
-        </View>
+        </View> */}
         <Banner />
         <Feature />
         <Recommend />

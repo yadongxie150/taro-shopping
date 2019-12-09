@@ -1,11 +1,25 @@
 .home-feature {
+  width: 100%;
+  overflow: hidden;
 
-}
+  &-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
 
-.home-feature-header {
-  display: flex;
-}
+    &-name {
+      color: #E9572A;
+    }
 
-.home-feature-body {
-  display: flex;
+    &-action {
+      font-size: 18px;
+      color: #828282;
+    }
+  }
+
+  &-body {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
 }

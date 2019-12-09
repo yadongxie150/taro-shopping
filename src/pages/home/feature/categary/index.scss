@@ -1,13 +1,18 @@
 .home-feature-categary {
+  display: flex;
   flex-direction: column;
   background-color: #ffffff;
+  border-radius: 6px;
 
   &-image {
     width: 204px;
     height: 204px;
     overflow: hidden;
   }
+
   &-title {
-    // font-size: 21px;
+    text-align: center;
+    font-size: 21px;
+    padding: 8px 18px;
   }
 }

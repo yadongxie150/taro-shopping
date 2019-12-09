@@ -1,23 +1,22 @@
 import { View, Text, Swiper, SwiperItem, Image } from '@tarojs/components'
 
-import adminImage from '../../../assets/nav/admin.png'
-import homeImage from '../../../assets/nav/home.png'
-import userImage from '../../../assets/nav/user.png'
+import bannerImage from '../../../assets/home/banner.jpg'
 import './index.scss'
+import '../home.scss'
 
 export default function Banner() {
   const list = [
     {
       name: '轮播1',
-      src: adminImage,
+      src: bannerImage,
     },
     {
-      name: '轮播1',
-      src: homeImage,
+      name: '轮播2',
+      src: bannerImage,
     },
     {
-      name: '轮播1',
-      src: userImage,
+      name: '轮播3',
+      src: bannerImage,
     },
   ]
   return (

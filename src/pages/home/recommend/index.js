@@ -7,7 +7,7 @@ import './index.scss'
 class Recommend extends Component {
   render() {
     return (
-      <View className="recommend">
+      <View className="home-recommend">
         <GoodsListItem />
         <GoodsListItem />
         <GoodsListItem />
