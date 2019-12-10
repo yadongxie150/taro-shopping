@@ -20,6 +20,7 @@ class App extends Component {
 
   config = {
     pages: [
+      'pages/shopDetail/shopDetail',
       'pages/home/home',
       'pages/admin/admin',
       'pages/user/user',

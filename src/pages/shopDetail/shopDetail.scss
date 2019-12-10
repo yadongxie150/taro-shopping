@@ -1,0 +1,40 @@
+.index {
+  width: 100%;
+  font-size: 24px;
+}
+
+.shopHeader {
+  // background-color: #484848;
+  &-msg {
+    display: flex;
+
+    &-left {
+      width: 200px;
+      height: 200px;
+      background-color: red;
+    }
+
+    &-right {
+      margin-right: 50px;
+    }
+  }
+
+  &-op {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+    &-item {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 4px;
+    }
+    &-icon {
+      width: 54px;
+      height: 54px;
+      background-color: royalblue;
+    }
+  }
+}

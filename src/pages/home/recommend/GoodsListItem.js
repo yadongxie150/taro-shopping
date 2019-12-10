@@ -22,7 +22,7 @@ function GoodsListItem() {
     author,
   } = data
   return (
-    <View className="GoodsListItem">
+    <View className="GoodsListItem" onClick={this.props.onClick}>
       <View className="GoodsListItem-left">
         <Text>image</Text>
       </View>
