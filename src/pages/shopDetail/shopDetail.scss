@@ -1,40 +1,30 @@
 .index {
   width: 100%;
   font-size: 24px;
+  background: #F8F8F8;
 }
 
-.shopHeader {
-  // background-color: #484848;
-  &-msg {
+.shopContent {
+  &-head {
+    color: #DA2424;
     display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 28px 35px;
 
-    &-left {
-      width: 200px;
-      height: 200px;
-      background-color: red;
-    }
+    &-op {
+      &-icon {
+        width: 32px;
+        height: 32px;
+      }
 
-    &-right {
-      margin-right: 50px;
+      .icon-add {
+        margin-right: 24px;
+      }
     }
   }
 
-  &-op {
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-
-    &-item {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      padding: 4px;
-    }
-    &-icon {
-      width: 54px;
-      height: 54px;
-      background-color: royalblue;
-    }
+  &-body {
+    padding: 0 30px;
   }
 }

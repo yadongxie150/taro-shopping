@@ -1,8 +1,8 @@
 Arguments: 
-  /usr/local/bin/node /usr/local/Cellar/yarn/1.15.2/libexec/bin/yarn.js add @/assets/home/banner.jpg --silent --no-progress
+  /usr/local/bin/node /usr/local/Cellar/yarn/1.15.2/libexec/bin/yarn.js add @/assets/shopDetail/collect.png --silent --no-progress
 
 PATH: 
-  /usr/local/lib/node_modules/npm/node_modules/npm-lifecycle/node-gyp-bin:/Users/xieyadong/Documents/workspace/my/taro-shopping/node_modules/.bin:/var/folders/by/fgqvkhrj3wz5t_8058wsxjyr0000gn/T/yarn--1575876190253-0.4840270179472299:/Users/xieyadong/Documents/workspace/my/taro-shopping/node_modules/.bin:/Users/xieyadong/.config/yarn/link/node_modules/.bin:/usr/local/libexec/lib/node_modules/npm/bin/node-gyp-bin:/usr/local/lib/node_modules/npm/bin/node-gyp-bin:/usr/local/bin/node_modules/npm/bin/node-gyp-bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
+  /usr/local/lib/node_modules/npm/node_modules/npm-lifecycle/node-gyp-bin:/Users/xieyadong/Documents/workspace/my/taro-shopping/node_modules/.bin:/var/folders/by/fgqvkhrj3wz5t_8058wsxjyr0000gn/T/yarn--1576065133584-0.009524994579519053:/Users/xieyadong/Documents/workspace/my/taro-shopping/node_modules/.bin:/Users/xieyadong/.config/yarn/link/node_modules/.bin:/usr/local/libexec/lib/node_modules/npm/bin/node-gyp-bin:/usr/local/lib/node_modules/npm/bin/node-gyp-bin:/usr/local/bin/node_modules/npm/bin/node-gyp-bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
 
 Yarn version: 
   1.15.2
@@ -14,7 +14,7 @@ Platform:
   darwin x64
 
 Trace: 
-  Error: https://registry.yarnpkg.com/@%2fassets/home/banner.jpg: Request "https://registry.yarnpkg.com/@%2fassets/home/banner.jpg" returned a 405
+  Error: https://registry.yarnpkg.com/@%2fassets/shopDetail/collect.png: Request "https://registry.yarnpkg.com/@%2fassets/shopDetail/collect.png" returned a 405
       at Request.params.callback [as _callback] (/usr/local/Cellar/yarn/1.15.2/libexec/lib/cli.js:66067:18)
       at Request.self.callback (/usr/local/Cellar/yarn/1.15.2/libexec/lib/cli.js:129541:22)
       at Request.emit (events.js:189:13)
