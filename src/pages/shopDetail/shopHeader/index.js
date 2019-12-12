@@ -39,7 +39,7 @@ export default function ShopHeader(props) {
     <View className="shopHeader">
       <View className="shopHeader-msg">
         <View className="shopHeader-msg-left">
-          <Image className="shopHeader-author-photo" src={likeIcon} />
+          <Image className="shopHeader-author-photo" />
         </View>
         <View className="shopHeader-msg-right">
           <Text>{listName}</Text>

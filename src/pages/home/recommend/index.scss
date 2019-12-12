@@ -1,4 +1,28 @@
-.recommend {
-  flex-direction: column;
+.home-recommend{
   width: 100%;
+
+  &-header {
+    display: flex;
+    align-items: center;
+    font-weight:100;
+    margin-bottom: 20px;
+    padding: 0 20px;
+    position: relative;
+
+    &-item {
+      margin-right: 50px;
+    }
+
+    .active {
+      color: #E9572A;
+    }
+
+    .fresh {
+      position: absolute;
+      right: 20px;
+      top: 2px;
+      font-size: 18px;
+      color: #828282;
+    }
+  }
 }

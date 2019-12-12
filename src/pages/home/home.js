@@ -1,8 +1,8 @@
-import Taro, { Component } from '@tarojs/taro'
-import { View, Button, Text } from '@tarojs/components'
+import { Component } from '@tarojs/taro'
+import { View } from '@tarojs/components'
 import { connect } from '@tarojs/redux'
 
-import { add, minus, asyncAdd } from '../../actions/counter'
+import { add } from '../../actions/counter'
 
 import Banner from './banner'
 import Feature from './feature'
@@ -18,9 +18,10 @@ import './home.scss'
   },
 }))
 class Home extends Component {
-
   config = {
-    navigationBarTitleText: '首页'
+    navigationBarTitleText: '好物清单',
+    navigationBarBackgroundColor: '#C91623',
+    navigationBarTextStyle: 'white',
   }
 
   componentWillReceiveProps(nextProps) {
