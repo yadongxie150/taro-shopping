@@ -20,10 +20,10 @@ class App extends Component {
 
   config = {
     pages: [
+      'pages/shop/shop',
       'pages/user/user',
       'pages/home/home',
       'pages/shopDetail/shopDetail',
-      'pages/admin/admin',
     ],
     window: {
       backgroundTextStyle: 'light',
@@ -44,7 +44,7 @@ class App extends Component {
           text: "发现"
         },
         {
-          pagePath: "pages/admin/admin",
+          pagePath: "pages/shop/shop",
           iconPath: "./assets/nav/admin.png",
           selectedIconPath: "./assets/nav/admin-active.png",
           text: "清单"

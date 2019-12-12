@@ -1,0 +1,43 @@
+.shopItem {
+  background-color: #ffffff;
+  padding: 15px 20px;
+  border-radius: 20px;
+  margin-bottom: 15px;
+
+  &-header {
+    padding: 28px 20px;
+    display: flex;
+
+    &-left {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: red;
+    }
+
+    &-right {
+      margin-left: 12px;
+      &-title {}
+
+      &-content {
+        font-size: 18px;
+        color: #646464;
+      }
+    }
+  }
+
+  &-body {
+    display: flex;
+    border-top: 2px solid #C8C8C8;
+    padding-top: 15px;
+
+    &-item {
+      width: 160px;
+      height: 160px;
+      border-radius: 6px;
+      background: red;
+      margin: 6px;
+    }
+
+  }
+}

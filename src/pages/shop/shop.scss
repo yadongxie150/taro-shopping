@@ -1,0 +1,33 @@
+.shop {
+  flex-direction: column;
+  width: 100%;
+  background-color: #F8F8F8;
+  font-size: 24px;
+}
+
+.shopBox {
+  padding: 16px 0;
+
+  &-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 28px 24px;
+    color: #BC1723;
+
+    &-op {
+      &-icon {
+        width: 32px;
+        height: 32px;
+      }
+
+      .icon-add {
+        margin-right: 24px;
+      }
+    }
+  }
+
+  &-body {
+    padding: 0 15px;
+  }
+}
