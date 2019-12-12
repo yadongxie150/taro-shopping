@@ -1,4 +1,4 @@
-import { View, Text, Swiper, SwiperItem, Image } from '@tarojs/components'
+import { View, Swiper, SwiperItem, Image } from '@tarojs/components'
 
 import bannerImage from '../../../assets/home/banner.jpg'
 import './index.scss'
@@ -24,8 +24,7 @@ export default function Banner() {
       <Swiper
         circular
         autoplay
-        indicatorDots
-        indicatorActiveColor='rgb(178, 42, 49)'
+        interval={2000}
       >
         {
           list.map(item => (

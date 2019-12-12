@@ -1,5 +1,5 @@
 import { Component } from '@tarojs/taro'
-import { View } from '@tarojs/components'
+import { View, ScrollView } from '@tarojs/components'
 import { connect } from '@tarojs/redux'
 
 import { add } from '../../actions/counter'
@@ -8,7 +8,7 @@ import Banner from './banner'
 import Feature from './feature'
 import Recommend from './recommend'
 import './home.scss'
-
+import taroFetch from '../../utils/request'
 
 @connect(({ counter }) => ({
   counter
@@ -24,25 +24,43 @@ class Home extends Component {
     navigationBarTextStyle: 'white',
   }
 
-  componentWillReceiveProps(nextProps) {
-    console.log(this.props, nextProps)
+  constructor(props) {
+    super(props)
+    this.state = {
+      data: {},
+    }
   }
 
-  componentWillUnmount() { }
+  componentDidMount() {
+    taroFetch({
+      url: 'https://result.eolinker.com/kTmhTKQc3c04ae3c7239f0cb862b8a08f420019fbe02165?uri=/app/getListByType',
+    }).then(data => {
+      console.log(data)
+      this.setState({
+        data,
+      })
+    })
+  }
 
-  componentDidShow() { }
+  handleToBottom = () => {
+    console.log('滚到底部了')
+  }
 
-  componentDidHide() { }
+  handleScroll = () => {
+    console.log('scrolling')
+  }
 
   render() {
     return (
       <View className='home'>
-        {/* <View>
-          <Text>搜索全局组件</Text>
-        </View> */}
-        <Banner />
-        <Feature />
-        <Recommend />
+        <ScrollView
+          onScrollToLower={this.handleToBottom}
+          onScroll={this.handleScroll}
+        >
+          <Banner />
+          <Feature />
+          <Recommend />
+        </ScrollView>
       </View>
     )
   }

@@ -5,6 +5,7 @@
   &-header {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     margin-bottom: 15px;
 
     &-name {
@@ -14,9 +15,7 @@
     &-action {
       font-size: 18px;
       color: #828282;
-      display: flex;
-      justify-content: flex-end;
-      align-items: center;
+      margin: 0;
     }
   }
 

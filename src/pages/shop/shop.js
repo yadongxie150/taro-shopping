@@ -22,7 +22,9 @@ import './shop.scss'
 class Shop extends Component {
 
   config = {
-    navigationBarTitleText: '清单'
+    navigationBarTitleText: '清单',
+    navigationBarBackgroundColor: '#F0F0F0',
+    navigationBarTextStyle: 'black',
   }
 
   componentWillReceiveProps(nextProps) {

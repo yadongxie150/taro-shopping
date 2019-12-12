@@ -1,5 +1,5 @@
 import Taro from '@tarojs/taro'
-import { View } from '@tarojs/components'
+import { View, Button } from '@tarojs/components'
 
 import Categary from './categary'
 import './index.scss'
@@ -39,7 +39,7 @@ function Feature() {
     <View className="home-feature">
       <View className="home-feature-header">
         <View className="home-feature-header-name">精选清单</View>
-        <View className="home-feature-header-action" onClick={toShopList}>更多</View>
+        <Button className="home-feature-header-action" onClick={toShopList}>更多</Button>
       </View>
       <View className="home-feature-body">
         {
