@@ -1,6 +1,7 @@
-import { Component } from '@tarojs/taro'
+import Taro, { Component } from '@tarojs/taro'
 import { View, ScrollView } from '@tarojs/components'
 import { connect } from '@tarojs/redux'
+import {AtSearchBar} from 'taro-ui'
 
 import { add } from '../../actions/counter'
 
@@ -50,9 +51,17 @@ class Home extends Component {
     console.log('scrolling')
   }
 
+  focusSearch = () => {
+    console.log('focusSearch')
+    Taro.navigateTo({
+      url: '/pages/search/search'
+    })
+  }
+
   render() {
     return (
       <View className='home'>
+        <AtSearchBar onFocus={this.focusSearch} showActionButton placeholder="输入清单/商品名称" />
         <ScrollView
           onScrollToLower={this.handleToBottom}
           onScroll={this.handleScroll}

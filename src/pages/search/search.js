@@ -1,45 +1,53 @@
 import Taro, { Component } from '@tarojs/taro'
-import { View, Text, Button } from '@tarojs/components'
-import { connect } from '@tarojs/redux'
-
-import { add } from '../../actions/counter'
+import { View, Text } from '@tarojs/components'
+import { AtSearchBar } from 'taro-ui'
 
 import './search.scss'
 
-@connect(({ counter }) => ({
-  counter
-}), (dispatch) => ({
-  add() {
-    dispatch(add())
-  }
-}))
+const progress = [
+  '打开京东APP',
+  '复制商品标题',
+  '打开好物清单',
+  '点击搜索',
+]
 class Search extends Component {
-
   config = {
     navigationBarTitleText: '搜索详情页',
     navigationBarBackgroundColor: '#F0F0F0',
   }
 
-  componentWillReceiveProps(nextProps) {
-    console.log(this.props, nextProps)
+  constructor(props) {
+    super(props)
+    this.state = {
+      search: '',
+    }
   }
 
-  componentWillUnmount() { }
+  handleSearch(value) {
+    console.log(value)
+    this.setState({
+      search: value,
+    })
+  }
 
-  componentDidShow() { }
-
-  componentDidHide() { }
+  doSearch = () => {
+    console.log('do srarch')
+    console.log(this.state)
+  }
 
   render() {
-    const progress = [
-      '打开京东APP',
-      '复制商品标题',
-      '打开好物清单',
-      '点击搜索',
-    ]
+    const { search } = this.state
     return (
       <View className='search'>
-        <View className="search-header">搜索头部组件</View>
+        <View className="search-header">
+          <AtSearchBar
+            showActionButton
+            placeholder="输入清单/商品名称"
+            value={search}
+            onChange={this.handleSearch.bind(this)}
+            onActionClick={this.doSearch}
+          />
+        </View>
         <View className="search-body">
           <View className="search-progress">
             <View className="search-progress-header">京东100%的商品都有优惠券或返利</View>

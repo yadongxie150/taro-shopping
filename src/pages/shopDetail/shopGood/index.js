@@ -8,7 +8,13 @@ const handleBuy = data => () => {
 }
 
 // function component 必须首字母大写
-export default function ShopGood(props) {
+export default function ShopGood(props = {
+  data: {
+    goodName: '',
+    goodPrice: 12,
+    mainImageUrl: '',
+  }
+}) {
   const {goodName, goodPrice, mainImageUrl} = props.data
   return (
     <View className="shopContent-good">
