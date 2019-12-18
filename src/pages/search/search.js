@@ -1,5 +1,5 @@
 import Taro, { Component } from '@tarojs/taro'
-import { View, Text } from '@tarojs/components'
+import { View, Text, Input } from '@tarojs/components'
 import { AtSearchBar } from 'taro-ui'
 
 import './search.scss'
@@ -23,7 +23,7 @@ class Search extends Component {
     }
   }
 
-  handleSearch(value) {
+  handleSearch = value => {
     console.log(value)
     this.setState({
       search: value,
@@ -44,10 +44,11 @@ class Search extends Component {
             showActionButton
             placeholder="输入清单/商品名称"
             value={search}
-            onChange={this.handleSearch.bind(this)}
+            onChange={this.handleSearch}
             onActionClick={this.doSearch}
           />
         </View>
+        <View>输入的值：{search}</View>
         <View className="search-body">
           <View className="search-progress">
             <View className="search-progress-header">京东100%的商品都有优惠券或返利</View>

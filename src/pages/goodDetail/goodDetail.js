@@ -1,5 +1,5 @@
 import Taro, { Component } from '@tarojs/taro'
-import { View, Button, Text, Image } from '@tarojs/components'
+import { View, Button } from '@tarojs/components'
 import { connect } from '@tarojs/redux'
 
 import { add } from '../../actions/counter'
@@ -33,7 +33,13 @@ class GoodDetail extends Component {
   render() {
     return (
       <View className='goodDetail'>
-        商品详情页dd
+        <View>图片</View>
+        <View>标题</View>
+        <View>价格</View>
+        <View>
+          <Button>收藏到清单</Button>
+          <Button>去购买</Button>
+        </View>
       </View>
     )
   }
