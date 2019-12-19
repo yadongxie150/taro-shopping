@@ -21,9 +21,9 @@ class App extends Component {
 
   config = {
     pages: [
+      'pages/goodDetail/goodDetail',
       'pages/shopTag/shopTag',
       'pages/shopPermission/shopPermission',
-      'pages/goodDetail/goodDetail',
       'pages/shopEdit/shopEdit',
       'pages/shopDetail/shopDetail',
       'pages/search/search',

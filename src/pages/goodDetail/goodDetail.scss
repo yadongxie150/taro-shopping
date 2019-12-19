@@ -1,3 +1,70 @@
 .goodDetail {
-  
+  font-size: 24px;
+  background-color: #F8F8F8;
+
+  &-image {
+    height: 750px;
+    background-color: red;
+  }
+
+  &-content {
+    padding: 20px 25px;
+    background-color: #ffffff;
+
+    &-title {
+      font-weight: 500;
+      margin-bottom: 10px;
+    }
+
+    &-des {
+      display: flex;
+      font-size: 21px;
+      color: #828282;
+      margin-bottom: 10px;
+    }
+
+    &-price {
+      display: flex;
+      color: #DA2424;
+      margin-bottom: 20px;
+    }
+
+    &-footer {
+      display: flex;
+      justify-content: space-around;
+      font-size: 21px;
+      color: #828282;
+    }
+  }
+
+  &-num {
+    margin-top: 12px;
+    padding: 25px;
+    background-color: #ffffff;
+    font-size: 21px;
+  }
+
+  &-action {
+    padding: 20px;
+    display: flex;
+    justify-content: flex-end;
+
+    &-collect {
+      padding: 24px 70px;
+      background-color: #ffffff;
+      color: #BC1723;
+      border: 3px solid #C91623;
+      border-top-left-radius: 100px;
+      border-bottom-left-radius: 100px;
+    }
+
+    &-buy {
+      padding: 24px 70px;
+      background-color: #BC1723;
+      color: #ffffff;
+      border: 3px solid #C91623;
+      border-top-right-radius: 100px;
+      border-bottom-right-radius: 100px;
+    }
+  }
 }

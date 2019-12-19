@@ -1,6 +1,7 @@
 import Taro, { Component } from '@tarojs/taro'
-import { View, Button } from '@tarojs/components'
+import { View } from '@tarojs/components'
 import { connect } from '@tarojs/redux'
+import {AtButton} from 'taro-ui'
 
 import { add } from '../../actions/counter'
 
@@ -33,12 +34,28 @@ class GoodDetail extends Component {
   render() {
     return (
       <View className='goodDetail'>
-        <View>图片</View>
-        <View>标题</View>
-        <View>价格</View>
-        <View>
-          <Button>收藏到清单</Button>
-          <Button>去购买</Button>
+        <View className="goodDetail-image">图片</View>
+        <View className="goodDetail-content">
+          <View className="goodDetail-content-title">标题dsfsdfdsf</View>
+          <View className="goodDetail-content-des">
+            <View>京东价 ¥168.00</View>
+            <View>评论数 15</View>
+            <View>好评率 100%</View>
+          </View>
+          <View className="goodDetail-content-price">
+            <View>卷后价 ¥68.00</View>
+            <View>优惠卷 ¥100</View>
+          </View>
+          <View className="goodDetail-content-footer">
+            <View>京东商品</View>
+            <View>品质保证</View>
+            <View>无忧售后</View>
+          </View>
+        </View>
+        <View className="goodDetail-num">商品编号：000000</View>
+        <View className="goodDetail-action">
+          <View className="goodDetail-action-collect">收藏到清单</View>
+          <View className="goodDetail-action-buy">去购买</View>
         </View>
       </View>
     )
