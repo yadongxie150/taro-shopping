@@ -21,12 +21,31 @@
       font-size: 21px;
       color: #828282;
       margin-bottom: 10px;
+
+      & > View {
+        margin-right: 45px;
+      }
     }
 
     &-price {
       display: flex;
+      align-items: center;
       color: #DA2424;
       margin-bottom: 20px;
+
+      &-num {
+        font-size: 48px;
+        color: #BC1723;
+      }
+
+      &-discount {
+        margin-left: 18px;
+        padding: 6px 22px;
+        background-color: #C91623;
+        color: #ffffff;
+        font-size: 21px;
+        border-radius: 6px;
+      }
     }
 
     &-footer {
@@ -45,9 +64,18 @@
   }
 
   &-action {
-    padding: 20px;
-    display: flex;
-    justify-content: flex-end;
+    width: 100%;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    background-color: #F8F8F8;
+
+    &-box {
+      display: flex;
+      justify-content: flex-end;
+      padding: 20px 30px;
+    }
+    
 
     &-collect {
       padding: 24px 70px;

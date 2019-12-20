@@ -1,8 +1,5 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View, Text, Image } from '@tarojs/components'
-import { connect } from '@tarojs/redux'
-
-import { add } from '../../actions/counter'
 
 import moreIcon from '../../assets/shopDetail/more.png'
 import addIcon from '../../assets/shopDetail/add.png'
@@ -60,13 +57,6 @@ const mockData = {
   "msg": "成功"
 }
 
-@connect(({ counter }) => ({
-  counter
-}), (dispatch) => ({
-  add() {
-    dispatch(add())
-  },
-}))
 class shopDetail extends Component {
   config = {
     navigationBarTitleText: '清单详情页',
@@ -77,15 +67,17 @@ class shopDetail extends Component {
   //   console.log(this.$router.params) // 输出 { id: 2, type: 'test' }
   // }
 
-  componentWillReceiveProps(nextProps) {
-    console.log(this.props, nextProps)
+  handleGoodDetail = () => {
+    console.log('detail')
+    Taro.navigateTo({
+      url: '/pages/goodDetail/goodDetail',
+    })
   }
 
-  componentWillUnmount() { }
-
-  componentDidShow() { }
-
-  componentDidHide() { }
+  handleBuy = good  => {
+    console.log(good)
+    console.log('buy')
+  }
 
   render() {
     const {
@@ -105,7 +97,7 @@ class shopDetail extends Component {
           <View className="shopContent-body">
             {
               goodsInfo.map(good => (
-                <ShopGood data={good} />
+                <ShopGood data={good} onClick={this.handleGoodDetail} onBuy={() => this.handleBuy(good)} />
               ))
             }
           </View>

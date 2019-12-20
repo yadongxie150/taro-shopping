@@ -1,14 +1,15 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View, ScrollView } from '@tarojs/components'
 import { connect } from '@tarojs/redux'
-import {AtSearchBar} from 'taro-ui'
 
 import { add } from '../../actions/counter'
 
 import Banner from './banner'
 import Feature from './feature'
 import Recommend from './recommend'
+import SearchTop from '../search/searchTop'
 import './home.scss'
+import '../search/search.scss'
 import taroFetch from '../../utils/request'
 
 @connect(({ counter }) => ({
@@ -61,7 +62,7 @@ class Home extends Component {
   render() {
     return (
       <View className='home'>
-        <AtSearchBar onFocus={this.focusSearch} showActionButton placeholder="输入清单/商品名称" />
+        <SearchTop onFocus={this.focusSearch} />
         <ScrollView
           onScrollToLower={this.handleToBottom}
           onScroll={this.handleScroll}

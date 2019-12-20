@@ -21,16 +21,16 @@ class App extends Component {
 
   config = {
     pages: [
+      'pages/home/home',
+      'pages/shop/shop',
+      'pages/user/user',
       'pages/goodDetail/goodDetail',
       'pages/shopTag/shopTag',
       'pages/shopPermission/shopPermission',
       'pages/shopEdit/shopEdit',
       'pages/shopDetail/shopDetail',
       'pages/search/search',
-      'pages/shop/shop',
-      'pages/home/home',
       'pages/shopList/shopList',
-      'pages/user/user',
     ],
     window: {
       backgroundTextStyle: 'light',

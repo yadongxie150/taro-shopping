@@ -63,3 +63,7 @@ export default function ShopHeader(props) {
     </View>
   )
 }
+
+ShopHeader.defaultProps = {
+  data: {},
+}

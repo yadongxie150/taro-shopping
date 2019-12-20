@@ -4,7 +4,7 @@ import './index.scss'
 
 // function component 必须首字母大写
 export default function ShopItem(props) {
-  const { name } = props.data
+  const { data: {name} } = props
   return (
     <View className="shopItem">
       <View className="shopItem-header">
@@ -22,4 +22,9 @@ export default function ShopItem(props) {
       </View>
     </View>
   )
+}
+
+
+ShopItem.defaultProps = {
+  data: {},
 }

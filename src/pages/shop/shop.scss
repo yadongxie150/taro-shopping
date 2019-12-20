@@ -1,8 +1,10 @@
 .shop {
+  display: flex;
   flex-direction: column;
   width: 100%;
   background-color: #F8F8F8;
   font-size: 24px;
+  padding-top: 100px;
 }
 
 .shopBox {
@@ -29,5 +31,39 @@
 
   &-body {
     padding: 0 15px;
+  }
+}
+
+.shopEdit {
+  font-size: 24px;
+  color: #828282;
+  padding: 16px;
+
+  &-action {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 24px;
+
+    &-cancel {
+
+    }
+    &-ok {
+      color: #BC1723;
+    }
+  }
+
+  &-input {
+    margin-bottom: 30px;
+    border-bottom: 2px solid #C8C8C8;
+  }
+
+  &-checkbox {
+    width: 24px;
+    height: 24px;
+  }
+
+  &-secret {
+    display: flex;
+    align-items: center;
   }
 }
