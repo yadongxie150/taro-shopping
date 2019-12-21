@@ -22,7 +22,7 @@ class ShopList extends Component {
       { name: '清单名称6' },
     ]
     return (
-      <View className="shopList">
+      <View className="shopList fontsize-24">
         <View className="shopList-box">
           {
             list.map(item => (<ShopListItem />))

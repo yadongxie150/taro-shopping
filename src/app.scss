@@ -1,4 +1,29 @@
+// taro-ui 全局样式修改
+.fontsize-24 {
+  font-size: 24px;
+}
+
 .at-float-layout__container {
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
+}
+
+.at-search-bar {
+  background-color: #F0F0F0;
+  border: none;
+
+  &::after {
+    border: none;
+  }
+
+  .at-search-bar__input {
+    font-size: 24px;
+  }
+
+  .at-search-bar__action {
+    background-color: #F0F0F0;
+    font-size: 24px;
+    font-weight: 600;
+    color: #BC1723;
+  }
 }

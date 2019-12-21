@@ -2,7 +2,7 @@
 	"miniprogramRoot": "dist/",
 	"projectname": "taro-shopping",
 	"description": "taro-shopping",
-	"appid": "touristappid",
+	"appid": "wx71361632c0d125d2",
 	"setting": {
 		"urlCheck": true,
 		"es6": false,
@@ -12,5 +12,6 @@
 	"compileType": "miniprogram",
 	"simulatorType": "wechat",
 	"simulatorPluginLibVersion": {},
+	"libVersion": "2.9.4",
 	"condition": {}
 }
