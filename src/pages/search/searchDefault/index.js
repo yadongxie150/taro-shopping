@@ -6,28 +6,25 @@ import './index.scss'
 
 export default class searchDefault extends Component {
   render() {
-    const progress = [
-      '打开京东APP',
-      '复制商品标题',
-      '打开好物清单',
-      '点击搜索',
-    ]
+    const progress = ['打开京东APP', '复制商品标题', '打开好物清单', '点击搜索']
     return (
       <View className="searchDefault">
         <View className="search-progress">
-          <View className="search-progress-header">京东100%的商品都有优惠券或返利</View>
+          <View className="search-progress-header">
+            京东100%的商品都有优惠券或返利
+          </View>
           <View className="search-progress-body">
-            {
-              progress.map((des, index) => (
-                <View className="search-progress-item">
-                  <View className="search-progress-item-left">
-                    <View className="search-progress-item-left-num">{index}</View>
-                    <View className="search-progress-item-left-des">{des}</View>
-                  </View>
-                  {index < 3 && <View className="search-progress-item-right"></View>}
+            {progress.map((des, index) => (
+              <View className="search-progress-item">
+                <View className="search-progress-item-left">
+                  <View className="search-progress-item-left-num">{index}</View>
+                  <View className="search-progress-item-left-des">{des}</View>
                 </View>
-              ))
-            }
+                {index < 3 && (
+                  <View className="search-progress-item-right"></View>
+                )}
+              </View>
+            ))}
           </View>
         </View>
         <View className="search-exp">

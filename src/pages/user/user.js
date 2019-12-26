@@ -10,22 +10,23 @@ import messageIcon from '../../assets/user/message.png'
 
 import './user.scss'
 
-
-@connect(({ counter }) => ({
-  counter
-}), (dispatch) => ({
-  add() {
-    dispatch(add())
-  },
-  dec() {
-    dispatch(minus())
-  },
-  asyncAdd() {
-    dispatch(asyncAdd())
-  }
-}))
+@connect(
+  ({ counter }) => ({
+    counter,
+  }),
+  dispatch => ({
+    add() {
+      dispatch(add())
+    },
+    dec() {
+      dispatch(minus())
+    },
+    asyncAdd() {
+      dispatch(asyncAdd())
+    },
+  })
+)
 class User extends Component {
-
   config = {
     navigationBarTitleText: '我的',
     navigationBarBackgroundColor: '#F0F0F0',
@@ -35,15 +36,15 @@ class User extends Component {
     console.log(this.props, nextProps)
   }
 
-  componentWillUnmount() { }
+  componentWillUnmount() {}
 
-  componentDidShow() { }
+  componentDidShow() {}
 
-  componentDidHide() { }
+  componentDidHide() {}
 
   render() {
     return (
-      <View className='user'>
+      <View className="user">
         <View className="user-header">
           <View className="user-photo" />
           <View className="user-msg">
@@ -51,9 +52,18 @@ class User extends Component {
             <Text className="user-msg-id">ID：00001</Text>
           </View>
         </View>
-        <View className="user-item"><Image className="user-item-icon" src={messageIcon} />消息通知</View>
-        <View className="user-item"><Image className="user-item-icon" src={ideaIcon} />意见反馈</View>
-        <View className="user-item"><Image className="user-item-icon" src={aboutIcon} />关于我们</View>
+        <View className="user-item">
+          <Image className="user-item-icon" src={messageIcon} />
+          消息通知
+        </View>
+        <View className="user-item">
+          <Image className="user-item-icon" src={ideaIcon} />
+          意见反馈
+        </View>
+        <View className="user-item">
+          <Image className="user-item-icon" src={aboutIcon} />
+          关于我们
+        </View>
       </View>
     )
   }

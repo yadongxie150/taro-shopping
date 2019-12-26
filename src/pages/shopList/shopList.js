@@ -2,8 +2,19 @@
 import { Component } from '@tarojs/taro'
 import { View } from '@tarojs/components'
 
+import taroFetch from '../../utils/request'
+
 import ShopListItem from '../../components/ShopListItem'
+
 import './shopList.scss'
+
+const TITLE_MAPS = {
+  1: '精选清单',
+  2: '推荐清单',
+  3: '官方清单',
+  4: '最新清单',
+  5: '人气清单',
+}
 
 class ShopList extends Component {
   config = {
@@ -12,21 +23,44 @@ class ShopList extends Component {
     navigationBarTextStyle: 'white',
   }
 
+  constructor(props) {
+    super(props)
+    this.state = {
+      data: [],
+    }
+  }
+
+  componentDidMount() {
+    const { type } = this.$router.params
+    this.fetchShopListByType(type)
+  }
+
+  fetchShopListByType = listType => {
+    taroFetch({
+      url: '/app/getListByType',
+      data: {
+        pageNo: 1,
+        pageSize: 10,
+        listType,
+      },
+    }).then(data => {
+      this.setState({
+        data,
+      })
+    })
+  }
+
   render() {
-    const list = [
-      { name: '清单名称1' },
-      { name: '清单名称2' },
-      { name: '清单名称3' },
-      { name: '清单名称4' },
-      { name: '清单名称5' },
-      { name: '清单名称6' },
-    ]
+    const { data } = this.state
+    if (data && !data.length) {
+      return null
+    }
     return (
       <View className="shopList fontsize-24">
         <View className="shopList-box">
-          {
-            list.map(item => (<ShopListItem />))
-          }
+          {data.map(item => (
+            <ShopListItem />
+          ))}
         </View>
       </View>
     )

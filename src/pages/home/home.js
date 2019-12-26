@@ -1,24 +1,16 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View, ScrollView } from '@tarojs/components'
-import { connect } from '@tarojs/redux'
 
-import { add } from '../../actions/counter'
+import taroFetch, { setToken } from '../../utils/request'
 
 import Banner from './banner'
 import Feature from './feature'
 import Recommend from './recommend'
 import SearchTop from '../search/searchTop'
+
 import './home.scss'
 import '../search/search.scss'
-import taroFetch from '../../utils/request'
 
-@connect(({ counter }) => ({
-  counter
-}), (dispatch) => ({
-  add() {
-    dispatch(add())
-  },
-}))
 class Home extends Component {
   config = {
     navigationBarTitleText: '好物清单',
@@ -29,18 +21,40 @@ class Home extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      data: {},
+      data: {
+        banner: [],
+        homeList: [],
+        selectionList: [],
+      },
     }
   }
 
   componentDidMount() {
-    taroFetch({
-      url: 'https://result.eolinker.com/kTmhTKQc3c04ae3c7239f0cb862b8a08f420019fbe02165?uri=/app/getListByType',
-    }).then(data => {
-      console.log(data)
-      this.setState({
-        data,
-      })
+    Taro.login({
+      success: function(res) {
+        if (res.code) {
+          // 利用code获取登录状态
+          taroFetch({
+            url: '/app/auth/loginByJsCode',
+            method: 'POST',
+            data: {
+              jsCode: res.code,
+              channel: 'weixin',
+            },
+          }).then(async loginData => {
+            await setToken(loginData.token)
+            taroFetch({
+              url: '/app/home/index',
+            }).then(homeData => {
+              this.setState({
+                data: homeData,
+              })
+            })
+          })
+        } else {
+          console.log('登录失败！' + res.errMsg)
+        }
+      },
     })
   }
 
@@ -55,21 +69,46 @@ class Home extends Component {
   focusSearch = () => {
     console.log('focusSearch')
     Taro.navigateTo({
-      url: '/pages/search/search'
+      url: '/pages/search/search',
     })
   }
 
+  fetchShopListByType = listType => {
+    taroFetch({
+      url: '/app/getListByType',
+      data: {
+        pageNo: 1,
+        pageSize: 10,
+        listType,
+      },
+    }).then(data => {
+      this.setState(preState => ({
+        data: {
+          ...preState.data,
+          homeList: data,
+        },
+      }))
+    })
+  }
+
+  handelRecommend = type => () => {
+    console.log(type)
+  }
+
   render() {
+    const {
+      data: { banner, homeList, selectionList },
+    } = this.state
     return (
-      <View className='home'>
+      <View className="home">
         <SearchTop onFocus={this.focusSearch} />
         <ScrollView
           onScrollToLower={this.handleToBottom}
           onScroll={this.handleScroll}
         >
-          <Banner />
-          <Feature />
-          <Recommend />
+          <Banner data={banner} />
+          <Feature data={selectionList} />
+          <Recommend data={homeList} onClick={this.handelRecommend} />
         </ScrollView>
       </View>
     )

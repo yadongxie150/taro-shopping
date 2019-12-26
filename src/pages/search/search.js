@@ -35,12 +35,14 @@ class Search extends Component {
   render() {
     const { search } = this.state
     return (
-      <View className='search'>
-        <SearchTop value={search} onChange={this.handleSearch} onSearch={this.doSearch} />
+      <View className="search">
+        <SearchTop
+          value={search}
+          onChange={this.handleSearch}
+          onSearch={this.doSearch}
+        />
         <View className="search-body">
-          {
-            !!search ? <SearchResult /> : <SearchDefault />
-          }
+          {!!search ? <SearchResult /> : <SearchDefault />}
         </View>
       </View>
     )

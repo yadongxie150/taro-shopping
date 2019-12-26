@@ -8,48 +8,42 @@ import '../home.scss'
 function toShopList() {
   console.log('to shop list')
   Taro.navigateTo({
-    url: `/pages/shopList/shopList`,
+    url: `/pages/shopList/shopList?type=1`,
   })
 }
 
-function toShopDetail() {
-  console.log('to shop detail')
+function toShopDetail(id) {
   Taro.navigateTo({
-    url: `/pages/shopDetail/shopDetail`,
+    url: `/pages/shopDetail/shopDetail?id=${id}`,
   })
 }
 
-function Feature() {
-  const list = [
-    {
-      title: '',
-      src: 'http://yanxuan.nosdn.127.net/65091eebc48899298171c2eb6696fe27.jpg',
-    },
-    {
-      title: '',
-      src: 'http://yanxuan.nosdn.127.net/65091eebc48899298171c2eb6696fe27.jpg',
-    },
-    {
-      title: '',
-      src: 'http://yanxuan.nosdn.127.net/65091eebc48899298171c2eb6696fe27.jpg',
-    },
-  ]
+export default function Feature(props) {
+  if (props && props.data && !props.data.length) {
+    return null
+  }
 
   return (
     <View className="home-feature">
       <View className="home-feature-header">
         <View className="home-feature-header-name">精选清单</View>
-        <Button className="home-feature-header-action" onClick={toShopList}>更多</Button>
+        <Button className="home-feature-header-action" onClick={toShopList}>
+          更多
+        </Button>
       </View>
       <View className="home-feature-body">
-        {
-          list.map(item => (
-            <Categary onClick={toShopDetail} />
-          ))
-        }
+        {props.data.map(item => (
+          <Categary
+            onClick={() => toShopDetail(item.listId)}
+            data={item}
+            key={item.id}
+          />
+        ))}
       </View>
     </View>
   )
 }
 
-export default Feature
+Feature.defaultProps = {
+  data: [],
+}

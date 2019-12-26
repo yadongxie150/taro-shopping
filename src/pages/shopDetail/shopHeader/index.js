@@ -7,12 +7,7 @@ import shareIcon from '../../../assets/shopDetail/share.png'
 import './index.scss'
 
 export default function ShopHeader(props) {
-  const {
-    listName,
-    listDesc,
-    createBy,
-    colectionCount
-  } = props.data
+  const { listName, listDesc, createBy, colectionCount } = props.data
   const shopOperations = [
     {
       name: '评论',
@@ -51,14 +46,14 @@ export default function ShopHeader(props) {
         </View>
       </View>
       <View className="shopHeader-op">
-        {
-          shopOperations.map(operaion => (
-            <View className="shopHeader-op-item">
-              <Image className="shopHeader-op-icon" src={operaion.image} />
-              <Text>{operaion.num}·{operaion.name}</Text>
-            </View>
-          ))
-        }
+        {shopOperations.map(operaion => (
+          <View className="shopHeader-op-item">
+            <Image className="shopHeader-op-icon" src={operaion.image} />
+            <Text>
+              {operaion.num}·{operaion.name}
+            </Text>
+          </View>
+        ))}
       </View>
     </View>
   )

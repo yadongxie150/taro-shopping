@@ -31,7 +31,9 @@ function ShopListItem() {
           <Text className="ShopListItem-right-des">{des}</Text>
         </View>
         <View className="ShopListItem-right-item">
-          <Text className="ShopListItem-right-content">{goods}件商品 · {collect}人收藏 · 优惠 ¥{discount}</Text>
+          <Text className="ShopListItem-right-content">
+            {goods}件商品 · {collect}人收藏 · 优惠 ¥{discount}
+          </Text>
           <Text className="ShopListItem-right-author">@{author}</Text>
         </View>
       </View>

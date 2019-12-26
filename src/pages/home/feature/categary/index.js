@@ -1,13 +1,16 @@
 import { View, Text, Image } from '@tarojs/components'
 import './index.scss'
 
-function Categary(props) {
+export default function Categary(props) {
+  const { selectionPic, selectionName } = props.data
   return (
     <View className="home-feature-categary" onClick={props.onClick}>
-      <Image className="home-feature-categary-image" />
-      <Text className="home-feature-categary-title">清单名称</Text>
+      <Image className="home-feature-categary-image" src={selectionPic} />
+      <Text className="home-feature-categary-title">{selectionName}</Text>
     </View>
   )
 }
 
-export default Categary
+Categary.defaultProps = {
+  data: {},
+}

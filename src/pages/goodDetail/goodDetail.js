@@ -4,7 +4,6 @@ import { View } from '@tarojs/components'
 import './goodDetail.scss'
 
 class GoodDetail extends Component {
-
   config = {
     navigationBarTitleText: '商品详情页',
     navigationBarBackgroundColor: '#F0F0F0',
@@ -21,7 +20,7 @@ class GoodDetail extends Component {
 
   render() {
     return (
-      <View className='goodDetail'>
+      <View className="goodDetail">
         <View className="goodDetail-image">图片</View>
         <View className="goodDetail-content">
           <View className="goodDetail-content-title">标题</View>
@@ -31,8 +30,13 @@ class GoodDetail extends Component {
             <View>好评率 100%</View>
           </View>
           <View className="goodDetail-content-price">
-            <View>卷后价¥ <Text className="goodDetail-content-price-num">68.00</Text></View>
-            <View className="goodDetail-content-price-discount">优惠卷¥100</View>
+            <View>
+              卷后价¥{' '}
+              <Text className="goodDetail-content-price-num">68.00</Text>
+            </View>
+            <View className="goodDetail-content-price-discount">
+              优惠卷¥100
+            </View>
           </View>
           <View className="goodDetail-content-footer">
             <View>京东商品</View>
@@ -43,8 +47,15 @@ class GoodDetail extends Component {
         <View className="goodDetail-num">商品编号：000000</View>
         <View className="goodDetail-action">
           <View className="goodDetail-action-box">
-            <View className="goodDetail-action-collect" onClick={this.handleCollect}>收藏到清单</View>
-            <View className="goodDetail-action-buy" onClick={this.handleBuy}>去购买</View>
+            <View
+              className="goodDetail-action-collect"
+              onClick={this.handleCollect}
+            >
+              收藏到清单
+            </View>
+            <View className="goodDetail-action-buy" onClick={this.handleBuy}>
+              去购买
+            </View>
           </View>
         </View>
       </View>

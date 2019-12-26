@@ -19,7 +19,6 @@ import './app.scss'
 const store = configStore()
 
 class App extends Component {
-
   config = {
     pages: [
       'pages/home/home',
@@ -37,43 +36,43 @@ class App extends Component {
       backgroundTextStyle: 'light',
       navigationBarBackgroundColor: '#fff',
       navigationBarTitleText: '好物清单',
-      navigationBarTextStyle: 'black'
+      navigationBarTextStyle: 'black',
     },
     tabBar: {
-      color: "#666",
-      selectedColor: "#b4282d",
-      backgroundColor: "#ffffff",
+      color: '#666',
+      selectedColor: '#b4282d',
+      backgroundColor: '#ffffff',
       borderStyle: 'black',
       list: [
         {
-          pagePath: "pages/home/home",
-          iconPath: "./assets/nav/home.png",
-          selectedIconPath: "./assets/nav/home-active.png",
-          text: "发现"
+          pagePath: 'pages/home/home',
+          iconPath: './assets/nav/home.png',
+          selectedIconPath: './assets/nav/home-active.png',
+          text: '发现',
         },
         {
-          pagePath: "pages/shop/shop",
-          iconPath: "./assets/nav/admin.png",
-          selectedIconPath: "./assets/nav/admin-active.png",
-          text: "清单"
+          pagePath: 'pages/shop/shop',
+          iconPath: './assets/nav/admin.png',
+          selectedIconPath: './assets/nav/admin-active.png',
+          text: '清单',
         },
         {
-          pagePath: "pages/user/user",
-          iconPath: "./assets/nav/user.png",
-          selectedIconPath: "./assets/nav/user-active.png",
-          text: "我的"
+          pagePath: 'pages/user/user',
+          iconPath: './assets/nav/user.png',
+          selectedIconPath: './assets/nav/user-active.png',
+          text: '我的',
         },
-      ]
-    }
+      ],
+    },
   }
 
-  componentDidMount() { }
+  componentDidMount() {}
 
-  componentDidShow() { }
+  componentDidShow() {}
 
-  componentDidHide() { }
+  componentDidHide() {}
 
-  componentDidCatchError() { }
+  componentDidCatchError() {}
 
   // 在 App 类中的 render() 函数没有实际作用
   // 请勿修改此函数

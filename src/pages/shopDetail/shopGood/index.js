@@ -13,15 +13,21 @@ export default function ShopGood(props) {
       <View className="shopContent-good-content">
         <View>
           <View className="shopContent-good-content-title">{goodName}</View>
-          <View className="shopContent-good-content-des">商品注释商品注释商品注释商品注释商品注释商品注释</View>
+          <View className="shopContent-good-content-des">
+            商品注释商品注释商品注释商品注释商品注释商品注释
+          </View>
         </View>
         <View className="shopContent-good-content-footer">
           <View>¥{goodPrice}</View>
-          <View className="shopContent-good-btn" onClick={
-            e => {
+          <View
+            className="shopContent-good-btn"
+            onClick={e => {
               e.stopPropagation()
               props.onBuy()
-            }}>去购买</View>
+            }}
+          >
+            去购买
+          </View>
         </View>
       </View>
     </View>

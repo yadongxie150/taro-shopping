@@ -6,7 +6,7 @@ import './index.scss'
 
 export default class searchTop extends Component {
   render() {
-    const {value, onChange, onFocus, onSearch} = this.props
+    const { value, onChange, onFocus, onSearch } = this.props
     return (
       <View className="searchTop">
         <AtSearchBar
