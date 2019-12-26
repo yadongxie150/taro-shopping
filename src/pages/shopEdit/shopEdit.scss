@@ -1,4 +1,49 @@
 .shopEdit {
-  font-size: 24px; 
   background: #F8F8F8;
+
+  &-top {
+    background-color: #ffffff;
+    padding: 0 30px;
+    margin-top: 20px;
+
+    &-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 30px 0;
+      border-bottom: 1px solid #C8C8C8;
+
+      &:last-child {
+        border: none;
+      }
+
+      .des {
+        font-size: 16px;
+        color: #828282;
+      }
+    }
+  }
+
+  &-middle {
+    background-color: #ffffff;
+    padding: 30px;
+    margin: 20px 0;
+  }
+
+  &-bottom {
+    display: flex;
+    background-color: #ffffff;
+    padding: 30px;
+
+    .label {
+      margin-right: 20px;
+    }
+    
+    .textarea {
+      // margin-left: 10px;
+      border: 1px solid #C8C8C8;
+      border-radius: 10px;
+      padding: 20px;
+    }
+  }
 }

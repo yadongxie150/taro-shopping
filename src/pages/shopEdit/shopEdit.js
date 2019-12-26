@@ -1,6 +1,5 @@
 import Taro, { Component } from '@tarojs/taro'
-import { View, Button, Text, Image } from '@tarojs/components'
-import { AtForm, AtInput, AtSwitch, AtTextarea, AtImagePicker } from 'taro-ui'
+import { View, Text, Input, Textarea, Switch } from '@tarojs/components'
 
 import './shopEdit.scss'
 
@@ -12,22 +11,32 @@ export default class shopEdit extends Component {
 
   render() {
     return (
-      <View className="shopEdit">
-        <AtForm>
-          <AtInput clear title="名称" placeholder="请输入名称" />
-          封面 <AtImagePicker />
-          <AtSwitch title="公开清单" />
-          介绍 <AtTextarea />
-        </AtForm>
-
-        <View>
-          <View>名称 input</View>
-          <View>封面 image upload</View>
-          <View>公开清单 radio</View>
-          <View>权限管理：shopPermission</View>
+      <View className="shopEdit fontsize-24">
+        <View className="shopEdit-top">
+          <View className="shopEdit-top-item">
+            <Text className="label">名称</Text>
+            <Input placeholder="请输入清单名称" />
+          </View>
+          <View className="shopEdit-top-item">
+            <Text>封面</Text>
+            <Input placeholder="请选择清单封面" />
+          </View>
+          <View className="shopEdit-top-item">
+            <View>
+              <View>公开清单</View>
+              <View className="des">非公开清单仅自己可见</View>
+            </View>
+            <Switch />
+          </View>
+          <View className="shopEdit-top-item">
+            <Text>权限管理</Text>
+          </View>
         </View>
-        <View>清单标签 tag + shopTag</View>
-        <View>介绍： textarea</View>
+        <View className="shopEdit-middle">清单标签</View>
+        <View className="shopEdit-bottom">
+          <View className="label">介绍</View>
+          <Textarea className="textarea" placeholder="对清单进行描述" />
+        </View>
       </View>
     )
   }
