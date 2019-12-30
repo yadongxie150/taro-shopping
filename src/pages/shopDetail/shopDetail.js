@@ -11,54 +11,6 @@ import ShopHeader from './ShopHeader'
 import ShopGood from './ShopGood'
 import './shopDetail.scss'
 
-const mockData = {
-  code: '0000',
-  data: [
-    {
-      id: '主键',
-      listName: '清单名称',
-      listPic: '清单图片',
-      listDesc: '清单描述',
-      memberId: '会员id',
-      createBy: '创建人姓名',
-      goodCount: '商品数量',
-      colectionCount: '100',
-      discountMoney: '优惠总金额',
-      memberAvatar: '创建者头像',
-      goodsInfo: [
-        {
-          goodId: '1',
-          goodName: '商品名称1',
-          mainImageUrl: bannerImage,
-          goodChannel: '商品渠道（1：京东，2：拼多多，3：淘宝 后续新增）',
-          goodUrl: '带有佣金的商品链接，跳转小程序使用',
-          goodPrice: '20.00',
-          couponPrice: '优惠券优惠价格（0.00）',
-        },
-        {
-          goodId: '2',
-          goodName: '商品名称2',
-          mainImageUrl: bannerImage,
-          goodChannel: '商品渠道（1：京东，2：拼多多，3：淘宝 后续新增）',
-          goodUrl: '带有佣金的商品链接，跳转小程序使用',
-          goodPrice: '20.00',
-          couponPrice: '优惠券优惠价格（0.00）',
-        },
-        {
-          goodId: '3',
-          goodName: '商品名称3',
-          mainImageUrl: bannerImage,
-          goodChannel: '商品渠道（1：京东，2：拼多多，3：淘宝 后续新增）',
-          goodUrl: '带有佣金的商品链接，跳转小程序使用',
-          goodPrice: '10.00',
-          couponPrice: '优惠券优惠价格（0.00）',
-        },
-      ],
-    },
-  ],
-  msg: '成功',
-}
-
 class shopDetail extends Component {
   config = {
     navigationBarTitleText: '清单详情页',
@@ -70,7 +22,12 @@ class shopDetail extends Component {
     super(props)
     this.state = {
       id: null,
-      data: {},
+      data: {
+        listGood: {
+          wishGoods: [],
+        },
+        wishList: {},
+      },
     }
   }
 
@@ -81,7 +38,7 @@ class shopDetail extends Component {
 
   fetchData = id => {
     taroFetch({
-      url: '/app/getListDetail',
+      url: '/app/wishList/selectWishListById',
       data: {
         listId: id,
       },
@@ -93,10 +50,10 @@ class shopDetail extends Component {
     })
   }
 
-  handleGoodDetail = () => {
+  handleGoodDetail = id => {
     console.log('detail')
     Taro.navigateTo({
-      url: '/pages/goodDetail/goodDetail',
+      url: `/pages/goodDetail/goodDetail?id=${id}`,
     })
   }
 
@@ -106,10 +63,13 @@ class shopDetail extends Component {
   }
 
   render() {
-    const { goodsInfo } = mockData.data[0]
+    const {
+      id,
+      data: { listGood, wishList },
+    } = this.state
     return (
       <View className="index">
-        <ShopHeader data={mockData.data[0]} />
+        <ShopHeader data={wishList} />
         <View className="shopContent">
           <View className="shopContent-head">
             <Text>全部商品</Text>
@@ -122,10 +82,10 @@ class shopDetail extends Component {
             </View>
           </View>
           <View className="shopContent-body">
-            {goodsInfo.map(good => (
+            {listGood.wishGoods.map(good => (
               <ShopGood
                 data={good}
-                onClick={this.handleGoodDetail}
+                onClick={() => this.handleGoodDetail(good.id)}
                 onBuy={() => this.handleBuy(good)}
               />
             ))}

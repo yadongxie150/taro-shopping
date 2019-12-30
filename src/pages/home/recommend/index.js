@@ -26,26 +26,22 @@ export default class Recommend extends Component {
     }
   }
 
-  handleToDetail = (data, index) => () => {
-    console.log(data, index)
+  handleToDetail = id => () => {
     Taro.navigateTo({
-      url: `/pages/shopDetail/shopDetail?id=${index}`,
+      url: `/pages/shopDetail/shopDetail?id=${id}`,
     })
   }
 
   handleActive = active => () => {
-    this.setState(
-      {
-        active,
-      },
-      () => {
-        this.props.onClick(active)
-      }
-    )
+    const activeNum = Number(active)
+    this.setState({ active: activeNum }, () => {
+      this.props.onClick(activeNum)
+    })
   }
 
   handleFresh = () => {
     console.log('刷新')
+    this.props.onClick(this.state.active)
   }
 
   render() {
@@ -62,7 +58,7 @@ export default class Recommend extends Component {
             <View
               key={key}
               className={classnames('home-recommend-header-item', {
-                active: active === key,
+                active: active === Number(key),
               })}
               onClick={this.handleActive(key)}
             >
@@ -74,8 +70,8 @@ export default class Recommend extends Component {
           </View>
         </View>
         <View className="home-recommend-body">
-          {list.map((item, index) => (
-            <ShopListItem onClick={this.handleToDetail(item, index)} />
+          {data.map(item => (
+            <ShopListItem data={item} onClick={this.handleToDetail(item.id)} />
           ))}
         </View>
       </View>

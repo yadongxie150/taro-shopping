@@ -32,6 +32,15 @@
   &-body {
     padding: 0 15px;
   }
+
+  &-empty {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+    padding: 100px;
+    background-color: #ffffff;
+  }
 }
 
 .shopEdit {

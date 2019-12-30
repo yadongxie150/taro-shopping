@@ -25,11 +25,13 @@ class Home extends Component {
         banner: [],
         homeList: [],
         selectionList: [],
+        currentHomeType: 2,
       },
     }
   }
 
   componentDidMount() {
+    const that = this
     Taro.login({
       success: function(res) {
         if (res.code) {
@@ -46,7 +48,7 @@ class Home extends Component {
             taroFetch({
               url: '/app/home/index',
             }).then(homeData => {
-              this.setState({
+              that.setState({
                 data: homeData,
               })
             })
@@ -67,32 +69,27 @@ class Home extends Component {
   }
 
   focusSearch = () => {
-    console.log('focusSearch')
     Taro.navigateTo({
       url: '/pages/search/search',
     })
   }
 
-  fetchShopListByType = listType => {
+  handelRecommend = listType => {
     taroFetch({
-      url: '/app/getListByType',
+      url: '/app/wishList/selectWishList',
       data: {
-        pageNo: 1,
+        pageNum: 1,
         pageSize: 10,
         listType,
       },
     }).then(data => {
+      console.log(this.state)
       this.setState(preState => ({
-        data: {
-          ...preState.data,
-          homeList: data,
-        },
+        ...preState,
+        homeList: data.items,
+        currentHomeType: listType,
       }))
     })
-  }
-
-  handelRecommend = type => () => {
-    console.log(type)
   }
 
   render() {

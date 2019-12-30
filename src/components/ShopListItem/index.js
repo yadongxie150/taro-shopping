@@ -2,39 +2,31 @@ import { View, Text } from '@tarojs/components'
 
 import './index.scss'
 
-const data = {
-  title: '清单名称',
-  des: '清单描述当时发生的范德萨发',
-  content: {
-    goods: 12,
-    collect: 14,
-    discount: 114,
-  },
-  author: '爵士舞',
-}
-
-function ShopListItem() {
+function ShopListItem(props) {
   const {
-    title,
-    des,
-    content: { goods, collect, discount },
-    author,
-  } = data
+    listName,
+    listPic,
+    listDesc,
+    goodCount,
+    colectionCount,
+    discountMoney,
+    nickName,
+  } = props.data
   return (
     <View className="ShopListItem" onClick={this.props.onClick}>
       <View className="ShopListItem-left">
-        <Text>image</Text>
+        <Image src={listPic} />
       </View>
       <View className="ShopListItem-right">
         <View className="ShopListItem-right-item">
-          <Text className="ShopListItem-right-title">{title}</Text>
-          <Text className="ShopListItem-right-des">{des}</Text>
+          <Text className="ShopListItem-right-title">{listName}</Text>
+          <Text className="ShopListItem-right-des">{listDesc}</Text>
         </View>
         <View className="ShopListItem-right-item">
           <Text className="ShopListItem-right-content">
-            {goods}件商品 · {collect}人收藏 · 优惠 ¥{discount}
+            {goodCount}件商品 · {colectionCount}人收藏 · 优惠 ¥{discountMoney}
           </Text>
-          <Text className="ShopListItem-right-author">@{author}</Text>
+          <Text className="ShopListItem-right-author">@{nickName}</Text>
         </View>
       </View>
     </View>
@@ -42,3 +34,7 @@ function ShopListItem() {
 }
 
 export default ShopListItem
+
+ShopListItem.defaultProps = {
+  data: {},
+}

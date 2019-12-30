@@ -5,16 +5,16 @@ import './index.scss'
 // function component 必须首字母大写
 export default function ShopItem(props) {
   const {
-    data: { name },
+    data: { listName, goodCount, avatar },
   } = props
   return (
     <View className="shopItem">
       <View className="shopItem-header">
-        <View className="shopItem-header-left"></View>
+        <Image className="shopItem-header-left" src={avatar} />
         <View className="shopItem-header-right">
-          <View className="shopItem-header-right-title">{name}</View>
+          <View className="shopItem-header-right-title">{listName}</View>
           <View className="shopItem-header-right-content">
-            公开 · 14件商品 · 284人收藏
+            公开 · {goodCount}件商品 · {colectionCount}人收藏
           </View>
         </View>
       </View>

@@ -34,7 +34,7 @@ export default function Feature(props) {
       <View className="home-feature-body">
         {props.data.map(item => (
           <Categary
-            onClick={() => toShopDetail(item.listId)}
+            onClick={() => toShopDetail(item.id)}
             data={item}
             key={item.id}
           />

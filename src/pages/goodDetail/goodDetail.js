@@ -9,6 +9,12 @@ class GoodDetail extends Component {
     navigationBarBackgroundColor: '#F0F0F0',
   }
 
+  componentDidMount() {
+    const { id } = this.$router.params
+    // todo: 商品详情页
+    console.log('商品Id：', id)
+  }
+
   handleCollect = () => {
     console.log('collect')
   }

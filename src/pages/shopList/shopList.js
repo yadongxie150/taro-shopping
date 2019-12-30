@@ -37,15 +37,15 @@ class ShopList extends Component {
 
   fetchShopListByType = listType => {
     taroFetch({
-      url: '/app/getListByType',
+      url: '/app/wishList/selectWishList',
       data: {
-        pageNo: 1,
+        pageNum: 1,
         pageSize: 10,
         listType,
       },
     }).then(data => {
       this.setState({
-        data,
+        data: data.items,
       })
     })
   }
@@ -59,7 +59,7 @@ class ShopList extends Component {
       <View className="shopList fontsize-24">
         <View className="shopList-box">
           {data.map(item => (
-            <ShopListItem />
+            <ShopListItem data={item} />
           ))}
         </View>
       </View>

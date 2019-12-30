@@ -4,7 +4,7 @@ import './index.scss'
 
 // function component 必须首字母大写
 export default function ShopGood(props) {
-  const { goodName, goodPrice, mainImageUrl } = props.data
+  const { skuName, price, mainImageUrl } = props.data
   return (
     <View className="shopContent-good" onClick={props.onClick}>
       <View className="shopContent-good-image">
@@ -12,13 +12,13 @@ export default function ShopGood(props) {
       </View>
       <View className="shopContent-good-content">
         <View>
-          <View className="shopContent-good-content-title">{goodName}</View>
+          <View className="shopContent-good-content-title">{skuName}</View>
           <View className="shopContent-good-content-des">
             商品注释商品注释商品注释商品注释商品注释商品注释
           </View>
         </View>
         <View className="shopContent-good-content-footer">
-          <View>¥{goodPrice}</View>
+          <View>¥{price}</View>
           <View
             className="shopContent-good-btn"
             onClick={e => {

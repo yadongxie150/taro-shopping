@@ -6,31 +6,39 @@ import ShopGood from '../../shopDetail/ShopGood'
 
 import './index.scss'
 
-export default class searchResult extends Component {
+export default class SearchResult extends Component {
   render() {
-    const mockData = {
-      goods: [{ name: '1' }, { name: '2' }, { name: '3' }],
-      shops: [{ name: '1' }, { name: '2' }, { name: '3' }],
-    }
+    const { goods, shopList } = this.props.data
     return (
       <View className="searchResult">
-        <View>
-          <View>清单</View>
+        {shopList.length && (
           <View>
-            {mockData.shops.map(item => (
-              <ShopListItem />
-            ))}
+            <View>清单</View>
+            <View>
+              {shopList.map(item => (
+                <ShopListItem data={item} />
+              ))}
+            </View>
           </View>
-        </View>
-        <View>
-          <View>商品</View>
+        )}
+        {goods.length && (
           <View>
-            {mockData.goods.map(item => (
-              <ShopGood />
-            ))}
+            <View>商品</View>
+            <View>
+              {goods.map(item => (
+                <ShopGood data={item} />
+              ))}
+            </View>
           </View>
-        </View>
+        )}
       </View>
     )
   }
+}
+
+SearchResult.defaultProps = {
+  data: {
+    goods: [],
+    shopList: [],
+  },
 }
