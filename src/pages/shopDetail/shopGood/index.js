@@ -7,9 +7,7 @@ export default function ShopGood(props) {
   const { skuName, price, mainImageUrl } = props.data
   return (
     <View className="shopContent-good" onClick={props.onClick}>
-      <View className="shopContent-good-image">
-        <Image src={mainImageUrl} />
-      </View>
+      <Image className="shopContent-good-image" src={mainImageUrl} />
       <View className="shopContent-good-content">
         <View>
           <View className="shopContent-good-content-title">{skuName}</View>

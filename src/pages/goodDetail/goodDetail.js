@@ -1,6 +1,10 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View } from '@tarojs/components'
+import { AtFloatLayout } from 'taro-ui'
 
+import taroFetch from '../../utils/request'
+
+import ShopListItem from '../../components/ShopListItem'
 import './goodDetail.scss'
 
 class GoodDetail extends Component {
@@ -9,14 +13,46 @@ class GoodDetail extends Component {
     navigationBarBackgroundColor: '#F0F0F0',
   }
 
+  constructor(props) {
+    super(props)
+    this.state = {
+      showModal: false,
+      shopList: [],
+    }
+  }
+
   componentDidMount() {
     const { id } = this.$router.params
     // todo: 商品详情页
     console.log('商品Id：', id)
   }
 
-  handleCollect = () => {
-    console.log('collect')
+  fetchShopList = () =>
+    taroFetch({
+      url: '/app/wishList/selectMyAdminWishList',
+      data: {
+        pageNum: 1,
+        pageSize: 50,
+      },
+    }).then(data => {
+      const { wishLists } = data
+      this.setState({
+        shopList: wishLists,
+      })
+    })
+
+  handleCollect = async () => {
+    await this.fetchShopList()
+    this.setState({
+      showModal: true,
+    })
+  }
+
+  handleClose = () => {
+    this.setState({
+      showModal: false,
+      shopList: [],
+    })
   }
 
   handleBuy = e => {
@@ -24,7 +60,27 @@ class GoodDetail extends Component {
     console.log('buy')
   }
 
+  add = listId => {
+    taroFetch({
+      url: '/app/goods/addWishList',
+      method: 'POST',
+      data: {
+        goodId: 72,
+        listId,
+        goodChannel: 1,
+      },
+    }).then(() => {
+      this.handleClose()
+      Taro.showToast({
+        title: '收藏成功',
+        icon: 'success',
+        duration: 1000,
+      })
+    })
+  }
+
   render() {
+    const { showModal, shopList } = this.state
     return (
       <View className="goodDetail">
         <View className="goodDetail-image">图片</View>
@@ -64,6 +120,19 @@ class GoodDetail extends Component {
             </View>
           </View>
         </View>
+        <AtFloatLayout isOpened={showModal}>
+          <View className="taro-modal">
+            <View className="taro-modal-header">
+              <View className="red">添加商品至清单</View>
+              <View onClick={this.handleClose}>取消</View>
+            </View>
+            <View className="taro-modal-body">
+              {shopList.map(item => (
+                <ShopListItem data={item} onClick={() => this.add(item.id)} />
+              ))}
+            </View>
+          </View>
+        </AtFloatLayout>
       </View>
     )
   }

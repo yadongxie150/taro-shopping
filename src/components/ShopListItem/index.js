@@ -14,9 +14,7 @@ function ShopListItem(props) {
   } = props.data
   return (
     <View className="ShopListItem" onClick={this.props.onClick}>
-      <View className="ShopListItem-left">
-        <Image src={listPic} />
-      </View>
+      <Image className="ShopListItem-left" src={listPic} />
       <View className="ShopListItem-right">
         <View className="ShopListItem-right-item">
           <Text className="ShopListItem-right-title">{listName}</Text>

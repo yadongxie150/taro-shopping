@@ -1,10 +1,19 @@
 import { View, Image, Text } from '@tarojs/components'
 
+import { SHOP_TYPE_MAP } from '../../../constants'
+
 import collectIcon from '../../../assets/shopDetail/collect.png'
 import likeIcon from '../../../assets/shopDetail/like.png'
 import reviewIcon from '../../../assets/shopDetail/review.png'
 import shareIcon from '../../../assets/shopDetail/share.png'
 import './index.scss'
+
+const shopIconMap = {
+  comment: reviewIcon,
+  favour: likeIcon,
+  share: shareIcon,
+  collect: collectIcon,
+}
 
 export default function ShopHeader(props) {
   const {
@@ -15,28 +24,14 @@ export default function ShopHeader(props) {
     nickName,
     colectionCount,
   } = props.data
-  const shopOperations = [
-    {
-      name: '评论',
-      num: 100,
-      image: reviewIcon,
-    },
-    {
-      name: '赞',
-      num: 200,
-      image: likeIcon,
-    },
-    {
-      name: '分享',
-      num: 300,
-      image: shareIcon,
-    },
-    {
-      name: '收藏',
-      num: colectionCount,
-      image: collectIcon,
-    },
-  ]
+
+  const shopOperations = Object.keys(SHOP_TYPE_MAP).map(key => ({
+    type: key,
+    name: SHOP_TYPE_MAP[key],
+    num: 100,
+    image: shopIconMap[key],
+  }))
+
   return (
     <View className="shopHeader">
       <View className="shopHeader-msg">
@@ -54,7 +49,10 @@ export default function ShopHeader(props) {
       </View>
       <View className="shopHeader-op">
         {shopOperations.map(operaion => (
-          <View className="shopHeader-op-item">
+          <View
+            className="shopHeader-op-item"
+            onClick={() => this.props.onClick(operaion.type)}
+          >
             <Image className="shopHeader-op-icon" src={operaion.image} />
             <Text>
               {operaion.num}·{operaion.name}

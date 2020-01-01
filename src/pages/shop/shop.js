@@ -96,6 +96,12 @@ class Shop extends Component {
     })
   }
 
+  toDetail = id => {
+    Taro.navigateTo({
+      url: `/pages/shopDetail/shopDetail?id=${id}`,
+    })
+  }
+
   render() {
     const {
       showModal,
@@ -119,7 +125,13 @@ class Shop extends Component {
           </View>
           <View className="shopBox-body">
             {myLists.length ? (
-              myLists.map(item => <ShopItem data={item} key={item.id} />)
+              myLists.map(item => (
+                <ShopItem
+                  data={item}
+                  key={item.id}
+                  onClick={() => this.toDetail(item.id)}
+                />
+              ))
             ) : (
               <View className="shopBox-empty">暂无数据</View>
             )}
@@ -132,7 +144,11 @@ class Shop extends Component {
           <View className="shopBox-body">
             {myCollectionLists.length ? (
               myCollectionLists.map(item => (
-                <ShopItem data={item} key={item.id} />
+                <ShopItem
+                  data={item}
+                  key={item.id}
+                  onClick={() => this.toDetail(item.id)}
+                />
               ))
             ) : (
               <View className="shopBox-empty">暂无数据</View>

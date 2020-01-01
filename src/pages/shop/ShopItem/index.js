@@ -6,9 +6,10 @@ import './index.scss'
 export default function ShopItem(props) {
   const {
     data: { listName, goodCount, avatar },
+    onClick,
   } = props
   return (
-    <View className="shopItem">
+    <View className="shopItem" onClick={onClick}>
       <View className="shopItem-header">
         <Image className="shopItem-header-left" src={avatar} />
         <View className="shopItem-header-right">

@@ -22,9 +22,9 @@ class App extends Component {
   config = {
     pages: [
       'pages/home/home',
-      'pages/shopEdit/shopEdit',
       'pages/shop/shop',
       'pages/user/user',
+      'pages/shopEdit/shopEdit',
       'pages/goodDetail/goodDetail',
       'pages/shopTag/shopTag',
       'pages/shopPermission/shopPermission',

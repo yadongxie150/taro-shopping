@@ -1,11 +1,13 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View, Text, Image } from '@tarojs/components'
+import { AtActionSheet, AtActionSheetItem } from 'taro-ui'
 
 import moreIcon from '../../assets/shopDetail/more.png'
 import addIcon from '../../assets/shopDetail/add.png'
-import bannerImage from '../../assets/home/banner.jpg'
 
 import taroFetch from '../../utils/request'
+
+import { SHOP_TYPE_MAP } from '../../constants'
 
 import ShopHeader from './ShopHeader'
 import ShopGood from './ShopGood'
@@ -28,12 +30,24 @@ class shopDetail extends Component {
         },
         wishList: {},
       },
+      showManage: false,
     }
   }
 
   componentDidMount() {
     const { id } = this.$router.params
     this.fetchData(id)
+  }
+
+  onShareAppMessage(res) {
+    if (res.from === 'button') {
+      // 来自页面内转发按钮
+      console.log(res.target)
+    }
+    return {
+      title: '清单',
+      path: `/pages/goodDetail/goodDetail?id=${id}`,
+    }
   }
 
   fetchData = id => {
@@ -51,7 +65,6 @@ class shopDetail extends Component {
   }
 
   handleGoodDetail = id => {
-    console.log('detail')
     Taro.navigateTo({
       url: `/pages/goodDetail/goodDetail?id=${id}`,
     })
@@ -62,23 +75,87 @@ class shopDetail extends Component {
     console.log('buy')
   }
 
+  open = () => {
+    this.setState({
+      showManage: true,
+    })
+  }
+
+  close = () => {
+    this.setState({
+      showManage: false,
+    })
+  }
+
+  handleGoods = () => {
+    console.log('goods')
+  }
+
+  edit = () => {
+    Taro.navigateTo({
+      url: `/pages/shopEdit/shopEdit?id=${this.state.id}`,
+    })
+  }
+
+  delete = () => {
+    console.log('del')
+  }
+
+  handleCollect = () => {
+    taroFetch({
+      url: '/app/wishList/addOrCancleListCollection',
+      method: 'POST',
+      data: {
+        listId: this.state.id,
+      },
+    }).then(() => {
+      Taro.showToast({
+        title: '收藏成功',
+        icon: 'success',
+        duration: 1000,
+      })
+      this.fetchData(this.state.id)
+    })
+  }
+
+  handleShare = () => {}
+
+  handleShopAction = type => {
+    console.log(type)
+    switch (type) {
+      case 'collect':
+        this.handleCollect()
+        break
+      case 'share':
+        this.handleShare()
+        break
+      default:
+        break
+    }
+  }
+
   render() {
     const {
       id,
       data: { listGood, wishList },
+      showManage,
     } = this.state
     return (
       <View className="index">
-        <ShopHeader data={wishList} />
+        <ShopHeader data={wishList} onClick={this.handleShopAction} />
         <View className="shopContent">
           <View className="shopContent-head">
             <Text>全部商品</Text>
             <View className="shopContent-head-op">
-              <Image
+              {/* <Image
                 className="shopContent-head-op-icon icon-add"
                 src={addIcon}
+              /> */}
+              <Image
+                className="shopContent-head-op-icon"
+                src={moreIcon}
+                onClick={this.open}
               />
-              <Image className="shopContent-head-op-icon" src={moreIcon} />
             </View>
           </View>
           <View className="shopContent-body">
@@ -91,6 +168,13 @@ class shopDetail extends Component {
             ))}
           </View>
         </View>
+        <AtActionSheet isOpened={showManage} onClose={this.close}>
+          <AtActionSheetItem onClick={this.handleGoods}>
+            管理商品
+          </AtActionSheetItem>
+          <AtActionSheetItem onClick={this.edit}>编辑清单</AtActionSheetItem>
+          <AtActionSheetItem onClick={this.delete}>删除清单</AtActionSheetItem>
+        </AtActionSheet>
       </View>
     )
   }

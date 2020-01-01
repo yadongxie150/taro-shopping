@@ -27,3 +27,19 @@
     color: #BC1723;
   }
 }
+
+.taro-modal {
+  font-size: 24px;
+  color: #828282;
+  padding: 16px;
+
+  &-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 24px;
+  }
+}
+
+.red {
+  color: #BC1723;
+}

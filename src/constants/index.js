@@ -11,3 +11,15 @@ export const SHOP_LIST_TYPE = {
   4: '最新',
   5: '人气',
 }
+
+export const SHOP_TYPE_MAP = {
+  comment: '评论',
+  favour: '赞',
+  share: '分享',
+  collect: '收藏',
+}
+
+export const SHOP_STATUS = {
+  0: '启动',
+  1: '关闭',
+}
