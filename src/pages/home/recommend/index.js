@@ -65,9 +65,9 @@ export default class Recommend extends Component {
               {recommendTypes[key]}
             </View>
           ))}
-          <View className="fresh" onClick={this.handleFresh}>
+          <Button className="fresh" onClick={this.handleFresh}>
             刷新
-          </View>
+          </Button>
         </View>
         <View className="home-recommend-body">
           {data.map(item => (

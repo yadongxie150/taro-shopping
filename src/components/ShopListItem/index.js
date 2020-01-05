@@ -1,5 +1,6 @@
 import { View, Text } from '@tarojs/components'
 
+import { handlePrice } from '../../utils/number'
 import './index.scss'
 
 function ShopListItem(props) {
@@ -22,7 +23,8 @@ function ShopListItem(props) {
         </View>
         <View className="ShopListItem-right-item">
           <Text className="ShopListItem-right-content">
-            {goodCount}件商品 · {colectionCount}人收藏 · 优惠 ¥{discountMoney}
+            {goodCount}件商品 · {colectionCount}人收藏 · 优惠 ¥
+            {handlePrice(discountMoney)}
           </Text>
           <Text className="ShopListItem-right-author">@{nickName}</Text>
         </View>

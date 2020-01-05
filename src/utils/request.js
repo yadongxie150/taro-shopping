@@ -8,9 +8,42 @@ const getToken = () =>
     .then(res => res.data)
     .catch(() => '')
 
-export default async function fetch(options) {
+const getLoginToken = () =>
+  new Promise((resolve, reject) => {
+    Taro.login({
+      success: function(res) {
+        if (res.code) {
+          // 利用code获取登录状态
+          return fetch({
+            url: '/app/auth/loginByJsCode',
+            method: 'POST',
+            data: {
+              jsCode: res.code,
+              channel: 'weixin',
+            },
+          }).then(async loginData => {
+            await setToken(loginData.token)
+            resolve(loginData.token)
+          })
+        } else {
+          Taro.showToast({
+            title: '登录失败',
+            icon: 'none',
+            duration: 2000,
+          })
+          reject('登录失败')
+        }
+      },
+    })
+  })
+
+async function fetch(options) {
   const { url, method = 'GET', data, header } = options
-  const token = await getToken()
+  let token = await getToken()
+
+  if (!token && url !== '/app/auth/loginByJsCode') {
+    token = await getLoginToken()
+  }
 
   return Taro.request({
     url: `${BASE_URL}${url}`,
@@ -22,21 +55,37 @@ export default async function fetch(options) {
       'Mini-Token': token,
     },
   })
-    .then(response => {
-      if (response && response.data && response.data.code === '0000') {
-        // 0000: 请求正常
-        const { data: result } = response.data
-        return result
+    .then(async response => {
+      const {
+        data: { data, code },
+      } = response
+
+      if (code === '1005') {
+        // 登录状态失效，重新登录
+        await getLoginToken()
+        fetch({
+          url,
+          method,
+          data,
+          header,
+        })
       }
-      return response
+
+      if (code !== '0000') {
+        return Promise.reject(response.data)
+      }
+
+      return data
     })
     .catch(error => {
       Taro.showToast({
-        title: error.message || '接口报错',
+        title: (error && error.msg) || '接口报错，请稍后在试',
         icon: 'none',
         duration: 2000,
       })
+      return Promise.reject()
     })
 }
 
 export { setToken, getToken }
+export default fetch

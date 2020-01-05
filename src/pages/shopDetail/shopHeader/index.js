@@ -15,20 +15,36 @@ const shopIconMap = {
   collect: collectIcon,
 }
 
+const getOpName = (key, data) => {
+  switch (key) {
+    case 'collect':
+      const { collected } = data
+      return `${collected && '已'}${SHOP_TYPE_MAP[key]}`
+    case 'favour':
+      const { liked } = data
+      return `${liked && '已'}${SHOP_TYPE_MAP[key]}`
+    default:
+      return SHOP_TYPE_MAP[key]
+  }
+}
+
+const getOpNum = (key, data) => {
+  switch (key) {
+    case 'collect':
+      const { colectionCount } = data
+      return colectionCount
+    default:
+      return 0
+  }
+}
+
 export default function ShopHeader(props) {
-  const {
-    listName,
-    listDesc,
-    listPic,
-    avatar,
-    nickName,
-    colectionCount,
-  } = props.data
+  const { listName, listDesc, listPic, avatar, nickName } = props.data
 
   const shopOperations = Object.keys(SHOP_TYPE_MAP).map(key => ({
     type: key,
-    name: SHOP_TYPE_MAP[key],
-    num: 100,
+    name: getOpName(key, props.data),
+    num: getOpNum(key, props.data),
     image: shopIconMap[key],
   }))
 

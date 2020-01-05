@@ -19,14 +19,9 @@ export default class shopEdit extends Component {
       data: {
         listName: '',
         listPic: '',
-        listStatus: 0,
+        privacyType: 0,
         listDesc: '',
       },
-      files: [
-        {
-          url: 'https://jimczj.gitee.io/lazyrepay/aragaki1.jpeg',
-        },
-      ],
     }
   }
 
@@ -52,7 +47,7 @@ export default class shopEdit extends Component {
   save = () => {
     const {
       id,
-      data: { listName, listDesc, listStatus, listPic },
+      data: { listName, listDesc, privacyType, listPic },
     } = this.state
     taroFetch({
       url: '/app/wishList/updateWishList',
@@ -62,7 +57,7 @@ export default class shopEdit extends Component {
         listName,
         listPic,
         listDesc,
-        listStatus: listStatus ? 0 : 1, // 0：启动，1关闭
+        privacyType: privacyType ? 0 : 1, // 0：公开，1：私有
       },
     }).then(() => {
       Taro.navigateTo({
@@ -87,7 +82,6 @@ export default class shopEdit extends Component {
       sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
       success: res => {
         // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
-        console.log(res)
         const {
           tempFilePaths: [imageUrl],
         } = res
@@ -103,7 +97,7 @@ export default class shopEdit extends Component {
 
   render() {
     const {
-      data: { listName, listStatus, listDesc, listPic },
+      data: { listName, privacyType, listDesc, listPic },
     } = this.state
     return (
       <View className="shopEdit fontsize-24">
@@ -127,13 +121,13 @@ export default class shopEdit extends Component {
               <View className="des">非公开清单仅自己可见</View>
             </View>
             <Switch
-              checked={!listStatus}
-              onChange={this.handleForm('listStatus')}
+              checked={!privacyType}
+              onChange={this.handleForm('privacyType')}
             />
           </View>
-          <View className="shopEdit-top-item">
+          {/* <View className="shopEdit-top-item">
             <Text>权限管理</Text>
-          </View>
+          </View> */}
         </View>
         {/* <View className="shopEdit-middle">清单标签</View> */}
         <View className="shopEdit-bottom">

@@ -7,8 +7,6 @@ import addIcon from '../../assets/shopDetail/add.png'
 
 import taroFetch from '../../utils/request'
 
-import { SHOP_TYPE_MAP } from '../../constants'
-
 import ShopHeader from './ShopHeader'
 import ShopGood from './ShopGood'
 import './shopDetail.scss'
@@ -87,10 +85,6 @@ class shopDetail extends Component {
     })
   }
 
-  handleGoods = () => {
-    console.log('goods')
-  }
-
   edit = () => {
     Taro.navigateTo({
       url: `/pages/shopEdit/shopEdit?id=${this.state.id}`,
@@ -102,6 +96,11 @@ class shopDetail extends Component {
   }
 
   handleCollect = () => {
+    const {
+      data: {
+        wishList: { collected },
+      },
+    } = this.state
     taroFetch({
       url: '/app/wishList/addOrCancleListCollection',
       method: 'POST',
@@ -110,7 +109,24 @@ class shopDetail extends Component {
       },
     }).then(() => {
       Taro.showToast({
-        title: '收藏成功',
+        title: collected ? '取消收藏成功' : '收藏成功',
+        icon: 'success',
+        duration: 1000,
+      })
+      this.fetchData(this.state.id)
+    })
+  }
+
+  handleFavour = () => {
+    taroFetch({
+      url: '/app/wishList/addOrCancleListLike',
+      method: 'POST',
+      data: {
+        listId: this.state.id,
+      },
+    }).then(() => {
+      Taro.showToast({
+        title: '点赞成功',
         icon: 'success',
         duration: 1000,
       })
@@ -129,6 +145,9 @@ class shopDetail extends Component {
       case 'share':
         this.handleShare()
         break
+      case 'favour':
+        this.handleFavour()
+        break
       default:
         break
     }
@@ -141,7 +160,7 @@ class shopDetail extends Component {
       showManage,
     } = this.state
     return (
-      <View className="index">
+      <View className="shopDetail">
         <ShopHeader data={wishList} onClick={this.handleShopAction} />
         <View className="shopContent">
           <View className="shopContent-head">
@@ -169,11 +188,18 @@ class shopDetail extends Component {
           </View>
         </View>
         <AtActionSheet isOpened={showManage} onClose={this.close}>
-          <AtActionSheetItem onClick={this.handleGoods}>
-            管理商品
+          <AtActionSheetItem
+            className="shopDetail-operation-item"
+            onClick={this.edit}
+          >
+            编辑清单
           </AtActionSheetItem>
-          <AtActionSheetItem onClick={this.edit}>编辑清单</AtActionSheetItem>
-          <AtActionSheetItem onClick={this.delete}>删除清单</AtActionSheetItem>
+          <AtActionSheetItem
+            className="shopDetail-operation-item"
+            onClick={this.delete}
+          >
+            删除清单
+          </AtActionSheetItem>
         </AtActionSheet>
       </View>
     )

@@ -1,11 +1,12 @@
 import { View, Image } from '@tarojs/components'
 
+import { SHOP_STATUS } from '../../../constants'
 import './index.scss'
 
 // function component 必须首字母大写
 export default function ShopItem(props) {
   const {
-    data: { listName, goodCount, avatar },
+    data: { listName, goodCount, avatar, privacyType },
     onClick,
   } = props
   return (
@@ -15,7 +16,8 @@ export default function ShopItem(props) {
         <View className="shopItem-header-right">
           <View className="shopItem-header-right-title">{listName}</View>
           <View className="shopItem-header-right-content">
-            公开 · {goodCount}件商品 · {colectionCount}人收藏
+            {SHOP_STATUS[privacyType]} · {goodCount}件商品 · {colectionCount}
+            人收藏
           </View>
         </View>
       </View>

@@ -20,6 +20,6 @@ export const SHOP_TYPE_MAP = {
 }
 
 export const SHOP_STATUS = {
-  0: '启动',
-  1: '关闭',
+  0: '公开',
+  1: '私有',
 }

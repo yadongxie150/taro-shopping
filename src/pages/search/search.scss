@@ -5,5 +5,19 @@
 
   &-body {
     padding: 24px 15px;
+
+    &-channel {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+
+      &-item {
+        padding: 10px;
+      }
+      
+      .active {
+        color: #BC1723;
+      }
+    }
   }
 }

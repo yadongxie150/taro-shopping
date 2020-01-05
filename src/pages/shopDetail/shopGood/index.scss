@@ -1,11 +1,15 @@
 .shopContent-good {
   display: flex;
   justify-content: space-between;
-  padding: 20px 0;
+  padding: 20px 10px;
+  background-color: #ffffff;
+  margin-bottom: 20px;
+  border-radius: 6px;
 
   &-image {
     width: 160px;
     height: 160px;
+    background-color: red;
     border-radius: 6px;
   }
 

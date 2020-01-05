@@ -1,20 +1,11 @@
 // 清单列表页
-import { Component } from '@tarojs/taro'
+import Taro, { Component } from '@tarojs/taro'
 import { View } from '@tarojs/components'
 
 import taroFetch from '../../utils/request'
-
 import ShopListItem from '../../components/ShopListItem'
 
 import './shopList.scss'
-
-const TITLE_MAPS = {
-  1: '精选清单',
-  2: '推荐清单',
-  3: '官方清单',
-  4: '最新清单',
-  5: '人气清单',
-}
 
 class ShopList extends Component {
   config = {
@@ -50,6 +41,12 @@ class ShopList extends Component {
     })
   }
 
+  toDetail = id => {
+    Taro.navigateTo({
+      url: `/pages/shopDetail/shopDetail?id=${id}`,
+    })
+  }
+
   render() {
     const { data } = this.state
     if (data && !data.length) {
@@ -59,7 +56,7 @@ class ShopList extends Component {
       <View className="shopList fontsize-24">
         <View className="shopList-box">
           {data.map(item => (
-            <ShopListItem data={item} />
+            <ShopListItem data={item} onClick={() => this.toDetail(item.id)} />
           ))}
         </View>
       </View>

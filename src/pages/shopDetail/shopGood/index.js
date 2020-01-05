@@ -1,5 +1,6 @@
 import { View, Image } from '@tarojs/components'
 
+import { handlePrice } from '../../../utils/number'
 import './index.scss'
 
 // function component 必须首字母大写
@@ -11,12 +12,12 @@ export default function ShopGood(props) {
       <View className="shopContent-good-content">
         <View>
           <View className="shopContent-good-content-title">{skuName}</View>
-          <View className="shopContent-good-content-des">
+          {/* <View className="shopContent-good-content-des">
             商品注释商品注释商品注释商品注释商品注释商品注释
-          </View>
+          </View> */}
         </View>
         <View className="shopContent-good-content-footer">
-          <View>¥{price}</View>
+          <View>¥{handlePrice(price)}</View>
           <View
             className="shopContent-good-btn"
             onClick={e => {

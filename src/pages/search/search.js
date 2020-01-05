@@ -1,7 +1,9 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View } from '@tarojs/components'
+import classnames from 'classnames'
 
-import taroFetch, { setToken } from '../../utils/request'
+import taroFetch from '../../utils/request'
+import { GOOD_CHANNEL } from '../../constants'
 
 import SearchTop from './searchTop'
 import SearchDefault from './searchDefault'
@@ -21,6 +23,7 @@ class Search extends Component {
       hasResult: false,
       goods: [],
       shopList: [],
+      channel: 2,
     }
   }
 
@@ -38,20 +41,27 @@ class Search extends Component {
   }
 
   doSearch = () => {
-    const { search } = this.state
+    const { search, channel } = this.state
     // todo: 搜索清单接口
     taroFetch({
       url: '/app/goods/getGoodInfo',
       data: {
         goodInfo: search,
-        goodChannel: 2, // 1：京东，2：拼多多，3：淘宝
+        goodChannel: channel, // 1：京东，2：拼多多，3：淘宝
       },
-    }).then(data => {
-      this.setState({
-        hasResult: true,
-        goods: data,
-      })
     })
+      .then(data => {
+        this.setState({
+          hasResult: true,
+          goods: data || [],
+        })
+      })
+      .catch(() => {
+        this.setState({
+          hasResult: true,
+          goods: [],
+        })
+      })
   }
 
   handleClear = () => {
@@ -63,8 +73,31 @@ class Search extends Component {
     })
   }
 
+  handleGood = id => {
+    Taro.navigateTo({
+      url: `/pages/goodDetail/goodDetail?id=${id}`,
+    })
+  }
+
+  handleShop = id => {
+    Taro.navigateTo({
+      url: `/pages/shopDetail/shopDetail?id=${id}`,
+    })
+  }
+
+  handleChannel = channel => {
+    this.setState(
+      {
+        channel: Number(channel),
+      },
+      () => {
+        this.doSearch()
+      }
+    )
+  }
+
   render() {
-    const { search, hasResult, goods, shopList } = this.state
+    const { search, hasResult, goods, shopList, channel } = this.state
     const searchData = {
       goods,
       shopList,
@@ -78,7 +111,30 @@ class Search extends Component {
           onClear={this.handleClear}
         />
         <View className="search-body">
-          {hasResult ? <SearchResult data={searchData} /> : <SearchDefault />}
+          {hasResult && (
+            <View className="search-body-channel">
+              {Object.keys(GOOD_CHANNEL).map(key => (
+                <View
+                  className={classnames('search-body-channel-item', {
+                    active: channel === Number(key),
+                  })}
+                  key={key}
+                  onClick={() => this.handleChannel(key)}
+                >
+                  {GOOD_CHANNEL[key]}
+                </View>
+              ))}
+            </View>
+          )}
+          {hasResult ? (
+            <SearchResult
+              data={searchData}
+              onShopClick={this.handleShop}
+              onGoodClick={this.handleGood}
+            />
+          ) : (
+            <SearchDefault />
+          )}
         </View>
       </View>
     )

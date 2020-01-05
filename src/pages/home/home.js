@@ -31,32 +31,12 @@ class Home extends Component {
   }
 
   componentDidMount() {
-    const that = this
-    Taro.login({
-      success: function(res) {
-        if (res.code) {
-          // 利用code获取登录状态
-          taroFetch({
-            url: '/app/auth/loginByJsCode',
-            method: 'POST',
-            data: {
-              jsCode: res.code,
-              channel: 'weixin',
-            },
-          }).then(async loginData => {
-            await setToken(loginData.token)
-            taroFetch({
-              url: '/app/home/index',
-            }).then(homeData => {
-              that.setState({
-                data: homeData,
-              })
-            })
-          })
-        } else {
-          console.log('登录失败！' + res.errMsg)
-        }
-      },
+    taroFetch({
+      url: '/app/home/index',
+    }).then(homeData => {
+      this.setState({
+        data: homeData,
+      })
     })
   }
 
@@ -83,7 +63,11 @@ class Home extends Component {
         listType,
       },
     }).then(data => {
-      console.log(this.state)
+      Taro.showToast({
+        title: '更新成功',
+        icon: 'success',
+        duration: 2000,
+      })
       this.setState(preState => ({
         ...preState,
         homeList: data.items,

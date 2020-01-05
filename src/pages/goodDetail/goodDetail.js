@@ -1,10 +1,12 @@
 import Taro, { Component } from '@tarojs/taro'
-import { View } from '@tarojs/components'
+import { View, Image } from '@tarojs/components'
 import { AtFloatLayout } from 'taro-ui'
 
 import taroFetch from '../../utils/request'
-
+import { handlePrice } from '../../utils/number'
+import { GOOD_CHANNEL } from '../../constants'
 import ShopListItem from '../../components/ShopListItem'
+
 import './goodDetail.scss'
 
 class GoodDetail extends Component {
@@ -18,6 +20,7 @@ class GoodDetail extends Component {
     this.state = {
       showModal: false,
       shopList: [],
+      data: {},
     }
   }
 
@@ -25,6 +28,20 @@ class GoodDetail extends Component {
     const { id } = this.$router.params
     // todo: 商品详情页
     console.log('商品Id：', id)
+    this.fetchGood(id)
+  }
+
+  fetchGood = goodId => {
+    taroFetch({
+      url: '/app/goods/getGoodDetailInfo',
+      data: {
+        goodId,
+      },
+    }).then(data => {
+      this.setState({
+        data,
+      })
+    })
   }
 
   fetchShopList = () =>
@@ -80,33 +97,50 @@ class GoodDetail extends Component {
   }
 
   render() {
-    const { showModal, shopList } = this.state
+    const {
+      showModal,
+      shopList,
+      data: {
+        skuName,
+        mainImageUrl,
+        price,
+        discount,
+        comments,
+        skuId,
+        goodChannel,
+      },
+    } = this.state
+    const finalPrice = Number(price) - Number(discount)
     return (
       <View className="goodDetail">
-        <View className="goodDetail-image">图片</View>
+        <Image className="goodDetail-image" src={mainImageUrl} />
         <View className="goodDetail-content">
-          <View className="goodDetail-content-title">标题</View>
+          <View className="goodDetail-content-title">{skuName}</View>
           <View className="goodDetail-content-des">
-            <View>京东价 ¥168.00</View>
-            <View>评论数 15</View>
+            <View>
+              {GOOD_CHANNEL[goodChannel]}价 ¥{handlePrice(price)}
+            </View>
+            <View>评论数 {comments}</View>
             <View>好评率 100%</View>
           </View>
           <View className="goodDetail-content-price">
             <View>
               卷后价¥{' '}
-              <Text className="goodDetail-content-price-num">68.00</Text>
+              <Text className="goodDetail-content-price-num">
+                {handlePrice(finalPrice)}
+              </Text>
             </View>
             <View className="goodDetail-content-price-discount">
-              优惠卷¥100
+              优惠卷¥ {handlePrice(discount)}
             </View>
           </View>
           <View className="goodDetail-content-footer">
-            <View>京东商品</View>
+            <View>{GOOD_CHANNEL[goodChannel]}商品</View>
             <View>品质保证</View>
             <View>无忧售后</View>
           </View>
         </View>
-        <View className="goodDetail-num">商品编号：000000</View>
+        <View className="goodDetail-num">商品编号：{skuId}</View>
         <View className="goodDetail-action">
           <View className="goodDetail-action-box">
             <View

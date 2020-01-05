@@ -8,25 +8,32 @@ import './index.scss'
 
 export default class SearchResult extends Component {
   render() {
-    const { goods, shopList } = this.props.data
+    const {
+      data: { goods, shopList },
+      onGoodClick,
+      onShopClick,
+    } = this.props
     return (
       <View className="searchResult">
         {shopList.length && (
           <View>
-            <View>清单</View>
+            <View className="searchResult-title">清单</View>
             <View>
               {shopList.map(item => (
-                <ShopListItem data={item} />
+                <ShopListItem
+                  data={item}
+                  onClick={() => onShopClick(item.id)}
+                />
               ))}
             </View>
           </View>
         )}
         {goods.length && (
           <View>
-            <View>商品</View>
+            <View className="searchResult-title">商品</View>
             <View>
               {goods.map(item => (
-                <ShopGood data={item} />
+                <ShopGood data={item} onClick={() => onGoodClick(item.id)} />
               ))}
             </View>
           </View>

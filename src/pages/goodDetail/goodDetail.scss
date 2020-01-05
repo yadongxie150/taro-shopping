@@ -3,6 +3,7 @@
   background-color: #F8F8F8;
 
   &-image {
+    width: 100%;
     height: 750px;
     background-color: red;
   }
@@ -14,6 +15,9 @@
     &-title {
       font-weight: 500;
       margin-bottom: 10px;
+      text-overflow:ellipsis;
+      overflow:hidden;
+      white-space:nowrap;
     }
 
     &-des {
