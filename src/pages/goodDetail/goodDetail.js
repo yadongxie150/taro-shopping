@@ -156,10 +156,10 @@ class GoodDetail extends Component {
         </View>
         <AtFloatLayout isOpened={showModal}>
           <View className="taro-modal">
-            <View className="taro-modal-header">
+            {/* <View className="taro-modal-header">
               <View className="red">添加商品至清单</View>
               <View onClick={this.handleClose}>取消</View>
-            </View>
+            </View> */}
             <View className="taro-modal-body">
               {shopList.map(item => (
                 <ShopListItem data={item} onClick={() => this.add(item.id)} />

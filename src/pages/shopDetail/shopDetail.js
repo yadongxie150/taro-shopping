@@ -53,6 +53,8 @@ class shopDetail extends Component {
       url: '/app/wishList/selectWishListById',
       data: {
         listId: id,
+        pageNum: 1,
+        pageSize: 100,
       },
     }).then(data => {
       this.setState({
@@ -93,6 +95,22 @@ class shopDetail extends Component {
 
   delete = () => {
     console.log('del')
+    taroFetch({
+      url: '/app/wishList/deleteList',
+      method: 'POST',
+      data: {
+        listId: this.state.id,
+      },
+    }).then(() => {
+      Taro.showToast({
+        title: '删除成功',
+        icon: 'success',
+        duration: 1000,
+      })
+      Taro.navigateTo({
+        url: `/pages/home/home`,
+      })
+    })
   }
 
   handleCollect = () => {
@@ -159,23 +177,26 @@ class shopDetail extends Component {
       data: { listGood, wishList },
       showManage,
     } = this.state
+    const { editPermission } = wishList
     return (
       <View className="shopDetail">
         <ShopHeader data={wishList} onClick={this.handleShopAction} />
         <View className="shopContent">
           <View className="shopContent-head">
             <Text>全部商品</Text>
-            <View className="shopContent-head-op">
-              {/* <Image
+            {editPermission && (
+              <View className="shopContent-head-op">
+                {/* <Image
                 className="shopContent-head-op-icon icon-add"
                 src={addIcon}
               /> */}
-              <Image
-                className="shopContent-head-op-icon"
-                src={moreIcon}
-                onClick={this.open}
-              />
-            </View>
+                <Image
+                  className="shopContent-head-op-icon"
+                  src={moreIcon}
+                  onClick={this.open}
+                />
+              </View>
+            )}
           </View>
           <View className="shopContent-body">
             {listGood.wishGoods.map(good => (

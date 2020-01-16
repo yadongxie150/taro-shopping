@@ -111,7 +111,9 @@ class Shop extends Component {
     } = this.state
     return (
       <View className="shop">
-        <SearchTop onFocus={this.focusSearch} />
+        <View onClick={this.focusSearch}>
+          <SearchTop disabled />
+        </View>
         <View className="shopBox">
           <View className="shopBox-header">
             <Text>我管理的清单</Text>

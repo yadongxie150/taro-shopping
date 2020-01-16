@@ -63,11 +63,6 @@ class Home extends Component {
         listType,
       },
     }).then(data => {
-      Taro.showToast({
-        title: '更新成功',
-        icon: 'success',
-        duration: 2000,
-      })
       this.setState(preState => ({
         ...preState,
         homeList: data.items,
@@ -82,7 +77,9 @@ class Home extends Component {
     } = this.state
     return (
       <View className="home">
-        <SearchTop onFocus={this.focusSearch} />
+        <View onClick={this.focusSearch}>
+          <SearchTop disabled />
+        </View>
         <ScrollView
           onScrollToLower={this.handleToBottom}
           onScroll={this.handleScroll}

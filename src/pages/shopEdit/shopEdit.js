@@ -60,6 +60,11 @@ export default class shopEdit extends Component {
         privacyType: privacyType ? 0 : 1, // 0：公开，1：私有
       },
     }).then(() => {
+      Taro.showToast({
+        title: '保存成功',
+        icon: 'success',
+        duration: 1000,
+      })
       Taro.navigateTo({
         url: `/pages/shopDetail/shopDetail?id=${id}`,
       })

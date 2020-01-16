@@ -6,7 +6,7 @@ import './index.scss'
 // function component 必须首字母大写
 export default function ShopItem(props) {
   const {
-    data: { listName, goodCount, avatar, privacyType },
+    data: { listName, goodCount, avatar, privacyType, wishGoods = [] },
     onClick,
   } = props
   return (
@@ -22,10 +22,9 @@ export default function ShopItem(props) {
         </View>
       </View>
       <View className="shopItem-body">
-        <View className="shopItem-body-item"></View>
-        <View className="shopItem-body-item"></View>
-        <View className="shopItem-body-item"></View>
-        {/* <View className="shopItem-body-item"></View> */}
+        {wishGoods.map(item => (
+          <Image className="shopItem-body-item" src={item.mainImageUrl} />
+        ))}
       </View>
     </View>
   )

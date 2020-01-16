@@ -105,6 +105,7 @@ class Search extends Component {
     return (
       <View className="search">
         <SearchTop
+          showActionButton
           value={search}
           onChange={this.handleSearch}
           onSearch={this.doSearch}
