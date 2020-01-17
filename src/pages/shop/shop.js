@@ -31,8 +31,25 @@ class Shop extends Component {
     }
   }
 
-  componentDidMount() {
+  componentDidShow() {
     this.fetchShopList()
+    Taro.getSetting({
+      success(res) {
+        if (!res.authSetting['scope.userInfo']) {
+          Taro.authorize({
+            scope: 'scope.userInfo',
+            success () {
+              // 用户已经同意小程序使用用户信息，后续调用 getUserInfo 接口不会弹窗询问
+              Taro.getUserInfo({
+                success: function(res) {
+                  console.log(res)
+                }
+              })
+            }
+          })
+        }
+      }
+    })
   }
 
   fetchShopList = () => {

@@ -30,7 +30,7 @@ class Home extends Component {
     }
   }
 
-  componentDidMount() {
+  componentDidShow() {
     taroFetch({
       url: '/app/home/index',
     }).then(homeData => {

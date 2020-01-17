@@ -99,7 +99,7 @@ class shopDetail extends Component {
       url: '/app/wishList/deleteList',
       method: 'POST',
       data: {
-        listId: this.state.id,
+        id: this.state.id,
       },
     }).then(() => {
       Taro.showToast({
@@ -107,8 +107,8 @@ class shopDetail extends Component {
         icon: 'success',
         duration: 1000,
       })
-      Taro.navigateTo({
-        url: `/pages/home/home`,
+      Taro.switchTab({
+        url: '/pages/shop/shop',
       })
     })
   }
@@ -127,7 +127,7 @@ class shopDetail extends Component {
       },
     }).then(() => {
       Taro.showToast({
-        title: collected ? '取消收藏成功' : '收藏成功',
+        title: collected ? '取消收藏' : '收藏成功',
         icon: 'success',
         duration: 1000,
       })
@@ -136,6 +136,11 @@ class shopDetail extends Component {
   }
 
   handleFavour = () => {
+    const {
+      data: {
+        wishList: { liked },
+      },
+    } = this.state
     taroFetch({
       url: '/app/wishList/addOrCancleListLike',
       method: 'POST',
@@ -144,7 +149,7 @@ class shopDetail extends Component {
       },
     }).then(() => {
       Taro.showToast({
-        title: '点赞成功',
+        title: liked ? '取消点赞' : '点赞成功',
         icon: 'success',
         duration: 1000,
       })

@@ -19,10 +19,10 @@ const getOpName = (key, data) => {
   switch (key) {
     case 'collect':
       const { collected } = data
-      return `${collected && '已'}${SHOP_TYPE_MAP[key]}`
+      return `${collected ? '已' : ''}${SHOP_TYPE_MAP[key]}`
     case 'favour':
       const { liked } = data
-      return `${liked && '已'}${SHOP_TYPE_MAP[key]}`
+      return `${liked ? '已' : ''}${SHOP_TYPE_MAP[key]}`
     default:
       return SHOP_TYPE_MAP[key]
   }
