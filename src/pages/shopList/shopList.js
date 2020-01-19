@@ -19,7 +19,7 @@ class ShopList extends Component {
     this.state = {
       data: [],
       pageNum: 1,
-      pageSize: 6,
+      pageSize: 10,
       total: 0,
     }
   }
@@ -105,7 +105,7 @@ class ShopList extends Component {
             scrollWithAnimation
             scrollTop={0}
             style={{
-              height: '600px',
+              height: '1000px',
             }}
             onScrollToLower={this.handleScrollToLower}
           >

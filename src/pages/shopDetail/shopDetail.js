@@ -247,7 +247,7 @@ class shopDetail extends Component {
               scrollWithAnimation
               scrollTop={0}
               style={{
-                height: '600px',
+                height: '1000px',
               }}
               onScrollToLower={this.handleScrollToLower}
             >
