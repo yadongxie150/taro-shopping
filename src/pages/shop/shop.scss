@@ -3,7 +3,7 @@
   flex-direction: column;
   width: 100%;
   background-color: #F8F8F8;
-  font-size: 24px;
+  font-size: 28px;
   padding-top: 100px;
 }
 
@@ -14,7 +14,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 28px 24px;
+    padding: 28px 28px;
     color: #BC1723;
 
     &-op {
@@ -24,7 +24,7 @@
       }
 
       .icon-add {
-        margin-right: 24px;
+        margin-right: 28px;
       }
     }
   }
@@ -41,17 +41,21 @@
     padding: 100px;
     background-color: #ffffff;
   }
+
+  &-button {
+    font-size: 28px;
+  }
 }
 
 .shopEdit {
-  font-size: 24px;
+  font-size: 28px;
   color: #828282;
   padding: 16px;
 
   &-action {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 24px;
+    margin-bottom: 28px;
 
     &-cancel {
 
@@ -67,8 +71,8 @@
   }
 
   &-checkbox {
-    width: 24px;
-    height: 24px;
+    width: 28px;
+    height: 28px;
   }
 
   &-secret {

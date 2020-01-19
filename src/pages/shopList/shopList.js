@@ -1,6 +1,6 @@
 // 清单列表页
 import Taro, { Component } from '@tarojs/taro'
-import { View } from '@tarojs/components'
+import { View, ScrollView } from '@tarojs/components'
 
 import taroFetch from '../../utils/request'
 import ShopListItem from '../../components/ShopListItem'
@@ -9,7 +9,7 @@ import './shopList.scss'
 
 class ShopList extends Component {
   config = {
-    navigationBarTitleText: '精选清单',
+    navigationBarTitleText: '清单列表',
     navigationBarBackgroundColor: '#C91623',
     navigationBarTextStyle: 'white',
   }
@@ -18,26 +18,59 @@ class ShopList extends Component {
     super(props)
     this.state = {
       data: [],
+      pageNum: 1,
+      pageSize: 6,
+      total: 0,
     }
   }
 
   componentDidMount() {
+    this.fetch()
+  }
+
+  fetch = () => {
     const { type } = this.$router.params
-    this.fetchShopListByType(type)
+    const shopListUrlMap = {
+      myList: '/app/wishList/selectMyAdminWishList',
+      collectList: '/app/wishList/selectMyCollectionWishList',
+    }
+    if (Number(type)) {
+      this.fetchShopListByType(type)
+    } else {
+      this.fetchShopList(shopListUrlMap[type])
+    }
+  }
+
+  fetchShopList = url => {
+    const { pageNum, pageSize } = this.state
+    taroFetch({
+      url,
+      data: {
+        pageNum,
+        pageSize,
+      },
+    }).then(({ wishLists = [], total }) => {
+      this.setState(preState => ({
+        data: preState.data.concat(wishLists),
+        total: total,
+      }))
+    })
   }
 
   fetchShopListByType = listType => {
+    const { pageNum, pageSize } = this.state
     taroFetch({
       url: '/app/wishList/selectWishList',
       data: {
-        pageNum: 1,
-        pageSize: 10,
+        pageNum,
+        pageSize,
         listType,
       },
-    }).then(data => {
-      this.setState({
-        data: data.items,
-      })
+    }).then(({ items, total }) => {
+      this.setState(preState => ({
+        data: preState.data.concat(items),
+        total: total,
+      }))
     })
   }
 
@@ -45,6 +78,18 @@ class ShopList extends Component {
     Taro.navigateTo({
       url: `/pages/shopDetail/shopDetail?id=${id}`,
     })
+  }
+
+  handleScrollToLower = () => {
+    const { total, pageSize, pageNum } = this.state
+    if (pageSize * pageNum < total) {
+      this.setState(
+        {
+          pageNum: pageNum + 1,
+        },
+        this.fetch
+      )
+    }
   }
 
   render() {
@@ -55,9 +100,23 @@ class ShopList extends Component {
     return (
       <View className="shopList fontsize-24">
         <View className="shopList-box">
-          {data.map(item => (
-            <ShopListItem data={item} onClick={() => this.toDetail(item.id)} />
-          ))}
+          <ScrollView
+            scrollY
+            scrollWithAnimation
+            scrollTop={0}
+            style={{
+              height: '600px',
+            }}
+            onScrollToLower={this.handleScrollToLower}
+          >
+            {data.map(item => (
+              <ShopListItem
+                key={item.id}
+                data={item}
+                onClick={() => this.toDetail(item.id)}
+              />
+            ))}
+          </ScrollView>
         </View>
       </View>
     )

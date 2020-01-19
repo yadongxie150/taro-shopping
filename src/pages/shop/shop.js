@@ -1,5 +1,5 @@
 import Taro, { Component } from '@tarojs/taro'
-import { View, Text, Input, Checkbox } from '@tarojs/components'
+import { View, Text, Input, Checkbox, Button } from '@tarojs/components'
 import { AtFloatLayout } from 'taro-ui'
 
 import taroFetch from '../../utils/request'
@@ -24,6 +24,8 @@ class Shop extends Component {
       data: {
         myCollectionLists: [],
         myLists: [],
+        myListTotal: 0,
+        collectListTotal: 0,
       },
       showModal: false,
       name: '',
@@ -38,17 +40,17 @@ class Shop extends Component {
         if (!res.authSetting['scope.userInfo']) {
           Taro.authorize({
             scope: 'scope.userInfo',
-            success () {
+            success() {
               // 用户已经同意小程序使用用户信息，后续调用 getUserInfo 接口不会弹窗询问
               Taro.getUserInfo({
                 success: function(res) {
                   console.log(res)
-                }
+                },
               })
-            }
+            },
           })
         }
-      }
+      },
     })
   }
 
@@ -61,6 +63,8 @@ class Shop extends Component {
         data: {
           myCollectionLists: myCollectionLists.wishLists,
           myLists: myLists.wishLists,
+          myListTotal: myLists.total,
+          collectListTotal: myCollectionLists.total,
         },
       })
     })
@@ -106,6 +110,7 @@ class Shop extends Component {
       method: 'POST',
       data: {
         listName: name,
+        privacyType: isSecret ? 1 : 0,
       },
     }).then(() => {
       this.fetchShopList()
@@ -119,10 +124,21 @@ class Shop extends Component {
     })
   }
 
+  gotoShopList = type => () => {
+    Taro.navigateTo({
+      url: `/pages/shopList/shopList?type=${type}`,
+    })
+  }
+
   render() {
     const {
       showModal,
-      data: { myCollectionLists, myLists },
+      data: {
+        myCollectionLists = [],
+        myLists = [],
+        collectListTotal,
+        myListTotal,
+      },
       name,
       isSecret,
     } = this.state
@@ -144,15 +160,25 @@ class Shop extends Component {
           </View>
           <View className="shopBox-body">
             {myLists.length ? (
-              myLists.map(item => (
-                <ShopItem
-                  data={item}
-                  key={item.id}
-                  onClick={() => this.toDetail(item.id)}
-                />
-              ))
+              myLists
+                .slice(0, 3)
+                .map(item => (
+                  <ShopItem
+                    data={item}
+                    key={item.id}
+                    onClick={() => this.toDetail(item.id)}
+                  />
+                ))
             ) : (
               <View className="shopBox-empty">暂无数据</View>
+            )}
+            {myLists.length > 3 && (
+              <Button
+                className="shopBox-button"
+                onClick={this.gotoShopList('myList')}
+              >
+                查看更多({myListTotal})
+              </Button>
             )}
           </View>
         </View>
@@ -162,15 +188,25 @@ class Shop extends Component {
           </View>
           <View className="shopBox-body">
             {myCollectionLists.length ? (
-              myCollectionLists.map(item => (
-                <ShopItem
-                  data={item}
-                  key={item.id}
-                  onClick={() => this.toDetail(item.id)}
-                />
-              ))
+              myCollectionLists
+                .slice(0, 3)
+                .map(item => (
+                  <ShopItem
+                    data={item}
+                    key={item.id}
+                    onClick={() => this.toDetail(item.id)}
+                  />
+                ))
             ) : (
               <View className="shopBox-empty">暂无数据</View>
+            )}
+            {myCollectionLists.length > 3 && (
+              <Button
+                className="shopBox-button"
+                onClick={this.gotoShopList('collectList')}
+              >
+                查看更多({collectListTotal})
+              </Button>
             )}
           </View>
         </View>

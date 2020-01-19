@@ -1,6 +1,6 @@
 // taro-ui 全局样式修改
 .fontsize-24 {
-  font-size: 24px;
+  font-size: 28px;
 }
 
 .at-float-layout__container {
@@ -17,26 +17,26 @@
   }
 
   .at-search-bar__input {
-    font-size: 24px;
+    font-size: 28px;
   }
 
   .at-search-bar__action {
     background-color: #F0F0F0;
-    font-size: 24px;
+    font-size: 28px;
     font-weight: 600;
     color: #BC1723;
   }
 }
 
 .taro-modal {
-  font-size: 24px;
+  font-size: 28px;
   color: #828282;
   padding: 16px;
 
   &-header {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 24px;
+    margin-bottom: 28px;
   }
 }
 

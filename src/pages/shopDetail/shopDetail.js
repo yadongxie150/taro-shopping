@@ -1,5 +1,5 @@
 import Taro, { Component } from '@tarojs/taro'
-import { View, Text, Image } from '@tarojs/components'
+import { View, Text, Image, ScrollView } from '@tarojs/components'
 import { AtActionSheet, AtActionSheetItem } from 'taro-ui'
 
 import moreIcon from '../../assets/shopDetail/more.png'
@@ -22,6 +22,9 @@ class shopDetail extends Component {
     super(props)
     this.state = {
       id: null,
+      pageNum: 1,
+      pageSize: 10,
+      total: 0,
       data: {
         listGood: {
           wishGoods: [],
@@ -53,13 +56,12 @@ class shopDetail extends Component {
       url: '/app/wishList/selectWishListById',
       data: {
         listId: id,
-        pageNum: 1,
-        pageSize: 100,
       },
     }).then(data => {
       this.setState({
         id,
         data,
+        total: data.listGood.total,
       })
     })
   }
@@ -94,7 +96,6 @@ class shopDetail extends Component {
   }
 
   delete = () => {
-    console.log('del')
     taroFetch({
       url: '/app/wishList/deleteList',
       method: 'POST',
@@ -176,6 +177,42 @@ class shopDetail extends Component {
     }
   }
 
+  fetchGoods = () => {
+    const { pageNum, pageSize, id } = this.state
+    taroFetch({
+      url: '/app/goods/getListGoods',
+      method: 'GET',
+      data: {
+        listId: id,
+        pageNum,
+        pageSize,
+      },
+    }).then(res => {
+      this.setState(preState => ({
+        ...preState,
+        data: {
+          ...preState.data,
+          listGood: {
+            ...preState.data.listGood,
+            wishGoods: preState.data.listGood.wishGoods.concat(res.wishGoods),
+          },
+        },
+      }))
+    })
+  }
+
+  handleScrollToLower = () => {
+    const { pageSize, pageNum, total } = this.state
+    if (pageSize * pageNum < total) {
+      this.setState(
+        {
+          pageNum: pageNum + 1,
+        },
+        this.fetchGoods
+      )
+    }
+  }
+
   render() {
     const {
       id,
@@ -204,13 +241,24 @@ class shopDetail extends Component {
             )}
           </View>
           <View className="shopContent-body">
-            {listGood.wishGoods.map(good => (
-              <ShopGood
-                data={good}
-                onClick={() => this.handleGoodDetail(good.id)}
-                onBuy={() => this.handleBuy(good)}
-              />
-            ))}
+            <ScrollView
+              scrollX={false}
+              scrollY
+              scrollWithAnimation
+              scrollTop={0}
+              style={{
+                height: '600px',
+              }}
+              onScrollToLower={this.handleScrollToLower}
+            >
+              {listGood.wishGoods.map(good => (
+                <ShopGood
+                  data={good}
+                  onClick={() => this.handleGoodDetail(good.id)}
+                  onBuy={() => this.handleBuy(good)}
+                />
+              ))}
+            </ScrollView>
           </View>
         </View>
         <AtActionSheet isOpened={showManage} onClose={this.close}>
