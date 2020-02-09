@@ -1,4 +1,5 @@
 .shopContent-good {
+  position: relative;
   display: flex;
   justify-content: space-between;
   padding: 20px 10px;
@@ -9,7 +10,6 @@
   &-image {
     width: 160px;
     height: 160px;
-    background-color: red;
     border-radius: 6px;
   }
 
@@ -31,6 +31,12 @@
     &-footer {
       display: flex;
       justify-content: space-between;
+    }
+
+    &-close {
+      position: absolute;
+      right: 0;
+      top: 0;
     }
   }
 

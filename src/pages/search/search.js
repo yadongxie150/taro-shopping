@@ -1,6 +1,7 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View } from '@tarojs/components'
 import classnames from 'classnames'
+import { AtButton } from 'taro-ui'
 
 import taroFetch from '../../utils/request'
 import { GOOD_CHANNEL } from '../../constants'
@@ -96,6 +97,13 @@ class Search extends Component {
     )
   }
 
+  create = () => {
+    const id = 1
+    Taro.navigateTo({
+      url: `/pages/shopContent/shopContent?id=${id}`,
+    })
+  }
+
   render() {
     const { search, hasResult, goods, shopList, channel } = this.state
     const searchData = {
@@ -137,6 +145,7 @@ class Search extends Component {
             <SearchDefault />
           )}
         </View>
+        <AtButton onClick={this.create}>创建商品/清单</AtButton>
       </View>
     )
   }

@@ -31,6 +31,12 @@ class GoodDetail extends Component {
     this.fetchGood(id)
   }
 
+  componentDidShow() {
+    this.setState({
+      showModal: false,
+    })
+  }
+
   fetchGood = goodId => {
     taroFetch({
       url: '/app/goods/getGoodDetailInfo',

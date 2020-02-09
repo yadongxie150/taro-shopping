@@ -34,6 +34,11 @@ class Shop extends Component {
   }
 
   componentDidShow() {
+    this.setState({
+      showModal: false,
+      name: '',
+      isSecret: false,
+    })
     this.fetchShopList()
     Taro.getSetting({
       success(res) {

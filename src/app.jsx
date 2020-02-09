@@ -31,6 +31,8 @@ class App extends Component {
       'pages/shopDetail/shopDetail',
       'pages/search/search',
       'pages/shopList/shopList',
+      'pages/shopComment/shopComment',
+      'pages/shopContent/shopContent',
     ],
     window: {
       backgroundTextStyle: 'light',

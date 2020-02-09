@@ -160,6 +160,11 @@ class shopDetail extends Component {
 
   handleShare = () => {}
 
+  handleComment = () => {
+    Taro.navigateTo({
+      url: `/pages/shopComment/shopComment?id=${this.state.id}`,
+    })
+  }
   handleShopAction = type => {
     console.log(type)
     switch (type) {
@@ -171,6 +176,9 @@ class shopDetail extends Component {
         break
       case 'favour':
         this.handleFavour()
+        break
+      case 'comment':
+        this.handleComment()
         break
       default:
         break

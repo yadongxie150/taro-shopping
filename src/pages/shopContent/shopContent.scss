@@ -1,0 +1,48 @@
+.shopContent {
+  background-color: #FAF7F8;
+
+  &-images {
+    padding: 24px;
+    background-color: #FAF7FA;
+  }
+
+  &-item {
+    padding: 30px;
+    margin-bottom: 16px;
+    background-color: #ffffff;
+
+    .title {
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+
+    .addGood {
+      background-color: #F0F0F0;
+      font-size: 24px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 60px 0;
+      color: #BC1723;
+    }
+  }
+
+  &-submit {
+    font-size: 24px;
+    margin: 30px 15px;
+    border-radius: 40px;
+    border: 2px solid #BC1723;
+    color: #BC1723;
+  }
+}
+
+
+.shopContent-search {
+  &-empty {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+    color: #BC1723;
+  }
+}
