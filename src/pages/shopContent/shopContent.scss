@@ -38,11 +38,21 @@
 
 
 .shopContent-search {
+  position: relative;
+  padding-top: 88px;
+
   &-empty {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 200px;
     color: #BC1723;
+  }
+
+  &-head {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
   }
 }

@@ -149,7 +149,7 @@ class Shop extends Component {
     } = this.state
     return (
       <View className="shop">
-        <View onClick={this.focusSearch}>
+        <View onClick={this.focusSearch} className="shop-search">
           <SearchTop disabled />
         </View>
         <View className="shopBox">

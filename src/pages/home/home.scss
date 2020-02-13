@@ -3,6 +3,14 @@
   background-color: rgba(248, 248, 248, 1);
   font-size: 28px;
 
+  &-search {
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 1;
+    width: 100%;
+  }
+
   &-banner {
     margin-bottom: 40px;
   }

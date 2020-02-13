@@ -3,6 +3,14 @@
   background-color: #F8F8F8;
   padding-top: 100px;
 
+  &-head {
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 1;
+    width: 100%;
+  }
+
   &-body {
     padding: 28px 15px;
 

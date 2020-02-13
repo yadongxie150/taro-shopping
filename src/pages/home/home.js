@@ -77,7 +77,7 @@ class Home extends Component {
     } = this.state
     return (
       <View className="home">
-        <View onClick={this.focusSearch}>
+        <View onClick={this.focusSearch} className="home-search">
           <SearchTop disabled />
         </View>
         <ScrollView

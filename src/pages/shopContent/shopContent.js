@@ -1,5 +1,5 @@
 import Taro, { Component } from '@tarojs/taro'
-import { View, Button, Text } from '@tarojs/components'
+import { View, ScrollView } from '@tarojs/components'
 import {
   AtImagePicker,
   AtTextarea,
@@ -36,7 +36,7 @@ class shopContent extends Component {
     console.log(this.props, nextProps)
   }
 
-  componentWillUnmount() {}
+  componentWillUnmount() { }
 
   componentDidShow() {
     this.setState({
@@ -182,7 +182,7 @@ class shopContent extends Component {
         <AtButton className="shopContent-submit" onClick={this.submit}>
           保存并预览
         </AtButton>
-        <AtFloatLayout isOpened={showModal} onClose={this.close}>
+        <AtFloatLayout scrollY={false} scrollX={false} isOpened={showModal} onClose={this.close}>
           <View className="shopContent-search">
             <View className="shopContent-search-head">
               <SearchTop
@@ -200,10 +200,21 @@ class shopContent extends Component {
                   暂无商品，请输入关键词搜索
                 </View>
               )}
-              {goods.length &&
-                goods.map(item => (
-                  <ShopGood data={item} onClick={() => this.pickGood(item)} />
-                ))}
+              {goods.length && (
+                <ScrollView
+                  scrollX={false}
+                  scrollY
+                  scrollWithAnimation
+                  scrollTop={0}
+                  style={{
+                    height: '600rpx',
+                  }}
+                >
+                  {goods.map(item => (
+                    <ShopGood data={item} onClick={() => this.pickGood(item)} />
+                  ))}
+                </ScrollView>
+              )}
             </View>
           </View>
         </AtFloatLayout>

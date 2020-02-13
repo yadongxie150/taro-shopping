@@ -5,6 +5,14 @@
   background-color: #F8F8F8;
   font-size: 28px;
   padding-top: 100px;
+
+  &-search {
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 1;
+    width: 100%;
+  }
 }
 
 .shopBox {

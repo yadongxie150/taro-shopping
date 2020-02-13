@@ -112,13 +112,16 @@ class Search extends Component {
     }
     return (
       <View className="search">
-        <SearchTop
-          showActionButton
-          value={search}
-          onChange={this.handleSearch}
-          onSearch={this.doSearch}
-          onClear={this.handleClear}
-        />
+        <View className="search-head">
+          <SearchTop
+            showActionButton
+            value={search}
+            onChange={this.handleSearch}
+            onSearch={this.doSearch}
+            onClear={this.handleClear}
+          />
+        </View>
+
         <View className="search-body">
           {hasResult && (
             <View className="search-body-channel">
@@ -142,8 +145,8 @@ class Search extends Component {
               onGoodClick={this.handleGood}
             />
           ) : (
-            <SearchDefault />
-          )}
+              <SearchDefault />
+            )}
         </View>
         <AtButton onClick={this.create}>创建商品/清单</AtButton>
       </View>
