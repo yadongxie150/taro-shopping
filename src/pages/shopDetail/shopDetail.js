@@ -40,14 +40,10 @@ class shopDetail extends Component {
     this.fetchData(id)
   }
 
-  onShareAppMessage(res) {
-    if (res.from === 'button') {
-      // 来自页面内转发按钮
-      console.log(res.target)
-    }
+  onShareAppMessage() {
     return {
-      title: '清单',
-      path: `/pages/goodDetail/goodDetail?id=${id}`,
+      title: '清单详情页',
+      path: `/pages/goodDetail/goodDetail?id=${this.state.id}`,
     }
   }
 

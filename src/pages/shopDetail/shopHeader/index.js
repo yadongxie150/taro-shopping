@@ -1,4 +1,4 @@
-import { View, Image, Text } from '@tarojs/components'
+import { View, Image, Text, Button } from '@tarojs/components'
 
 import { SHOP_TYPE_MAP } from '../../../constants'
 
@@ -39,12 +39,13 @@ const getOpNum = (key, data) => {
 }
 
 export default function ShopHeader(props) {
-  const { listName, listDesc, listPic, avatar, nickName } = props.data
+  const { data, onClick } = props
+  const { listName, listDesc, listPic, avatar, nickName } = data
 
   const shopOperations = Object.keys(SHOP_TYPE_MAP).map(key => ({
     type: key,
-    name: getOpName(key, props.data),
-    num: getOpNum(key, props.data),
+    name: getOpName(key, data),
+    num: getOpNum(key, data),
     image: shopIconMap[key],
   }))
 
@@ -64,17 +65,27 @@ export default function ShopHeader(props) {
         </View>
       </View>
       <View className="shopHeader-op">
-        {shopOperations.map(operaion => (
-          <View
-            className="shopHeader-op-item"
-            onClick={() => this.props.onClick(operaion.type)}
-          >
-            <Image className="shopHeader-op-icon" src={operaion.image} />
-            <Text>
-              {operaion.num}·{operaion.name}
-            </Text>
-          </View>
-        ))}
+        {shopOperations.map(item => {
+          const { name, type, image, num } = item
+          return (
+            <View
+              className="shopHeader-op-item"
+              onClick={() => onClick(type)}
+            >
+              <Image className="shopHeader-op-icon" src={image} />
+              {type === 'share' && (
+                <Button size="mini" openType="share">
+                  {num}·{name}
+                </Button>
+              )}
+              {type !== 'share' && (
+                <Text>
+                  {num}·{name}
+                </Text>
+              )}
+            </View>
+          )
+        })}
       </View>
     </View>
   )

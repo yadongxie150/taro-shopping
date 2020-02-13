@@ -58,7 +58,7 @@ class User extends Component {
         </View>
         <View className="user-item">
           <Image className="user-item-icon" src={ideaIcon} />
-          意见反馈
+          <Button openType="feedback">意见反馈</Button>
         </View>
         <View className="user-item">
           <Image className="user-item-icon" src={aboutIcon} />

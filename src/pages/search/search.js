@@ -145,8 +145,8 @@ class Search extends Component {
               onGoodClick={this.handleGood}
             />
           ) : (
-              <SearchDefault />
-            )}
+            <SearchDefault />
+          )}
         </View>
         <AtButton onClick={this.create}>创建商品/清单</AtButton>
       </View>

@@ -36,7 +36,7 @@ class shopContent extends Component {
     console.log(this.props, nextProps)
   }
 
-  componentWillUnmount() { }
+  componentWillUnmount() {}
 
   componentDidShow() {
     this.setState({
@@ -182,7 +182,12 @@ class shopContent extends Component {
         <AtButton className="shopContent-submit" onClick={this.submit}>
           保存并预览
         </AtButton>
-        <AtFloatLayout scrollY={false} scrollX={false} isOpened={showModal} onClose={this.close}>
+        <AtFloatLayout
+          scrollY={false}
+          scrollX={false}
+          isOpened={showModal}
+          onClose={this.close}
+        >
           <View className="shopContent-search">
             <View className="shopContent-search-head">
               <SearchTop
