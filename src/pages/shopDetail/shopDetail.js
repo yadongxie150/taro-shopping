@@ -43,7 +43,7 @@ class shopDetail extends Component {
   onShareAppMessage() {
     return {
       title: '清单详情页',
-      path: `/pages/goodDetail/goodDetail?id=${this.state.id}`,
+      path: `/pages/shopDetail/shopDetail?id=${this.state.id}`,
     }
   }
 
