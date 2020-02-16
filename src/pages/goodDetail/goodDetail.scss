@@ -1,5 +1,5 @@
 .goodDetail {
-  font-size: 28px;
+  font-size: 30px;
   background-color: #F8F8F8;
 
   &-image {
@@ -14,18 +14,18 @@
     &-title {
       font-weight: 500;
       margin-bottom: 10px;
-      text-overflow:ellipsis;
-      overflow:hidden;
-      white-space:nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
     }
 
     &-des {
       display: flex;
-      font-size: 21px;
+      font-size: 26px;
       color: #828282;
       margin-bottom: 10px;
 
-      & > View {
+      &>View {
         margin-right: 45px;
       }
     }
@@ -37,7 +37,7 @@
       margin-bottom: 20px;
 
       &-num {
-        font-size: 48px;
+        font-size: 60px;
         color: #BC1723;
       }
 
@@ -46,7 +46,7 @@
         padding: 6px 22px;
         background-color: #C91623;
         color: #ffffff;
-        font-size: 21px;
+        font-size: 26px;
         border-radius: 6px;
       }
     }
@@ -54,7 +54,7 @@
     &-footer {
       display: flex;
       justify-content: space-around;
-      font-size: 21px;
+      font-size: 26px;
       color: #828282;
     }
   }
@@ -63,7 +63,7 @@
     margin-top: 12px;
     padding: 25px;
     background-color: #ffffff;
-    font-size: 21px;
+    font-size: 26px;
   }
 
   &-action {
@@ -78,7 +78,7 @@
       justify-content: flex-end;
       padding: 20px 30px;
     }
-    
+
 
     &-collect {
       padding: 28px 70px;
