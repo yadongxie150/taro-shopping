@@ -1,17 +1,12 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View, ScrollView } from '@tarojs/components'
-import {
-  AtImagePicker,
-  AtTextarea,
-  AtIcon,
-  AtButton,
-  AtFloatLayout,
-} from 'taro-ui'
+import { AtTextarea, AtButton, AtFloatLayout } from 'taro-ui'
 
 import taroFetch from '../../utils/request'
 import SearchTop from '../search/searchTop'
 import ShopGood from '../shopDetail/ShopGood'
 import AddGood from '../../components/AddGood'
+import ImagePicker from '../../components/ImagePicker'
 import './shopContent.scss'
 
 class shopContent extends Component {
@@ -47,11 +42,7 @@ class shopContent extends Component {
     })
   }
 
-  handleImages = images => {
-    this.setState({
-      images,
-    })
-  }
+  handleImages = images => this.setState({ images })
 
   handleInput = type => e => {
     this.setState({
@@ -66,7 +57,7 @@ class shopContent extends Component {
       skuName: title,
       goodContent: des,
       skuId: (good && good.id) || null,
-      imageList: images.map(item => item.url),
+      imageList: images,
     }
 
     taroFetch({
@@ -176,7 +167,12 @@ class shopContent extends Component {
     return (
       <View className="shopContent">
         <View className="shopContent-images">
-          <AtImagePicker files={images} onChange={this.handleImages} />
+          <ImagePicker
+            length={3}
+            count={9}
+            urls={images}
+            onChange={this.handleImages}
+          />
         </View>
         <View className="shopContent-item">
           <View className="title">标题</View>

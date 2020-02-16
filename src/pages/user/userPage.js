@@ -1,12 +1,12 @@
-import Taro, { Component } from '@tarojs/taro'
-import { View, Button, Text, Image } from '@tarojs/components'
+import { Component } from '@tarojs/taro'
+import { View, Text, Image } from '@tarojs/components'
 
 import aboutIcon from '../../assets/user/about.png'
 import ideaIcon from '../../assets/user/idea.png'
 import messageIcon from '../../assets/user/message.png'
 
 import taroFetch from '../../utils/request'
-import TaroPoster from '../../components/TaroPoster'
+import OpenTypeButton from '../../components/OpenTypeButton'
 import './user.scss'
 
 class UserPage extends Component {
@@ -47,19 +47,18 @@ class UserPage extends Component {
             <Text className="user-msg-id">ID：{id}</Text>
           </View>
         </View>
-        <View className="user-item">
+        {/* <View className="user-item">
           <Image className="user-item-icon" src={messageIcon} />
           消息通知
-        </View>
+        </View> */}
         <View className="user-item">
           <Image className="user-item-icon" src={ideaIcon} />
-          <Button openType="feedback">意见反馈</Button>
+          <OpenTypeButton openType="feedback">意见反馈</OpenTypeButton>
         </View>
         <View className="user-item">
           <Image className="user-item-icon" src={aboutIcon} />
           关于我们
         </View>
-        {/* <TaroPoster /> */}
       </View>
     )
   }

@@ -1,0 +1,12 @@
+.button-nostyle {
+  width: 100%;
+  font-size: 30px;
+  background-color: #ffffff;
+  text-align: left;
+  line-height: 1;
+  padding: 0;
+
+  &::after {
+    border: none;
+  }
+}

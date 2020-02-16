@@ -1,4 +1,4 @@
-import { View, Image, Text, Button } from '@tarojs/components'
+import { View, Image, Text } from '@tarojs/components'
 
 import { SHOP_TYPE_MAP } from '../../../constants'
 
@@ -6,6 +6,8 @@ import collectIcon from '../../../assets/shopDetail/collect.png'
 import likeIcon from '../../../assets/shopDetail/like.png'
 import reviewIcon from '../../../assets/shopDetail/review.png'
 import shareIcon from '../../../assets/shopDetail/share.png'
+
+import OpenTypeButton from '../../../components/OpenTypeButton'
 import './index.scss'
 
 const shopIconMap = {
@@ -67,19 +69,24 @@ export default function ShopHeader(props) {
       <View className="shopHeader-op">
         {shopOperations.map(item => {
           const { name, type, image, num } = item
+          if (type === 'share') {
+            return (
+              <OpenTypeButton openType="share">
+                <View className="shopHeader-op-item">
+                  <Image className="shopHeader-op-icon" src={image} />
+                  <Text>
+                    {num}·{name}
+                  </Text>
+                </View>
+              </OpenTypeButton>
+            )
+          }
           return (
             <View className="shopHeader-op-item" onClick={() => onClick(type)}>
               <Image className="shopHeader-op-icon" src={image} />
-              {type === 'share' && (
-                <Button size="mini" openType="share">
-                  {num}·{name}
-                </Button>
-              )}
-              {type !== 'share' && (
-                <Text>
-                  {num}·{name}
-                </Text>
-              )}
+              <Text>
+                {num}·{name}
+              </Text>
             </View>
           )
         })}

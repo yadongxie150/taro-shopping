@@ -2,7 +2,7 @@ import Taro, { Component } from '@tarojs/taro'
 import { View, Text, Input, Textarea, Switch, Button } from '@tarojs/components'
 import { AtImagePicker } from 'taro-ui'
 
-import taroFetch from '../../utils/request'
+import taroFetch, { BASE_URL, getToken } from '../../utils/request'
 
 import './shopEdit.scss'
 
@@ -85,19 +85,40 @@ export default class shopEdit extends Component {
       count: 1, // 默认9
       sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
       sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
-      success: res => {
+      success: async res => {
         // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
         const {
           tempFilePaths: [imageUrl],
         } = res
-        this.setState(preState => ({
-          data: {
-            ...preState.data,
-            listPic: imageUrl,
+        const token = await getToken()
+        Taro.uploadFile({
+          url: `${BASE_URL}/app/upload/singleUpload`, //仅为示例，非真实的接口地址
+          filePath: imageUrl,
+          name: 'file',
+          header: {
+            'Content-Type': 'multipart/form-data',
+            'Mini-Token': token,
           },
-        }))
+          success: res => {
+            const data = JSON.parse(res.data)
+            const {
+              data: { fileUrl },
+            } = data
+            console.log('fileUrl', fileUrl)
+            this.updateState('listPic', fileUrl)
+          },
+        })
       },
     })
+  }
+
+  updateState = (key, value) => {
+    this.setState(preState => ({
+      data: {
+        ...preState.data,
+        [key]: value,
+      },
+    }))
   }
 
   render() {
@@ -105,7 +126,7 @@ export default class shopEdit extends Component {
       data: { listName, privacyType, listDesc, listPic },
     } = this.state
     return (
-      <View className="shopEdit fontsize-24">
+      <View className="shopEdit">
         <View className="shopEdit-top">
           <View className="shopEdit-top-item">
             <Text className="label">名称</Text>

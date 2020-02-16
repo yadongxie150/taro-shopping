@@ -98,7 +98,7 @@ class ShopList extends Component {
       return null
     }
     return (
-      <View className="shopList fontsize-24">
+      <View className="shopList">
         <View className="shopList-box">
           <ScrollView
             scrollY

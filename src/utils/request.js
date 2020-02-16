@@ -88,5 +88,5 @@ async function fetch(options) {
     })
 }
 
-export { setToken, getToken }
+export { setToken, getToken, BASE_URL }
 export default fetch
