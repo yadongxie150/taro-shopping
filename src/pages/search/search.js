@@ -24,8 +24,25 @@ class Search extends Component {
       hasResult: false,
       goods: [],
       shopList: [],
-      channel: 2,
+      channel: 2, // 默认查询拼多多
+      listId: undefined,
     }
+  }
+
+  componentDidMount() {
+    const { listId } = this.$router.params
+    console.log(listId)
+    if (listId) {
+      this.setState({
+        listId,
+      })
+    }
+  }
+
+  componentDidHide() {
+    this.setState({
+      listId: undefined,
+    })
   }
 
   handleSearch = value => {
@@ -43,7 +60,6 @@ class Search extends Component {
 
   doSearch = () => {
     const { search, channel } = this.state
-    // todo: 搜索清单接口
     taroFetch({
       url: '/app/goods/getGoodInfo',
       data: {
@@ -98,14 +114,13 @@ class Search extends Component {
   }
 
   create = () => {
-    const id = 1
     Taro.navigateTo({
-      url: `/pages/shopContent/shopContent?id=${id}`,
+      url: `/pages/shopContent/shopContent?listId=${this.state.listId}`,
     })
   }
 
   render() {
-    const { search, hasResult, goods, shopList, channel } = this.state
+    const { search, hasResult, goods, shopList, channel, listId } = this.state
     const searchData = {
       goods,
       shopList,
@@ -148,7 +163,7 @@ class Search extends Component {
             <SearchDefault />
           )}
         </View>
-        <AtButton onClick={this.create}>创建商品/清单</AtButton>
+        {listId && <AtButton onClick={this.create}>创建商品/清单</AtButton>}
       </View>
     )
   }

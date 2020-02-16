@@ -68,10 +68,7 @@ export default function ShopHeader(props) {
         {shopOperations.map(item => {
           const { name, type, image, num } = item
           return (
-            <View
-              className="shopHeader-op-item"
-              onClick={() => onClick(type)}
-            >
+            <View className="shopHeader-op-item" onClick={() => onClick(type)}>
               <Image className="shopHeader-op-icon" src={image} />
               {type === 'share' && (
                 <Button size="mini" openType="share">

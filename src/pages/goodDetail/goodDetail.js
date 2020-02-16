@@ -10,6 +10,7 @@ import ShopListItem from '../../components/ShopListItem'
 import './goodDetail.scss'
 
 class GoodDetail extends Component {
+  // todo: 兼容内容详情页
   config = {
     navigationBarTitleText: '商品详情页',
     navigationBarBackgroundColor: '#F0F0F0',
@@ -18,6 +19,8 @@ class GoodDetail extends Component {
   constructor(props) {
     super(props)
     this.state = {
+      isGood: true,
+      id: undefined,
       showModal: false,
       shopList: [],
       data: {},
@@ -25,9 +28,10 @@ class GoodDetail extends Component {
   }
 
   componentDidMount() {
-    const { id } = this.$router.params
-    // todo: 商品详情页
-    console.log('商品Id：', id)
+    const { id, isGood } = this.$router.params
+    this.setState({
+      isGood: !!Number(isGood),
+    })
     this.fetchGood(id)
   }
 
@@ -46,6 +50,7 @@ class GoodDetail extends Component {
     }).then(data => {
       this.setState({
         data,
+        id: goodId,
       })
     })
   }
@@ -80,7 +85,19 @@ class GoodDetail extends Component {
 
   handleBuy = e => {
     e.stopPropagation()
-    console.log('buy')
+    taroFetch({
+      url: '/app/goods/getGoodBuyInfo',
+      data: {
+        goodId: this.state.id,
+      },
+    })
+      .then(res => {
+        Taro.navigateToMiniProgram({
+          appId: 'wx32540bd863b27570',
+          path: res.buyUrl,
+        })
+      })
+      .catch(err => err)
   }
 
   add = listId => {
@@ -88,7 +105,7 @@ class GoodDetail extends Component {
       url: '/app/goods/addWishList',
       method: 'POST',
       data: {
-        goodId: 72,
+        goodId: this.state.id,
         listId,
         goodChannel: 1,
       },
@@ -156,7 +173,7 @@ class GoodDetail extends Component {
               收藏到清单
             </View>
             <View className="goodDetail-action-buy" onClick={this.handleBuy}>
-              去购买
+              去购买/去编辑
             </View>
           </View>
         </View>

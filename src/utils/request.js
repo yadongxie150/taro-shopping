@@ -1,6 +1,7 @@
 import Taro from '@tarojs/taro'
 
 const BASE_URL = 'http://47.101.163.80:8083'
+// const BASE_URL = 'http://fpy229.imwork.net'
 
 const setToken = token => Taro.setStorage({ key: 'token', data: token })
 const getToken = () =>

@@ -6,7 +6,7 @@ import './index.scss'
 // function component 必须首字母大写
 export default function ShopGood(props) {
   const { data, showBuy, showDelete, onBuy, onClick, onDelete } = props
-  const { skuName, price, mainImageUrl } = data
+  const { skuName, price, mainImageUrl, goodContent } = data
   return (
     <View className="shopContent-good" onClick={onClick}>
       <Image className="shopContent-good-image" src={mainImageUrl} />
@@ -24,7 +24,7 @@ export default function ShopGood(props) {
           </View>
         )}
         <View className="shopContent-good-content-title">{skuName}</View>
-        {/* <View className="shopContent-good-content-des">注释</View> */}
+        <View className="shopContent-good-content-des">{goodContent}</View>
         <View className="shopContent-good-content-footer">
           <View>¥{handlePrice(price)}</View>
           {showBuy && (

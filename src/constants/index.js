@@ -4,6 +4,10 @@ export const GOOD_CHANNEL = {
   3: '淘宝',
 }
 
+export const GOOD_CHANNEL_APPID = {
+  2: 'wx32540bd863b27570',
+}
+
 export const SHOP_LIST_TYPE = {
   1: '精选',
   2: '推荐',

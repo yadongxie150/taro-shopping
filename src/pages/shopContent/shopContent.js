@@ -11,6 +11,7 @@ import {
 import taroFetch from '../../utils/request'
 import SearchTop from '../search/searchTop'
 import ShopGood from '../shopDetail/ShopGood'
+import AddGood from '../../components/AddGood'
 import './shopContent.scss'
 
 class shopContent extends Component {
@@ -29,14 +30,16 @@ class shopContent extends Component {
       goods: [],
       search: undefined,
       showModal: false,
+      listId: undefined,
     }
   }
 
-  componentWillReceiveProps(nextProps) {
-    console.log(this.props, nextProps)
+  componentDidMount() {
+    const { listId } = this.$router.params
+    this.setState({
+      listId,
+    })
   }
-
-  componentWillUnmount() {}
 
   componentDidShow() {
     this.setState({
@@ -57,7 +60,31 @@ class shopContent extends Component {
   }
 
   submit = () => {
-    console.log(this.state)
+    const { title, des, images, good, listId } = this.state
+    const params = {
+      listId,
+      skuName: title,
+      goodContent: des,
+      skuId: (good && good.id) || null,
+      imageList: images.map(item => item.url),
+    }
+
+    taroFetch({
+      url: '/app/goods/addContentGood',
+      method: 'POST',
+      data: params,
+    })
+      .then(res => {
+        Taro.showToast({
+          title: '更新成功',
+          icon: 'success',
+          duration: 2000,
+        })
+        Taro.navigateTo({
+          url: `/pages/shopDetail/shopDetail?id=${listId}`,
+        })
+      })
+      .catch()
   }
 
   handleSearch = value => {
@@ -75,7 +102,7 @@ class shopContent extends Component {
 
   doSearch = () => {
     const { search } = this.state
-    // todo: 搜索清单接口
+    // todo: 搜索清单/商品接口
     taroFetch({
       url: '/app/goods/getGoodInfo',
       data: {
@@ -164,12 +191,7 @@ class shopContent extends Component {
           {hasGood && (
             <ShopGood showDelete onDelete={this.handleDeleteGood} data={good} />
           )}
-          {!hasGood && (
-            <View className="addGood" onClick={this.add}>
-              <AtIcon value="add" color="#BC1723" />
-              添加商品
-            </View>
-          )}
+          {!hasGood && <AddGood title="添加商品" onClick={this.add} />}
         </View>
         <View className="shopContent-item">
           <View className="title">介绍</View>

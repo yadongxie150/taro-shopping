@@ -2,6 +2,7 @@ import Taro, { Component, render } from '@tarojs/taro'
 import { Button } from '@tarojs/components'
 
 import taroFetch from '../../utils/request'
+import { setStorage, getStorage } from '../../utils/storage'
 
 export default class Authorize extends Component {
   constructor(props) {
@@ -11,8 +12,20 @@ export default class Authorize extends Component {
     }
   }
 
-  componentDidShow() {
-    this.getUserInfo()
+  async componentDidShow() {
+    // this.getUserInfo()
+    let userInfo = await getStorage('userInfo')
+    console.log(userInfo)
+    if (!userInfo) {
+      userInfo = await this.getServiceInfo()
+      if (!userInfo) {
+        this.setState({
+          hasAuthorize: false,
+        })
+        return
+      }
+      await setStorage('userInfo', JSON.stringify(userInfo))
+    }
   }
 
   getSystemInfo = () =>
@@ -44,9 +57,15 @@ export default class Authorize extends Component {
     })
   }
 
+  getServiceInfo = () =>
+    taroFetch({
+      url: '/app/member/getMemberInfo',
+    })
+      .then(res => res)
+      .catch(error => error)
+
   updateUserInfoToService = async userData => {
     const { brand, system, model } = await this.getSystemInfo()
-    const systemInfo = await this.getSystemInfo()
     const params = {
       userInfo: {
         ...userData.userInfo,

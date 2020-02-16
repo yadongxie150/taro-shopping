@@ -110,6 +110,14 @@
     promise-polyfill "^7.1.2"
     regenerator-runtime "^0.11.1"
 
+"@tarojs/async-await@^1.3.25":
+  version "1.3.37"
+  resolved "https://registry.yarnpkg.com/@tarojs/async-await/-/async-await-1.3.37.tgz#6ad1a1f4af9fc0efeab5b330ba27c5e45aaf9bde"
+  integrity sha512-pmGKyREtkhjxeEikNCIv6WlrhcqXJNPV+HAI3u5B9GeiwKTqGHhzQtbu7WXZF3LRIbqJt6bF9O6NmEwnVda4TQ==
+  dependencies:
+    promise-polyfill "^7.1.2"
+    regenerator-runtime "^0.11.1"
+
 "@tarojs/components@1.3.25":
   version "1.3.25"
   resolved "https://registry.yarnpkg.com/@tarojs/components/-/components-1.3.25.tgz#1648a25f8a0aa7624ce23f37e5f3b9828e9b2570"
@@ -194,6 +202,26 @@
     mobile-detect "^1.4.2"
     raf "^3.4.1"
     whatwg-fetch "^2.0.4"
+
+"@tarojs/taro-qq@1.3.25":
+  version "1.3.25"
+  resolved "https://registry.yarnpkg.com/@tarojs/taro-qq/-/taro-qq-1.3.25.tgz#008bd306c8a4d1d004dba4bfd0471b7f11d29267"
+  integrity sha512-fDllSlIZZhzScJOhumKy4OGqEpumrlYGNzz+6cD9A/1LqWaBcxZYHwZKDvVKi4f7KR0BBkzk99lgAn1mi5I/uA==
+  dependencies:
+    "@tarojs/taro" "1.3.25"
+    "@tarojs/utils" "1.3.25"
+    lodash "^4.17.10"
+    prop-types "^15.6.1"
+
+"@tarojs/taro-quickapp@1.3.25":
+  version "1.3.25"
+  resolved "https://registry.yarnpkg.com/@tarojs/taro-quickapp/-/taro-quickapp-1.3.25.tgz#30d576281f7ea8921626aa3ffa9697effa6ba73e"
+  integrity sha512-kn3mMoj/C5EsUm++yIy3OE/8UKXLPZEoGDSyocKdntJRUa967GE2to3zAwnkX/UBvRWZaX5eiyHDmwUbWLC40w==
+  dependencies:
+    "@tarojs/taro" "1.3.25"
+    "@tarojs/utils" "1.3.25"
+    lodash "^4.17.10"
+    prop-types "^15.6.1"
 
 "@tarojs/taro-swan@1.3.25":
   version "1.3.25"
@@ -4920,6 +4948,15 @@ nerv-devtools@^1.4.0:
     nerv-utils "1.4.5"
     nervjs "1.5.5"
 
+nerv-devtools@^1.5.0:
+  version "1.5.6"
+  resolved "https://registry.yarnpkg.com/nerv-devtools/-/nerv-devtools-1.5.6.tgz#2af0ef109918e5a5a7282f2cfb8a0d7e4a2858be"
+  integrity sha512-Gn9my/yXcPliVukpwxJrdctTsBI5QOgTB96wUo4ZsrseIoY+IJx43sZr3LOZWpADg0TuVDkN65BDbkPcS6AnYA==
+  dependencies:
+    nerv-shared "1.4.0"
+    nerv-utils "1.4.5"
+    nervjs "1.5.6"
+
 nerv-shared@1.4.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/nerv-shared/-/nerv-shared-1.4.0.tgz#4ae903f215888ab886b3d04ae3b95d5327e67f43"
@@ -4931,6 +4968,14 @@ nerv-utils@1.4.5:
 nervjs@1.5.5, nervjs@^1.4.0:
   version "1.5.5"
   resolved "https://registry.yarnpkg.com/nervjs/-/nervjs-1.5.5.tgz#aead03e8834943d09bb34bffce397eca6740f7b9"
+  dependencies:
+    nerv-shared "1.4.0"
+    nerv-utils "1.4.5"
+
+nervjs@1.5.6, nervjs@^1.5.0:
+  version "1.5.6"
+  resolved "https://registry.yarnpkg.com/nervjs/-/nervjs-1.5.6.tgz#0451dd06993f7e3a885a6d1be3ea049ac51f1abd"
+  integrity sha512-2v8VkGCTUfOaD3C3s9fmCSRnYOw+6UWfbdVk3+vZZF+oD1Hp8+KpcObUV8EZL0GlWa9FhziDYGHOy4M70Fd6KA==
   dependencies:
     nerv-shared "1.4.0"
     nerv-utils "1.4.5"
@@ -7093,6 +7138,25 @@ tar@^4:
     mkdirp "^0.5.0"
     safe-buffer "^5.1.2"
     yallist "^3.0.3"
+
+taro-plugin-canvas@^1.0.9:
+  version "1.0.9"
+  resolved "https://registry.yarnpkg.com/taro-plugin-canvas/-/taro-plugin-canvas-1.0.9.tgz#66759710928d756f4c356cb1dc483d3d63b14123"
+  integrity sha512-Dw0cVOn8iwasVCEh6NGhQSTIdcHJ3X0R8kOfY1F0kViRd0SALBtZPiNgNaCJeOK5ezV2jYGA5RwzYtTdFRkAeQ==
+  dependencies:
+    "@tarojs/async-await" "^1.3.25"
+    "@tarojs/components" "1.3.25"
+    "@tarojs/router" "1.3.25"
+    "@tarojs/taro" "1.3.25"
+    "@tarojs/taro-alipay" "1.3.25"
+    "@tarojs/taro-h5" "1.3.25"
+    "@tarojs/taro-qq" "1.3.25"
+    "@tarojs/taro-quickapp" "1.3.25"
+    "@tarojs/taro-swan" "1.3.25"
+    "@tarojs/taro-tt" "1.3.25"
+    "@tarojs/taro-weapp" "1.3.25"
+    nerv-devtools "^1.5.0"
+    nervjs "^1.5.0"
 
 taro-ui@^2.2.4:
   version "2.2.4"

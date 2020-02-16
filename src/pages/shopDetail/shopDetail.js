@@ -9,6 +9,7 @@ import taroFetch from '../../utils/request'
 
 import ShopHeader from './ShopHeader'
 import ShopGood from './ShopGood'
+import AddGood from '../../components/AddGood'
 import './shopDetail.scss'
 
 class shopDetail extends Component {
@@ -62,18 +63,18 @@ class shopDetail extends Component {
     })
   }
 
-  handleGoodDetail = id => {
+  handleGoodDetail = good => {
+    const { id, price } = good
     Taro.navigateTo({
-      url: `/pages/goodDetail/goodDetail?id=${id}`,
+      url: `/pages/goodDetail/goodDetail?id=${id}&isGood=${price ? 1 : 0}`,
     })
   }
 
   handleBuy = good => {
     console.log(good)
-    console.log('buy')
   }
 
-  open = () => {
+  openModal = () => {
     this.setState({
       showManage: true,
     })
@@ -162,7 +163,6 @@ class shopDetail extends Component {
     })
   }
   handleShopAction = type => {
-    console.log(type)
     switch (type) {
       case 'collect':
         this.handleCollect()
@@ -217,9 +217,14 @@ class shopDetail extends Component {
     }
   }
 
+  add = () => {
+    Taro.navigateTo({
+      url: `/pages/search/search?listId=${this.state.id}`,
+    })
+  }
+
   render() {
     const {
-      id,
       data: { listGood, wishList },
       showManage,
     } = this.state
@@ -232,37 +237,43 @@ class shopDetail extends Component {
             <Text>全部商品</Text>
             {editPermission && (
               <View className="shopContent-head-op">
-                {/* <Image
-                className="shopContent-head-op-icon icon-add"
-                src={addIcon}
-              /> */}
+                <Image
+                  className="shopContent-head-op-icon icon-add"
+                  src={addIcon}
+                  onClick={this.add}
+                />
                 <Image
                   className="shopContent-head-op-icon"
                   src={moreIcon}
-                  onClick={this.open}
+                  onClick={this.openModal}
                 />
               </View>
             )}
           </View>
           <View className="shopContent-body">
-            <ScrollView
-              scrollX={false}
-              scrollY
-              scrollWithAnimation
-              scrollTop={0}
-              style={{
-                height: `800px`,
-              }}
-              onScrollToLower={this.handleScrollToLower}
-            >
-              {listGood.wishGoods.map(good => (
-                <ShopGood
-                  data={good}
-                  onClick={() => this.handleGoodDetail(good.id)}
-                  onBuy={() => this.handleBuy(good)}
-                />
-              ))}
-            </ScrollView>
+            {listGood.wishGoods.length && (
+              <ScrollView
+                scrollX={false}
+                scrollY
+                scrollWithAnimation
+                scrollTop={0}
+                style={{
+                  height: `800px`,
+                }}
+                onScrollToLower={this.handleScrollToLower}
+              >
+                {listGood.wishGoods.map(good => (
+                  <ShopGood
+                    data={good}
+                    onClick={() => this.handleGoodDetail(good)}
+                    onBuy={() => this.handleBuy(good)}
+                  />
+                ))}
+              </ScrollView>
+            )}
+            {!listGood.wishGoods.length && (
+              <AddGood title="添加商品" onClick={this.add} />
+            )}
           </View>
         </View>
         <AtActionSheet isOpened={showManage} onClose={this.close}>
