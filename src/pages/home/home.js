@@ -1,7 +1,7 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View, ScrollView } from '@tarojs/components'
 
-import taroFetch, { setToken } from '../../utils/request'
+import taroFetch from '../../utils/request'
 
 import Banner from './banner'
 import Feature from './feature'
@@ -76,8 +76,8 @@ class Home extends Component {
       data: { banner, homeList, selectionList },
     } = this.state
     return (
-      <View className="home">
-        <View onClick={this.focusSearch} className="home-search">
+      <View className='home'>
+        <View onClick={this.focusSearch} className='home-search'>
           <SearchTop disabled />
         </View>
         <ScrollView

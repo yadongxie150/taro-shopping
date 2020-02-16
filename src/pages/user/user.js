@@ -1,6 +1,9 @@
+import Taro from '@tarojs/taro'
+
 import Authorize from '../../components/Authorize'
 
 import UserPage from './userPage'
+
 function User() {
   return (
     <Authorize>

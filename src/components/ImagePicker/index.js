@@ -1,8 +1,8 @@
 import Taro, { Component } from '@tarojs/taro'
+import { View } from '@tarojs/components'
 import { AtImagePicker } from 'taro-ui'
 
 import { getToken, BASE_URL } from '../../utils/request'
-import { View } from '@tarojs/components'
 
 export default class ImagePicker extends Component {
   handleImages = async images => {

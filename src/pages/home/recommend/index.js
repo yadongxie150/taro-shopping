@@ -1,5 +1,5 @@
 import Taro, { Component } from '@tarojs/taro'
-import { View } from '@tarojs/components'
+import { View, Button } from '@tarojs/components'
 import classnames from 'classnames'
 
 import ShopListItem from '../../../components/ShopListItem'
@@ -52,8 +52,8 @@ export default class Recommend extends Component {
       return null
     }
     return (
-      <View className="home-recommend">
-        <View className="home-recommend-header">
+      <View className='home-recommend'>
+        <View className='home-recommend-header'>
           {Object.keys(recommendTypes).map(key => (
             <View
               key={key}
@@ -65,11 +65,11 @@ export default class Recommend extends Component {
               {recommendTypes[key]}
             </View>
           ))}
-          <Button className="fresh" onClick={this.handleFresh}>
+          <Button className='fresh' onClick={this.handleFresh}>
             刷新
           </Button>
         </View>
-        <View className="home-recommend-body">
+        <View className='home-recommend-body'>
           {data.map(item => (
             <ShopListItem data={item} onClick={this.handleToDetail(item.id)} />
           ))}

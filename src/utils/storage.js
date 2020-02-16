@@ -1,5 +1,5 @@
 import Taro from '@tarojs/taro'
-import taroFetch from './request'
+// import taroFetch from './request'
 
 const setStorage = (key, value) => Taro.setStorage({ key, data: value })
 const getStorage = key =>

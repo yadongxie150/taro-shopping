@@ -230,27 +230,27 @@ class shopDetail extends Component {
     } = this.state
     const { editPermission } = wishList
     return (
-      <View className="shopDetail">
+      <View className='shopDetail'>
         <ShopHeader data={wishList} onClick={this.handleShopAction} />
-        <View className="shopContent">
-          <View className="shopContent-head">
+        <View className='shopContent'>
+          <View className='shopContent-head'>
             <Text>全部商品</Text>
             {editPermission && (
-              <View className="shopContent-head-op">
+              <View className='shopContent-head-op'>
                 <Image
-                  className="shopContent-head-op-icon icon-add"
+                  className='shopContent-head-op-icon icon-add'
                   src={addIcon}
                   onClick={this.add}
                 />
                 <Image
-                  className="shopContent-head-op-icon"
+                  className='shopContent-head-op-icon'
                   src={moreIcon}
                   onClick={this.openModal}
                 />
               </View>
             )}
           </View>
-          <View className="shopContent-body">
+          <View className='shopContent-body'>
             {listGood.wishGoods.length && (
               <ScrollView
                 scrollX={false}
@@ -272,19 +272,19 @@ class shopDetail extends Component {
               </ScrollView>
             )}
             {!listGood.wishGoods.length && (
-              <AddGood title="添加商品" onClick={this.add} />
+              <AddGood title='添加商品' onClick={this.add} />
             )}
           </View>
         </View>
         <AtActionSheet isOpened={showManage} onClose={this.close}>
           <AtActionSheetItem
-            className="shopDetail-operation-item"
+            className='shopDetail-operation-item'
             onClick={this.edit}
           >
             编辑清单
           </AtActionSheetItem>
           <AtActionSheetItem
-            className="shopDetail-operation-item"
+            className='shopDetail-operation-item'
             onClick={this.delete}
           >
             删除清单

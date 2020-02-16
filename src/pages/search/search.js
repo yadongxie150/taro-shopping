@@ -126,8 +126,8 @@ class Search extends Component {
       shopList,
     }
     return (
-      <View className="search">
-        <View className="search-head">
+      <View className='search'>
+        <View className='search-head'>
           <SearchTop
             showActionButton
             value={search}
@@ -137,9 +137,9 @@ class Search extends Component {
           />
         </View>
 
-        <View className="search-body">
+        <View className='search-body'>
           {hasResult && (
-            <View className="search-body-channel">
+            <View className='search-body-channel'>
               {Object.keys(GOOD_CHANNEL).map(key => (
                 <View
                   className={classnames('search-body-channel-item', {

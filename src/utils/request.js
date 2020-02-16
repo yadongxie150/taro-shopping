@@ -39,7 +39,7 @@ const getLoginToken = () =>
   })
 
 async function fetch(options) {
-  const { url, method = 'GET', data, header } = options
+  const { url, method = 'GET', data: paramsData, header } = options
   let token = await getToken()
 
   if (!token && url !== '/app/auth/loginByJsCode') {
@@ -49,7 +49,7 @@ async function fetch(options) {
   return Taro.request({
     url: `${BASE_URL}${url}`,
     method,
-    data,
+    data: paramsData,
     header: {
       ...header,
       'Content-Type': 'application/json',

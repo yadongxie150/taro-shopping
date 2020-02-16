@@ -1,5 +1,5 @@
-import Taro, { Component, render } from '@tarojs/taro'
-import { Button } from '@tarojs/components'
+import Taro, { Component } from '@tarojs/taro'
+import { Button, View } from '@tarojs/components'
 
 import taroFetch from '../../utils/request'
 import { setStorage, getStorage } from '../../utils/storage'
@@ -45,9 +45,8 @@ export default class Authorize extends Component {
             scope: 'scope.userInfo',
             success: () => {
               Taro.getUserInfo({
-                success: res => {
-                  console.log('getUserInfo:', res)
-                  this.updateUserInfoToService(res)
+                success: response => {
+                  this.updateUserInfoToService(response)
                 },
               })
             },
@@ -82,7 +81,7 @@ export default class Authorize extends Component {
       url: '/app/member/updateMemberInfo',
       method: 'POST',
       data: params,
-    }).then(res => {
+    }).then(() => {
       taroFetch({
         url: '/app/member/getMemberInfo',
       }).then(res => {
@@ -104,11 +103,11 @@ export default class Authorize extends Component {
     const { hasAuthorize } = this.state
     if (!hasAuthorize) {
       return (
-        <Button openType="getUserInfo" onGetUserInfo={this.handleUserInfo}>
+        <Button openType='getUserInfo' onGetUserInfo={this.handleUserInfo}>
           获取用户信息
         </Button>
       )
     }
-    return this.props.children
+    return <View>{this.props.children}</View>
   }
 }
