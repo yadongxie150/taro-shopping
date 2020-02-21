@@ -13,12 +13,12 @@ export default class Authorize extends Component {
   }
 
   async componentDidShow() {
-    // this.getUserInfo()
     let userInfo = await getStorage('userInfo')
-    console.log(userInfo)
-    if (!userInfo) {
+    if (userInfo) { userInfo = JSON.parse(userInfo) }
+    if (!userInfo || !userInfo.nickName) {
+      // 没有用户昵称，则意味着没有更新用户信息，此时跳授权页面
       userInfo = await this.getServiceInfo()
-      if (!userInfo) {
+      if (!userInfo || !userInfo.nickName) {
         this.setState({
           hasAuthorize: false,
         })

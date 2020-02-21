@@ -62,9 +62,9 @@ async function fetch(options) {
       } = response
 
       if (code === '1005') {
-        // 登录状态失效，重新登录
+        // token失效，重新登录，后再次返回该接口
         await getLoginToken()
-        fetch({
+        return fetch({
           url,
           method,
           data,

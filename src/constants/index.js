@@ -1,3 +1,9 @@
+export const GOOD_CHANNEL_MAP = {
+  JING_DONG: 1,
+  PIN_DUO_DUO: 2,
+  TAO_BAO: 3,
+}
+
 export const GOOD_CHANNEL = {
   1: '京东',
   2: '拼多多',

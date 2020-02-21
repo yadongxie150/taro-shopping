@@ -7,16 +7,17 @@ import './index.scss'
 // function component 必须首字母大写
 export default function ShopGood(props) {
   const { data, showBuy, showDelete, onBuy, onClick, onDelete } = props
-  const { skuName, price, mainImageUrl, goodContent } = data
+  // createChannel: 1商品 2内容
+  const { skuName, price, mainImageUrl, goodContent, createChannel = 1 } = data
+  const isGood = Number(createChannel) === 1
   return (
-    <View className='shopContent-good' onClick={onClick}>
+    <View className='shopContent-good' onClick={() => { onClick && onClick() }}>
       <Image className='shopContent-good-image' src={mainImageUrl} />
       <View className='shopContent-good-content'>
         {showDelete && (
           <View
             className='shopContent-good-content-close'
             onClick={e => {
-              console.log('del 1')
               e.stopPropagation()
               onDelete()
             }}
@@ -26,20 +27,22 @@ export default function ShopGood(props) {
         )}
         <View className='shopContent-good-content-title'>{skuName}</View>
         <View className='shopContent-good-content-des'>{goodContent}</View>
-        <View className='shopContent-good-content-footer'>
-          <View>¥{handlePrice(price)}</View>
-          {showBuy && (
-            <View
-              className='shopContent-good-btn'
-              onClick={e => {
-                e.stopPropagation()
-                onBuy()
-              }}
-            >
-              去购买
+        {isGood && (
+          <View className='shopContent-good-content-footer'>
+            <View>¥{handlePrice(price)}</View>
+            {showBuy && (
+              <View
+                className='shopContent-good-btn'
+                onClick={e => {
+                  e.stopPropagation()
+                  onBuy()
+                }}
+              >
+                去购买
             </View>
-          )}
-        </View>
+            )}
+          </View>
+        )}
       </View>
     </View>
   )

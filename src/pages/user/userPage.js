@@ -5,7 +5,7 @@ import aboutIcon from '../../assets/user/about.png'
 import ideaIcon from '../../assets/user/idea.png'
 // import messageIcon from '../../assets/user/message.png'
 
-import taroFetch from '../../utils/request'
+import { getStorage } from '../../utils/storage'
 import OpenTypeButton from '../../components/OpenTypeButton'
 import './user.scss'
 
@@ -22,16 +22,11 @@ class UserPage extends Component {
     }
   }
 
-  componentDidShow() {
-    this.getServiceInfo()
-  }
-
-  getServiceInfo = () => {
-    taroFetch({
-      url: '/app/member/getMemberInfo',
+  async componentDidShow() {
+    const userInfo = await getStorage('userInfo')
+    this.setState({
+      userInfo: JSON.parse(userInfo)
     })
-      .then(res => this.setState({ userInfo: res }))
-      .catch(error => error)
   }
 
   render() {

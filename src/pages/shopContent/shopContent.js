@@ -17,22 +17,46 @@ class shopContent extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      images: [],
+      id: undefined,
+      listId: undefined,
       title: undefined,
       des: undefined,
-      hasGood: false,
       good: undefined,
+      images: [],
       goods: [],
       search: undefined,
+      hasGood: false,
       showModal: false,
-      listId: undefined,
+      isInEdit: false,
     }
   }
 
   componentDidMount() {
-    const { listId } = this.$router.params
+    const { listId, id } = this.$router.params
     this.setState({
       listId,
+      id,
+      isInEdit: !!id,
+    }, () => this.fetchGoodContent())
+  }
+
+  fetchGoodContent = () => {
+    const { id, isInEdit } = this.state
+    if (!isInEdit) return
+    taroFetch({
+      url: '/app/goods/getGoodDetailInfo',
+      data: {
+        goodId: id,
+      },
+    }).then(data => {
+      const { imageInfo, skuName, goodContent, wishGoodDetail } = data
+      this.setState({
+        images: imageInfo || [],
+        title: skuName,
+        des: goodContent,
+        good: wishGoodDetail,
+        hasGood: !!wishGoodDetail,
+      })
     })
   }
 
@@ -51,17 +75,19 @@ class shopContent extends Component {
   }
 
   submit = () => {
-    const { title, des, images, good, listId } = this.state
+    const { title, des, images, good, listId, id, isInEdit } = this.state
     const params = {
+      id,
       listId,
       skuName: title,
       goodContent: des,
       skuId: (good && good.id) || null,
       imageList: images,
     }
+    const url = isInEdit ? '/app/goods/updateContentGood' : '/app/goods/addContentGood'
 
     taroFetch({
-      url: '/app/goods/addContentGood',
+      url,
       method: 'POST',
       data: params,
     })

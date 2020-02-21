@@ -4,7 +4,7 @@ import classnames from 'classnames'
 import { AtButton } from 'taro-ui'
 
 import taroFetch from '../../utils/request'
-import { GOOD_CHANNEL } from '../../constants'
+import { GOOD_CHANNEL, GOOD_CHANNEL_MAP } from '../../constants'
 
 import SearchTop from './searchTop'
 import SearchDefault from './searchDefault'
@@ -24,7 +24,7 @@ class Search extends Component {
       hasResult: false,
       goods: [],
       shopList: [],
-      channel: 2, // 默认查询拼多多
+      channel: GOOD_CHANNEL_MAP.PIN_DUO_DUO, // 默认查询拼多多
       listId: undefined,
     }
   }
