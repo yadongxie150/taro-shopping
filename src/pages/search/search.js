@@ -1,7 +1,6 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View } from '@tarojs/components'
 import classnames from 'classnames'
-import { AtButton } from 'taro-ui'
 
 import taroFetch from '../../utils/request'
 import { GOOD_CHANNEL, GOOD_CHANNEL_MAP } from '../../constants'
@@ -126,8 +125,8 @@ class Search extends Component {
       shopList,
     }
     return (
-      <View className='search'>
-        <View className='search-head'>
+      <View className="search">
+        <View className="search-head">
           <SearchTop
             showActionButton
             value={search}
@@ -137,9 +136,9 @@ class Search extends Component {
           />
         </View>
 
-        <View className='search-body'>
+        <View className="search-body">
           {false && (
-            <View className='search-body-channel'>
+            <View className="search-body-channel">
               {Object.keys(GOOD_CHANNEL).map(key => (
                 <View
                   className={classnames('search-body-channel-item', {

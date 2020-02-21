@@ -53,28 +53,28 @@ export default function ShopHeader(props) {
   }))
 
   return (
-    <View className='shopHeader'>
-      <View className='shopHeader-msg'>
-        <View className='shopHeader-msg-left'>
-          <Image className='shopHeader-author-photo' src={listPic} />
+    <View className="shopHeader">
+      <View className="shopHeader-msg">
+        <View className="shopHeader-msg-left">
+          <Image className="shopHeader-author-photo" src={listPic} />
         </View>
-        <View className='shopHeader-msg-right'>
+        <View className="shopHeader-msg-right">
           <Text>{listName}</Text>
-          <View className='shopHeader-author'>
-            <Image className='shopHeader-author-photo' src={avatar} />
+          <View className="shopHeader-author">
+            <Image className="shopHeader-author-photo" src={avatar} />
             <Text>{nickName}</Text>
           </View>
-          <Text className='shopHeader-des'>{listDesc}</Text>
+          <Text className="shopHeader-des">{listDesc}</Text>
         </View>
       </View>
-      <View className='shopHeader-op'>
+      <View className="shopHeader-op">
         {shopOperations.map(item => {
           const { name, type, image, num } = item
           if (type === 'share') {
             return (
-              <OpenTypeButton openType='share'>
-                <View className='shopHeader-op-item'>
-                  <Image className='shopHeader-op-icon' src={image} />
+              <OpenTypeButton openType="share">
+                <View className="shopHeader-op-item">
+                  <Image className="shopHeader-op-icon" src={image} />
                   <Text>
                     {num}·{name}
                   </Text>
@@ -83,8 +83,8 @@ export default function ShopHeader(props) {
             )
           }
           return (
-            <View className='shopHeader-op-item' onClick={() => onClick(type)}>
-              <Image className='shopHeader-op-icon' src={image} />
+            <View className="shopHeader-op-item" onClick={() => onClick(type)}>
+              <Image className="shopHeader-op-icon" src={image} />
               <Text>
                 {num}·{name}
               </Text>

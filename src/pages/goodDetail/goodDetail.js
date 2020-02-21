@@ -118,7 +118,10 @@ class GoodDetail extends Component {
   }
 
   add = listId => {
-    const { id, data: { goodChannel } } = this.state
+    const {
+      id,
+      data: { goodChannel },
+    } = this.state
     taroFetch({
       url: '/app/goods/addWishList',
       method: 'POST',
@@ -155,73 +158,72 @@ class GoodDetail extends Component {
         goodContent,
         wishGoodDetail,
       },
-      isGood
+      isGood,
     } = this.state
     const finalPrice = Number(price) - Number(discount)
     return (
-      <View className='goodDetail'>
-        <Image className='goodDetail-image' src={mainImageUrl} />
+      <View className="goodDetail">
+        <Image className="goodDetail-image" src={mainImageUrl} />
         {isGood ? (
           <View>
-            <View className='goodDetail-content'>
-              <View className='goodDetail-content-title'>{skuName}</View>
-              <View className='goodDetail-content-des'>
+            <View className="goodDetail-content">
+              <View className="goodDetail-content-title">{skuName}</View>
+              <View className="goodDetail-content-des">
                 <View>
                   {GOOD_CHANNEL[goodChannel]}价 ¥{handlePrice(price)}
                 </View>
                 <View>评论数 {comments}</View>
                 <View>好评率 100%</View>
               </View>
-              <View className='goodDetail-content-price'>
+              <View className="goodDetail-content-price">
                 <View>
                   卷后价¥{' '}
-                  <Text className='goodDetail-content-price-num'>
+                  <Text className="goodDetail-content-price-num">
                     {handlePrice(finalPrice)}
                   </Text>
                 </View>
-                <View className='goodDetail-content-price-discount'>
+                <View className="goodDetail-content-price-discount">
                   优惠卷¥ {handlePrice(discount)}
                 </View>
               </View>
-              <View className='goodDetail-content-footer'>
+              <View className="goodDetail-content-footer">
                 <View>{GOOD_CHANNEL[goodChannel]}商品</View>
                 <View>品质保证</View>
                 <View>无忧售后</View>
               </View>
             </View>
-            <View className='goodDetail-num'>商品编号：{skuId}</View>
+            <View className="goodDetail-num">商品编号：{skuId}</View>
           </View>
         ) : (
-            <View className='goodDetail-content'>
-              <View className='goodDetail-content-title'>{skuName}</View>
-              {wishGoodDetail && (
-                <ShopGood
-                  data={wishGoodDetail}
-                />
-              )}
-              <View className='goodDetail-content-des'>{goodContent}</View>
-            </View>
-          )}
-        <View className='goodDetail-action'>
-          <View className='goodDetail-action-box'>
+          <View className="goodDetail-content">
+            <View className="goodDetail-content-title">{skuName}</View>
+            {wishGoodDetail && <ShopGood data={wishGoodDetail} />}
+            <View className="goodDetail-content-des">{goodContent}</View>
+          </View>
+        )}
+        <View className="goodDetail-action">
+          <View className="goodDetail-action-box">
             <View
-              className='goodDetail-action-collect'
+              className="goodDetail-action-collect"
               onClick={this.handleCollect}
             >
               收藏到清单
             </View>
-            <View className='goodDetail-action-buy' onClick={this.handleBuyEdit}>
+            <View
+              className="goodDetail-action-buy"
+              onClick={this.handleBuyEdit}
+            >
               {isGood ? '购买' : '编辑'}
             </View>
           </View>
         </View>
         <AtFloatLayout isOpened={showModal}>
-          <View className='taro-modal'>
+          <View className="taro-modal">
             {/* <View className="taro-modal-header">
               <View className="red">添加商品至清单</View>
               <View onClick={this.handleClose}>取消</View>
             </View> */}
-            <View className='taro-modal-body'>
+            <View className="taro-modal-body">
               {shopList.map(item => (
                 <ShopListItem data={item} onClick={() => this.add(item.id)} />
               ))}

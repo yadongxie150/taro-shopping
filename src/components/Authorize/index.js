@@ -14,7 +14,9 @@ export default class Authorize extends Component {
 
   async componentDidShow() {
     let userInfo = await getStorage('userInfo')
-    if (userInfo) { userInfo = JSON.parse(userInfo) }
+    if (userInfo) {
+      userInfo = JSON.parse(userInfo)
+    }
     if (!userInfo || !userInfo.nickName) {
       // 没有用户昵称，则意味着没有更新用户信息，此时跳授权页面
       userInfo = await this.getServiceInfo()
@@ -103,7 +105,7 @@ export default class Authorize extends Component {
     const { hasAuthorize } = this.state
     if (!hasAuthorize) {
       return (
-        <Button openType='getUserInfo' onGetUserInfo={this.handleUserInfo}>
+        <Button openType="getUserInfo" onGetUserInfo={this.handleUserInfo}>
           获取用户信息
         </Button>
       )

@@ -33,3 +33,5 @@ export const SHOP_STATUS = {
   0: '公开',
   1: '私有',
 }
+
+export const INTRODUCE = 'https://mp.weixin.qq.com/s/V6yS_n83jonkq2rGJ-VhIA'

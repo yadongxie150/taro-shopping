@@ -133,25 +133,25 @@ export default class shopEdit extends Component {
       data: { listName, privacyType, listDesc, listPic },
     } = this.state
     return (
-      <View className='shopEdit'>
-        <View className='shopEdit-top'>
-          <View className='shopEdit-top-item'>
-            <Text className='label'>名称</Text>
+      <View className="shopEdit">
+        <View className="shopEdit-top">
+          <View className="shopEdit-top-item">
+            <Text className="label">名称</Text>
             <Input
               value={listName}
               onInput={this.handleForm('listName')}
-              placeholder='请输入清单名称'
+              placeholder="请输入清单名称"
             />
           </View>
-          <View className='shopEdit-top-item'>
+          <View className="shopEdit-top-item">
             <Text>封面</Text>
-            <Image className='shopEdit-image' src={listPic} />
+            <Image className="shopEdit-image" src={listPic} />
             <View onClick={this.uploadImage}>选择封面图片</View>
           </View>
-          <View className='shopEdit-top-item'>
+          <View className="shopEdit-top-item">
             <View>
               <View>公开清单</View>
-              <View className='des'>非公开清单仅自己可见</View>
+              <View className="des">非公开清单仅自己可见</View>
             </View>
             <Switch
               checked={!privacyType}
@@ -163,11 +163,11 @@ export default class shopEdit extends Component {
           </View> */}
         </View>
         {/* <View className="shopEdit-middle">清单标签</View> */}
-        <View className='shopEdit-bottom'>
-          <View className='label'>介绍</View>
+        <View className="shopEdit-bottom">
+          <View className="label">介绍</View>
           <Textarea
-            className='textarea'
-            placeholder='对清单进行描述'
+            className="textarea"
+            placeholder="对清单进行描述"
             value={listDesc}
             onInput={this.handleForm('listDesc')}
           />
