@@ -37,7 +37,9 @@
 .shopContent-search {
   position: relative;
   padding-top: 88px;
-
+  background-color: #ffffff;
+  z-index: 100;
+  
   &-empty {
     display: flex;
     justify-content: center;

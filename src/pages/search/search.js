@@ -70,7 +70,7 @@ class Search extends Component {
       .then(data => {
         this.setState({
           hasResult: true,
-          goods: data || [],
+          goods: data.slice(0, 100) || [],
         })
       })
       .catch(() => {
@@ -138,7 +138,7 @@ class Search extends Component {
         </View>
 
         <View className='search-body'>
-          {hasResult && (
+          {false && (
             <View className='search-body-channel'>
               {Object.keys(GOOD_CHANNEL).map(key => (
                 <View
@@ -160,10 +160,9 @@ class Search extends Component {
               onGoodClick={this.handleGood}
             />
           ) : (
-            <SearchDefault />
+            <SearchDefault listId={listId} onAdd={this.create} />
           )}
         </View>
-        {listId && <AtButton onClick={this.create}>创建商品/清单</AtButton>}
       </View>
     )
   }

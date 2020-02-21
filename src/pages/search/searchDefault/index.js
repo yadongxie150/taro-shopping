@@ -1,10 +1,12 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View } from '@tarojs/components'
+import { AtButton } from 'taro-ui'
 
 import './index.scss'
 
 export default class searchDefault extends Component {
   render() {
+    const { listId, onAdd } = this.props
     const progress = ['打开京东APP', '复制商品标题', '打开好物清单', '点击搜索']
     return (
       <View className='searchDefault'>
@@ -25,6 +27,9 @@ export default class searchDefault extends Component {
               </View>
             ))}
           </View>
+        </View>
+        <View className="search-add">
+          {listId && <AtButton onClick={onAdd}>创建商品/清单</AtButton>}
         </View>
         {/* <View className="search-exp">
           <View className="search-exp-header">
