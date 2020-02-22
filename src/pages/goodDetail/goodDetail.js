@@ -22,7 +22,7 @@ class GoodDetail extends Component {
     this.state = {
       listId: '',
       isGood: true,
-      id: undefined,
+      id: null,
       showModal: false,
       shopList: [],
       data: {},
@@ -30,7 +30,7 @@ class GoodDetail extends Component {
   }
 
   componentDidMount() {
-    const { listId, id, isGood } = this.$router.params
+    const { listId, id, isGood = 1 } = this.$router.params
     this.setState({
       listId,
       id,

@@ -17,14 +17,14 @@ class shopContent extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      id: undefined,
-      listId: undefined,
-      title: undefined,
-      des: undefined,
-      good: undefined,
+      id: null,
+      listId: null,
+      title: null,
+      des: null,
+      good: null,
       images: [],
       goods: [],
-      search: undefined,
+      search: null,
       hasGood: false,
       showModal: false,
       isInEdit: false,

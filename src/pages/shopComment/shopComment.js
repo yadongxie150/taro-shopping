@@ -15,13 +15,13 @@ class shopComment extends Component {
     this.state = {
       id: null,
       shopData: {},
+      pageNum: 1,
+      pageSize: 50,
       comments: {
-        pageNum: 1,
-        pageSize: 10,
         total: 0,
         list: [],
       },
-      comment: undefined,
+      comment: null,
     }
   }
 
@@ -31,9 +31,9 @@ class shopComment extends Component {
     this.fetchShopComments(id)
   }
 
-  componentDidShow() {}
+  componentDidShow() { }
 
-  componentDidHide() {}
+  componentDidHide() { }
 
   fetchData = id => {
     taroFetch({
@@ -50,12 +50,13 @@ class shopComment extends Component {
   }
 
   fetchShopComments = id => {
+    const { pageNum, pageSize } = this.state
     taroFetch({
       url: '/app/comment/getComments',
       data: {
         listId: id,
-        pageNum: 1,
-        pageSize: 10,
+        pageNum,
+        pageSize,
       },
     }).then(data => {
       this.setState({
@@ -83,7 +84,12 @@ class shopComment extends Component {
         content: comment,
       },
     }).then(() => {
-      this.fetchShopComments(id)
+      this.setState(
+        {
+          comment: null,
+        },
+        this.fetchShopComments(id)
+      )
     })
   }
 
@@ -96,11 +102,14 @@ class shopComment extends Component {
     return (
       <View className="shopComment">
         <View className="shopComment-shop">
-          <Image className="shopComment-shop-left" src={listPic} />
-          <View className="shopComment-shop-right">
-            <View className="shopComment-shop-right-title">{listName}</View>
-            <View className="shopComment-shop-right-des">{listDesc}</View>
+          <View className="shopComment-shop-container">
+            <Image className="shopComment-shop-container-left" src={listPic} />
+            <View className="shopComment-shop-container-right">
+              <View className="shopComment-shop-container-right-title">{listName}</View>
+              <View className="shopComment-shop-container-right-des">{listDesc}</View>
+            </View>
           </View>
+
         </View>
         <View className="shopComment-comment">
           <View className="shopComment-comment-head">全部评论</View>
@@ -131,10 +140,8 @@ class shopComment extends Component {
             value={comment}
             onInput={this.handleComment}
             placeholder="说点什么......"
-          ></Textarea>
-          <View className="shopComment-add-right" onClick={this.add}>
-            评论
-          </View>
+          />
+          <View className="shopComment-add-right" onClick={this.add}>评论</View>
         </View>
       </View>
     )

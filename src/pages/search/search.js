@@ -24,7 +24,7 @@ class Search extends Component {
       goods: [],
       shopList: [],
       channel: GOOD_CHANNEL_MAP.PIN_DUO_DUO, // 默认查询拼多多
-      listId: undefined,
+      listId: null,
     }
   }
 
@@ -40,7 +40,7 @@ class Search extends Component {
 
   componentDidHide() {
     this.setState({
-      listId: undefined,
+      listId: null,
     })
   }
 
@@ -91,7 +91,7 @@ class Search extends Component {
 
   handleGood = id => {
     Taro.navigateTo({
-      url: `/pages/goodDetail/goodDetail?id=${id}`,
+      url: `/pages/goodDetail/goodDetail?id=${id}&isGood=1`,
     })
   }
 
