@@ -92,12 +92,14 @@ export default class Authorize extends Component {
     })
   }
 
-  handleUserInfo = () => {
+  handleUserInfo = info => {
     this.setState(
       {
         hasAuthorize: true,
       },
-      this.getUserInfo()
+      () => {
+        this.updateUserInfoToService(info.target)
+      }
     )
   }
 
