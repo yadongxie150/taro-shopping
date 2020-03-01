@@ -46,24 +46,24 @@ class UserPage extends Component {
 
     if (isInAbout) return <About />
     return (
-      <View className='user'>
-        <View className='user-header'>
-          <Image className='user-photo' src={avatar} />
-          <View className='user-msg'>
-            <Text className='user-msg-name'>{nickName}</Text>
-            <Text className='user-msg-id'>ID：{id}</Text>
+      <View className="user">
+        <View className="user-header">
+          <Image className="user-photo" src={avatar} />
+          <View className="user-msg">
+            <Text className="user-msg-name">{nickName}</Text>
+            <Text className="user-msg-id">ID：{id}</Text>
           </View>
         </View>
         {/* <View className="user-item">
           <Image className="user-item-icon" src={messageIcon} />
           消息通知
         </View> */}
-        <View className='user-item'>
-          <Image className='user-item-icon' src={ideaIcon} />
-          <OpenTypeButton openType='feedback'>意见反馈</OpenTypeButton>
+        <View className="user-item">
+          <Image className="user-item-icon" src={ideaIcon} />
+          <OpenTypeButton openType="feedback">意见反馈</OpenTypeButton>
         </View>
-        <View className='user-item' onClick={this.handleAbout}>
-          <Image className='user-item-icon' src={aboutIcon} />
+        <View className="user-item" onClick={this.handleAbout}>
+          <Image className="user-item-icon" src={aboutIcon} />
           关于我们
         </View>
       </View>

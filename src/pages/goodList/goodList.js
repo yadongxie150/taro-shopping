@@ -101,17 +101,17 @@ class GoodList extends Component {
       return null
     }
     return (
-      <View className='goodList'>
-        <View className='goodList-box'>
+      <View className="goodList">
+        <View className="goodList-box">
           {list.map(item => {
             return (
               <View
-                className='goodList-box-item'
+                className="goodList-box-item"
                 onClick={this.select(item.id)}
               >
                 <Checkbox
-                  className='goodList-box-item-check'
-                  color='#BC1723'
+                  className="goodList-box-item-check"
+                  color="#BC1723"
                   checked={selectedIds.includes(item.id)}
                 />
                 <ShopGood data={item} />
@@ -119,18 +119,18 @@ class GoodList extends Component {
             )
           })}
         </View>
-        <View className='goodList-operation'>
-          <View className='goodList-operation-box'>
+        <View className="goodList-operation">
+          <View className="goodList-operation-box">
             <Radio
-              className='goodList-operation-box-radio'
-              color='#BC1723'
+              className="goodList-operation-box-radio"
+              color="#BC1723"
               checked={isSelectAll}
               onClick={this.pickAll}
             >
               全选
             </Radio>
             <View
-              className='goodList-operation-box-delete'
+              className="goodList-operation-box-delete"
               onClick={this.delete}
             >
               删除

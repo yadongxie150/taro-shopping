@@ -11,7 +11,7 @@ export default class shopPermission extends Component {
 
   render() {
     return (
-      <View className='shopPermission'>
+      <View className="shopPermission">
         <View>
           编辑权限
           <View>仅自己</View>

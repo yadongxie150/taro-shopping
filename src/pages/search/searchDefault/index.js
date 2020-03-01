@@ -9,26 +9,26 @@ export default class searchDefault extends Component {
     const { listId, onAdd } = this.props
     const progress = ['打开京东APP', '复制商品标题', '打开好物清单', '点击搜索']
     return (
-      <View className='searchDefault'>
-        <View className='search-progress'>
-          <View className='search-progress-header'>
+      <View className="searchDefault">
+        <View className="search-progress">
+          <View className="search-progress-header">
             京东100%的商品都有优惠券或返利
           </View>
-          <View className='search-progress-body'>
+          <View className="search-progress-body">
             {progress.map((des, index) => (
-              <View className='search-progress-item'>
-                <View className='search-progress-item-left'>
-                  <View className='search-progress-item-left-num'>{index}</View>
-                  <View className='search-progress-item-left-des'>{des}</View>
+              <View className="search-progress-item">
+                <View className="search-progress-item-left">
+                  <View className="search-progress-item-left-num">{index}</View>
+                  <View className="search-progress-item-left-des">{des}</View>
                 </View>
                 {index < 3 && (
-                  <View className='search-progress-item-right'></View>
+                  <View className="search-progress-item-right"></View>
                 )}
               </View>
             ))}
           </View>
         </View>
-        <View className='search-add'>
+        <View className="search-add">
           {listId && <AtButton onClick={onAdd}>创建商品/清单</AtButton>}
         </View>
         {/* <View className="search-exp">

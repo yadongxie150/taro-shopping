@@ -98,8 +98,8 @@ class ShopList extends Component {
       return null
     }
     return (
-      <View className='shopList'>
-        <View className='shopList-box'>
+      <View className="shopList">
+        <View className="shopList-box">
           <ScrollView
             scrollY
             scrollWithAnimation

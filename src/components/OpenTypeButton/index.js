@@ -7,7 +7,7 @@ function OpenTypeButton(props) {
   const { openType, onClick } = props
   return (
     <Button
-      className='button-nostyle'
+      className="button-nostyle"
       openType={openType}
       onClick={() => onClick && onClick()}
     >

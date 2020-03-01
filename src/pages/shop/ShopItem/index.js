@@ -18,20 +18,20 @@ export default function ShopItem(props) {
     onClick,
   } = props
   return (
-    <View className='shopItem' onClick={onClick}>
-      <View className='shopItem-header'>
-        <Image className='shopItem-header-left' src={avatar} />
-        <View className='shopItem-header-right'>
-          <View className='shopItem-header-right-title'>{listName}</View>
-          <View className='shopItem-header-right-content'>
+    <View className="shopItem" onClick={onClick}>
+      <View className="shopItem-header">
+        <Image className="shopItem-header-left" src={avatar} />
+        <View className="shopItem-header-right">
+          <View className="shopItem-header-right-title">{listName}</View>
+          <View className="shopItem-header-right-content">
             {SHOP_STATUS[privacyType]} · {goodCount}件商品 · {colectionCount}
             人收藏
           </View>
         </View>
       </View>
-      <View className='shopItem-body'>
+      <View className="shopItem-body">
         {wishGoods.map(item => (
-          <Image className='shopItem-body-item' src={item.mainImageUrl} />
+          <Image className="shopItem-body-item" src={item.mainImageUrl} />
         ))}
       </View>
     </View>

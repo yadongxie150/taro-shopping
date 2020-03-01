@@ -1,6 +1,11 @@
 .goodDetail {
   background-color: #F8F8F8;
 
+  &-swiper {
+    width: 100%;
+    height: 750px;
+  }
+
   &-image {
     width: 100%;
     height: 750px;

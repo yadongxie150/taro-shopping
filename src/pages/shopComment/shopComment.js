@@ -100,52 +100,52 @@ class shopComment extends Component {
       comments: { list },
     } = this.state
     return (
-      <View className='shopComment'>
-        <View className='shopComment-shop'>
-          <View className='shopComment-shop-container'>
-            <Image className='shopComment-shop-container-left' src={listPic} />
-            <View className='shopComment-shop-container-right'>
-              <View className='shopComment-shop-container-right-title'>
+      <View className="shopComment">
+        <View className="shopComment-shop">
+          <View className="shopComment-shop-container">
+            <Image className="shopComment-shop-container-left" src={listPic} />
+            <View className="shopComment-shop-container-right">
+              <View className="shopComment-shop-container-right-title">
                 {listName}
               </View>
-              <View className='shopComment-shop-container-right-des'>
+              <View className="shopComment-shop-container-right-des">
                 {listDesc}
               </View>
             </View>
           </View>
         </View>
-        <View className='shopComment-comment'>
-          <View className='shopComment-comment-head'>全部评论</View>
-          <View className='shopComment-comment-body'>
+        <View className="shopComment-comment">
+          <View className="shopComment-comment-head">全部评论</View>
+          <View className="shopComment-comment-body">
             {list.length &&
               list.map(item => (
-                <View className='shopComment-comment-item'>
+                <View className="shopComment-comment-item">
                   <Image
-                    className='shopComment-comment-item-left'
+                    className="shopComment-comment-item-left"
                     src={item.avatar}
                   />
-                  <View className='shopComment-comment-item-right'>
-                    <View className='user'>{item.nickName}</View>
-                    <View className='content'>{item.content}</View>
-                    <View className='time'>{item.createTime}</View>
+                  <View className="shopComment-comment-item-right">
+                    <View className="user">{item.nickName}</View>
+                    <View className="content">{item.content}</View>
+                    <View className="time">{item.createTime}</View>
                   </View>
                 </View>
               ))}
             {!list.length && (
-              <View className='shopComment-empty'>当前暂无评论</View>
+              <View className="shopComment-empty">当前暂无评论</View>
             )}
           </View>
         </View>
-        <View className='shopComment-add'>
+        <View className="shopComment-add">
           <Textarea
             fixed
-            className='shopComment-add-left'
+            className="shopComment-add-left"
             cursorSpacing={60}
             value={comment}
             onInput={this.handleComment}
-            placeholder='说点什么......'
+            placeholder="说点什么......"
           />
-          <View className='shopComment-add-right' onClick={this.add}>
+          <View className="shopComment-add-right" onClick={this.add}>
             评论
           </View>
         </View>
