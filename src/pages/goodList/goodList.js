@@ -26,7 +26,7 @@ class GoodList extends Component {
     }
   }
 
-  componentDidMount() {
+  componentDidShow() {
     const { listId = 45 } = this.$router.params
     this.fetch(listId)
   }

@@ -28,7 +28,7 @@ class Search extends Component {
     }
   }
 
-  componentDidMount() {
+  componentDidShow() {
     const { listId } = this.$router.params
     if (listId) {
       this.setState({

@@ -25,13 +25,11 @@ class shopComment extends Component {
     }
   }
 
-  componentDidMount() {
+  componentDidShow() {
     const { id } = this.$router.params
     this.fetchData(id)
     this.fetchShopComments(id)
   }
-
-  componentDidShow() {}
 
   componentDidHide() {}
 

@@ -29,7 +29,7 @@ class GoodDetail extends Component {
     }
   }
 
-  componentDidMount() {
+  componentDidShow() {
     const { listId, id, isGood = 1 } = this.$router.params
     this.setState({
       listId,
@@ -39,7 +39,7 @@ class GoodDetail extends Component {
     this.fetchGood(id)
   }
 
-  componentDidShow() {
+  componentDidHide() {
     this.setState({
       showModal: false,
     })

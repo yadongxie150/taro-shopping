@@ -70,8 +70,6 @@ class App extends Component {
     navigateToMiniProgramAppIdList: ['wx32540bd863b27570'],
   }
 
-  componentDidMount() {}
-
   componentDidShow() {}
 
   componentDidHide() {}

@@ -32,7 +32,7 @@ export default class shopEdit extends Component {
     }
   }
 
-  componentDidMount() {
+  componentDidShow() {
     const { id = 1 } = this.$router.params
     this.fetchData(id)
   }

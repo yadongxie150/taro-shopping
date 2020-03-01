@@ -24,7 +24,7 @@ class ShopList extends Component {
     }
   }
 
-  componentDidMount() {
+  componentDidShow() {
     this.fetch()
   }
 

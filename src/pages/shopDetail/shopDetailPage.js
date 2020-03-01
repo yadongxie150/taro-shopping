@@ -36,7 +36,7 @@ class shopDetailPage extends Component {
     }
   }
 
-  componentDidMount() {
+  componentDidShow() {
     const { listId } = this.props
     this.fetchData(listId)
   }

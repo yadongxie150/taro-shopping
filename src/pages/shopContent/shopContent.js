@@ -31,7 +31,7 @@ class shopContent extends Component {
     }
   }
 
-  componentDidMount() {
+  componentDidShow() {
     const { listId, id } = this.$router.params
     this.setState(
       {
@@ -41,6 +41,12 @@ class shopContent extends Component {
       },
       () => this.fetchGoodContent()
     )
+  }
+
+  componentDidHide() {
+    this.setState({
+      showModal: false,
+    })
   }
 
   fetchGoodContent = () => {
@@ -60,12 +66,6 @@ class shopContent extends Component {
         good: wishGoodDetail,
         hasGood: !!wishGoodDetail,
       })
-    })
-  }
-
-  componentDidShow() {
-    this.setState({
-      showModal: false,
     })
   }
 
