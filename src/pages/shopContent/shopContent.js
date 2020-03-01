@@ -19,12 +19,12 @@ class shopContent extends Component {
     this.state = {
       id: null,
       listId: null,
-      title: null,
-      des: null,
+      title: undefined,
+      des: undefined,
       good: null,
       images: [],
       goods: [],
-      search: null,
+      search: undefined,
       hasGood: false,
       showModal: false,
       isInEdit: false,
@@ -102,7 +102,7 @@ class shopContent extends Component {
           icon: 'success',
           duration: 2000,
         })
-        Taro.navigateTo({
+        Taro.reLaunch({
           url: `/pages/shopDetail/shopDetail?id=${listId}`,
         })
       })
@@ -152,7 +152,6 @@ class shopContent extends Component {
   }
 
   pickGood = good => {
-    console.log(good)
     this.setState(
       {
         good,
@@ -177,7 +176,6 @@ class shopContent extends Component {
   }
 
   handleDeleteGood = () => {
-    console.log('del 2')
     this.setState({
       hasGood: false,
       good: {},
@@ -196,8 +194,8 @@ class shopContent extends Component {
       showModal,
     } = this.state
     return (
-      <View className="shopContent">
-        <View className="shopContent-images">
+      <View className='shopContent'>
+        <View className='shopContent-images'>
           <ImagePicker
             length={3}
             count={9}
@@ -205,30 +203,30 @@ class shopContent extends Component {
             onChange={this.handleImages}
           />
         </View>
-        <View className="shopContent-item">
-          <View className="title">标题</View>
+        <View className='shopContent-item'>
+          <View className='title'>标题</View>
           <AtTextarea
-            placeholder="请输入商品/内容标题"
+            placeholder='请输入商品/内容标题'
             value={title}
             onChange={this.handleInput('title')}
           />
         </View>
-        <View className="shopContent-item">
-          <View className="title">相关商品</View>
+        <View className='shopContent-item'>
+          <View className='title'>相关商品</View>
           {hasGood && (
             <ShopGood showDelete onDelete={this.handleDeleteGood} data={good} />
           )}
-          {!hasGood && <AddGood title="添加商品" onClick={this.add} />}
+          {!hasGood && <AddGood title='添加商品' onClick={this.add} />}
         </View>
-        <View className="shopContent-item">
-          <View className="title">介绍</View>
+        <View className='shopContent-item'>
+          <View className='title'>介绍</View>
           <AtTextarea
-            placeholder="请输入商品/内容介绍"
+            placeholder='请输入商品/内容介绍'
             value={des}
             onChange={this.handleInput('des')}
           />
         </View>
-        <AtButton className="shopContent-submit" onClick={this.submit}>
+        <AtButton className='shopContent-submit' onClick={this.submit}>
           保存并预览
         </AtButton>
         <AtFloatLayout
@@ -237,8 +235,8 @@ class shopContent extends Component {
           isOpened={showModal}
           onClose={this.close}
         >
-          <View className="shopContent-search">
-            <View className="shopContent-search-head">
+          <View className='shopContent-search'>
+            <View className='shopContent-search-head'>
               <SearchTop
                 showActionButton
                 value={search}
@@ -248,9 +246,9 @@ class shopContent extends Component {
               />
             </View>
 
-            <View className="shopContent-search-body">
+            <View className='shopContent-search-body'>
               {!goods.length && (
-                <View className="shopContent-search-empty">
+                <View className='shopContent-search-empty'>
                   暂无商品，请输入关键词搜索
                 </View>
               )}

@@ -24,14 +24,14 @@ export default function Feature(props) {
   }
 
   return (
-    <View className="home-feature">
-      <View className="home-feature-header">
-        <View className="home-feature-header-name">精选清单</View>
-        <Button className="home-feature-header-action" onClick={toShopList}>
+    <View className='home-feature'>
+      <View className='home-feature-header'>
+        <View className='home-feature-header-name'>精选清单</View>
+        <Button className='home-feature-header-action' onClick={toShopList}>
           更多
         </Button>
       </View>
-      <View className="home-feature-body">
+      <View className='home-feature-body'>
         {props.data.map(item => (
           <Categary
             onClick={() => toShopDetail(item.id)}

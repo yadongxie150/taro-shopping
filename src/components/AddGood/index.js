@@ -7,8 +7,8 @@ import './index.scss'
 function AddGood(props) {
   const { title, onClick } = props
   return (
-    <View className="addGood" onClick={onClick}>
-      <AtIcon value="add" color="#BC1723" />
+    <View className='addGood' onClick={onClick}>
+      <AtIcon value='add' color='#BC1723' />
       {title}
     </View>
   )

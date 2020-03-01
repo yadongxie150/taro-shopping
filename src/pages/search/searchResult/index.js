@@ -14,10 +14,10 @@ export default class SearchResult extends Component {
       onShopClick,
     } = this.props
     return (
-      <View className="searchResult">
+      <View className='searchResult'>
         {shopList.length && (
           <View>
-            <View className="searchResult-title">清单</View>
+            <View className='searchResult-title'>清单</View>
             <View>
               {shopList.map(item => (
                 <ShopListItem
@@ -30,7 +30,7 @@ export default class SearchResult extends Component {
         )}
         {goods.length && (
           <View>
-            <View className="searchResult-title">商品</View>
+            <View className='searchResult-title'>商品</View>
             <View>
               {goods.map(item => (
                 <ShopGood data={item} onClick={() => onGoodClick(item.id)} />

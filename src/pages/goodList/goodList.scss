@@ -1,0 +1,38 @@
+.goodList {
+  width: 100%;
+  background-color: #F8F8F8;
+
+  &-box {
+    padding-top: 30px;
+    padding-bottom: 100px;
+    padding-left: 10px;
+
+    &-item {
+      display: flex;
+      align-items: center;
+
+      &-check {
+        margin-right: 10px;
+      }
+    }
+  }
+
+  &-operation {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #ffffff;
+    
+    &-box {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 30px;
+
+      &-delete {
+        color: #BC1723;
+      }
+    }
+  }
+}

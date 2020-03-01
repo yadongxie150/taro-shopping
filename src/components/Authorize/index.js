@@ -105,7 +105,7 @@ export default class Authorize extends Component {
     const { hasAuthorize } = this.state
     if (!hasAuthorize) {
       return (
-        <Button openType="getUserInfo" onGetUserInfo={this.handleUserInfo}>
+        <Button openType='getUserInfo' onGetUserInfo={this.handleUserInfo}>
           获取用户信息
         </Button>
       )

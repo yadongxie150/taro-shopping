@@ -30,7 +30,6 @@ class Search extends Component {
 
   componentDidMount() {
     const { listId } = this.$router.params
-    console.log(listId)
     if (listId) {
       this.setState({
         listId,
@@ -60,22 +59,25 @@ class Search extends Component {
   doSearch = () => {
     const { search, channel } = this.state
     taroFetch({
-      url: '/app/goods/getGoodInfo',
+      url: '/app/search/searchAll',
       data: {
-        goodInfo: search,
+        searchContent: search,
         goodChannel: channel, // 1：京东，2：拼多多，3：淘宝
       },
     })
       .then(data => {
+        const { wishGoods, wishLists } = data
         this.setState({
           hasResult: true,
-          goods: data.slice(0, 100) || [],
+          shopList: wishLists,
+          goods: wishGoods,
         })
       })
       .catch(() => {
         this.setState({
-          hasResult: true,
+          hasResult: false,
           goods: [],
+          shopList: [],
         })
       })
   }
@@ -125,8 +127,8 @@ class Search extends Component {
       shopList,
     }
     return (
-      <View className="search">
-        <View className="search-head">
+      <View className='search'>
+        <View className='search-head'>
           <SearchTop
             showActionButton
             value={search}
@@ -136,9 +138,9 @@ class Search extends Component {
           />
         </View>
 
-        <View className="search-body">
+        <View className='search-body'>
           {false && (
-            <View className="search-body-channel">
+            <View className='search-body-channel'>
               {Object.keys(GOOD_CHANNEL).map(key => (
                 <View
                   className={classnames('search-body-channel-item', {

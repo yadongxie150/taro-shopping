@@ -39,14 +39,14 @@ class Shopcontentdetail extends Component {
 
   render() {
     return (
-      <View className="shopContentDetail">
-        <Button className="add_btn" onClick={this.props.add}>
+      <View className='shopContentDetail'>
+        <Button className='add_btn' onClick={this.props.add}>
           +
         </Button>
-        <Button className="dec_btn" onClick={this.props.dec}>
+        <Button className='dec_btn' onClick={this.props.dec}>
           -
         </Button>
-        <Button className="dec_btn" onClick={this.props.asyncAdd}>
+        <Button className='dec_btn' onClick={this.props.asyncAdd}>
           async
         </Button>
         <View>

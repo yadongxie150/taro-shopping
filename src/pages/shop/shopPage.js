@@ -131,22 +131,22 @@ class Shop extends Component {
       isSecret,
     } = this.state
     return (
-      <View className="shop">
-        <View onClick={this.focusSearch} className="shop-search">
+      <View className='shop'>
+        <View onClick={this.focusSearch} className='shop-search'>
           <SearchTop disabled />
         </View>
-        <View className="shopBox">
-          <View className="shopBox-header">
+        <View className='shopBox'>
+          <View className='shopBox-header'>
             <Text>我管理的清单</Text>
-            <View className="shopBox-header-op" onClick={this.add}>
+            <View className='shopBox-header-op' onClick={this.add}>
               <Image
-                className="shopBox-header-op-icon icon-add"
+                className='shopBox-header-op-icon icon-add'
                 src={addIcon}
               />
               {/* <Image className="shopBox-header-op-icon" src={moreIcon} /> */}
             </View>
           </View>
-          <View className="shopBox-body">
+          <View className='shopBox-body'>
             {myLists.length ? (
               myLists
                 .slice(0, 3)
@@ -158,11 +158,11 @@ class Shop extends Component {
                   />
                 ))
             ) : (
-              <View className="shopBox-empty">暂无数据</View>
+              <View className='shopBox-empty'>暂无数据</View>
             )}
             {myLists.length > 3 && (
               <Button
-                className="shopBox-button"
+                className='shopBox-button'
                 onClick={this.gotoShopList('myList')}
               >
                 查看更多({myListTotal})
@@ -170,11 +170,11 @@ class Shop extends Component {
             )}
           </View>
         </View>
-        <View className="shopBox">
-          <View className="shopBox-header">
+        <View className='shopBox'>
+          <View className='shopBox-header'>
             <Text>我收藏的清单</Text>
           </View>
-          <View className="shopBox-body">
+          <View className='shopBox-body'>
             {myCollectionLists.length ? (
               myCollectionLists
                 .slice(0, 3)
@@ -186,11 +186,11 @@ class Shop extends Component {
                   />
                 ))
             ) : (
-              <View className="shopBox-empty">暂无数据</View>
+              <View className='shopBox-empty'>暂无数据</View>
             )}
             {myCollectionLists.length > 3 && (
               <Button
-                className="shopBox-button"
+                className='shopBox-button'
                 onClick={this.gotoShopList('collectList')}
               >
                 查看更多({collectListTotal})
@@ -199,27 +199,31 @@ class Shop extends Component {
           </View>
         </View>
         <AtFloatLayout isOpened={showModal}>
-          <View className="shopEdit">
-            <View className="shopEdit-action">
+          <View className='shopEdit'>
+            <View className='shopEdit-action'>
               <View
-                className="shopEdit-action-cancel"
+                className='shopEdit-action-cancel'
                 onClick={this.handleClose}
               >
                 取消
               </View>
-              <View className="shopEdit-action-ok" onClick={this.handleOk}>
+              <View className='shopEdit-action-ok' onClick={this.handleOk}>
                 确认
               </View>
             </View>
             <Input
-              type="text"
-              placeholder="请输入清单标题"
+              type='text'
+              placeholder='请输入清单标题'
               value={name}
               onInput={this.handleInput}
-              className="shopEdit-input"
+              className='shopEdit-input'
             />
-            <View className="shopEdit-secret">
-              <Checkbox onClick={this.handleCheck} checked={isSecret}>
+            <View className='shopEdit-secret'>
+              <Checkbox
+                onClick={this.handleCheck}
+                checked={isSecret}
+                color='#BC1723'
+              >
                 设置为私密清单
               </Checkbox>
             </View>

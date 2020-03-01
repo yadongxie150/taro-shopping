@@ -14,13 +14,15 @@ export default class searchTop extends Component {
       onClear,
       showActionButton,
       disabled = false,
+      fixed = false,
     } = this.props
     return (
-      <View className="searchTop">
+      <View className='searchTop'>
         <AtSearchBar
+          fixed={fixed}
           disabled={disabled}
           showActionButton={showActionButton}
-          placeholder="输入清单/商品名称"
+          placeholder='输入清单/商品名称'
           value={value}
           onChange={onChange}
           onFocus={onFocus}
