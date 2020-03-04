@@ -212,6 +212,7 @@ class Shop extends Component {
               </View>
             </View>
             <Input
+              maxLength={20}
               type="text"
               placeholder="请输入清单标题"
               value={name}

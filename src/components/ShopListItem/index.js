@@ -1,7 +1,8 @@
 import Taro from '@tarojs/taro'
-import { View, Text, Image } from '@tarojs/components'
+import { View, Image } from '@tarojs/components'
 
 import { handlePrice } from '../../utils/number'
+import {sliceStr} from '../../utils/string'
 import './index.scss'
 
 function ShopListItem(props) {
@@ -19,15 +20,15 @@ function ShopListItem(props) {
       <Image className="ShopListItem-left" src={listPic} />
       <View className="ShopListItem-right">
         <View className="ShopListItem-right-item">
-          <Text className="ShopListItem-right-title">{listName}</Text>
-          <Text className="ShopListItem-right-des">{listDesc}</Text>
+          <View className="ShopListItem-right-title">{listName}</View>
+          <View className="ShopListItem-right-des">{sliceStr(listDesc || '', 16)|| '暂无描述'}</View>
         </View>
         <View className="ShopListItem-right-item">
-          <Text className="ShopListItem-right-content">
+          <View className="ShopListItem-right-content">
             {goodCount}件商品 · {colectionCount}人收藏 · 优惠 ¥
             {handlePrice(discountMoney)}
-          </Text>
-          <Text className="ShopListItem-right-author">@{nickName}</Text>
+          </View>
+          <View className="ShopListItem-right-author">@{nickName}</View>
         </View>
       </View>
     </View>

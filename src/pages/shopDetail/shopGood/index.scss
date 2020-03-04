@@ -18,6 +18,8 @@
     width: 480px;
     flex-direction: column;
     justify-content: space-between;
+    flex: 1;
+    margin-left: 26px;
 
     &-title {
       font-size: 26px;

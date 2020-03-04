@@ -79,6 +79,14 @@ class shopContent extends Component {
 
   submit = () => {
     const { title, des, images, good, listId, id, isInEdit } = this.state
+    if(!title){
+      Taro.showToast({
+        title: '标题必填',
+        icon: 'none',
+        duration: 1000,
+      })
+      return
+    }
     const params = {
       id,
       listId,
@@ -206,6 +214,7 @@ class shopContent extends Component {
         <View className="shopContent-item">
           <View className="title">标题</View>
           <AtTextarea
+            maxLength={20}
             placeholder="请输入商品/内容标题"
             value={title}
             onChange={this.handleInput('title')}

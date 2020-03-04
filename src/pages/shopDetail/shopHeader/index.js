@@ -2,6 +2,7 @@ import Taro from '@tarojs/taro'
 import { View, Image, Text } from '@tarojs/components'
 
 import { SHOP_TYPE_MAP } from '../../../constants'
+import {sliceStr} from '../../../utils/string'
 
 import collectIcon from '../../../assets/shopDetail/collect.png'
 import likeIcon from '../../../assets/shopDetail/like.png'
@@ -73,7 +74,7 @@ export default function ShopHeader(props) {
             <Image className="shopHeader-author-photo" src={avatar} />
             <Text>{nickName}</Text>
           </View>
-          <Text className="shopHeader-des">{listDesc}</Text>
+          <Text className="shopHeader-des">{sliceStr(listDesc, 50)}</Text>
         </View>
       </View>
       <View className="shopHeader-op">

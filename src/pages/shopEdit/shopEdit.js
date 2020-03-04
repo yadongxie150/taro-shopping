@@ -138,6 +138,7 @@ export default class shopEdit extends Component {
           <View className="shopEdit-top-item">
             <Text className="label">名称</Text>
             <Input
+              maxLength={20}
               value={listName}
               onInput={this.handleForm('listName')}
               placeholder="请输入清单名称"
@@ -166,6 +167,7 @@ export default class shopEdit extends Component {
         <View className="shopEdit-bottom">
           <View className="label">介绍</View>
           <Textarea
+            maxlength={200}
             className="textarea"
             placeholder="对清单进行描述"
             value={listDesc}
