@@ -110,7 +110,7 @@ class shopContent extends Component {
           icon: 'success',
           duration: 2000,
         })
-        Taro.navigateTo({
+        Taro.redirectTo({
           url: `/pages/shopDetail/shopDetail?id=${listId}`,
         })
       })

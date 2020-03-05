@@ -3,6 +3,7 @@ import { View, Image } from '@tarojs/components'
 
 import { handlePrice } from '../../utils/number'
 import {sliceStr} from '../../utils/string'
+import {getImageUrl} from '../../utils/image'
 import './index.scss'
 
 function ShopListItem(props) {
@@ -17,11 +18,11 @@ function ShopListItem(props) {
   } = props.data
   return (
     <View className="ShopListItem" onClick={this.props.onClick}>
-      <Image className="ShopListItem-left" src={listPic} />
+      <Image className="ShopListItem-left" src={getImageUrl(listPic)} />
       <View className="ShopListItem-right">
         <View className="ShopListItem-right-item">
           <View className="ShopListItem-right-title">{listName}</View>
-          <View className="ShopListItem-right-des">{sliceStr(listDesc || '', 16)|| '暂无描述'}</View>
+          <View className="ShopListItem-right-des">{sliceStr(listDesc, 16)|| '暂无描述'}</View>
         </View>
         <View className="ShopListItem-right-item">
           <View className="ShopListItem-right-content">

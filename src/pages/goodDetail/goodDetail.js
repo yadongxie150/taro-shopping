@@ -4,6 +4,7 @@ import { AtFloatLayout } from 'taro-ui'
 
 import taroFetch from '../../utils/request'
 import { handlePrice } from '../../utils/number'
+import {getImageUrl} from '../../utils/image'
 import { GOOD_CHANNEL, GOOD_CHANNEL_APPID } from '../../constants'
 import ShopListItem from '../../components/ShopListItem'
 import ShopGood from '../shopDetail/ShopGood'
@@ -92,7 +93,7 @@ class GoodDetail extends Component {
     if (isGood) {
       this.buy()
     } else {
-      Taro.navigateTo({
+      Taro.redirectTo({
         url: `/pages/shopContent/shopContent?id=${id}&listId=${listId}`,
       })
     }
@@ -173,11 +174,11 @@ class GoodDetail extends Component {
             autoplay
             interval={2000}
           >
-            {imageInfo.map(url => (
+            {imageInfo && imageInfo.length>0 ? imageInfo.map(url => (
               <SwiperItem>
                 <Image className="goodDetail-image" src={url} />
               </SwiperItem>
-            ))}
+            )) : <Image className="goodDetail-image" src={getImageUrl()} />}
           </Swiper>
         )}
         {isGood ? (

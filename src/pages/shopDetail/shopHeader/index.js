@@ -2,10 +2,13 @@ import Taro from '@tarojs/taro'
 import { View, Image, Text } from '@tarojs/components'
 
 import { SHOP_TYPE_MAP } from '../../../constants'
-import {sliceStr} from '../../../utils/string'
+import { sliceStr } from '../../../utils/string'
+import { getImageUrl } from '../../../utils/image'
 
 import collectIcon from '../../../assets/shopDetail/collect.png'
+import collectActiveIcon from '../../../assets/shopDetail/collect-active.png'
 import likeIcon from '../../../assets/shopDetail/like.png'
+import likeActiveIcon from '../../../assets/shopDetail/like-active.png'
 import reviewIcon from '../../../assets/shopDetail/review.png'
 import shareIcon from '../../../assets/shopDetail/share.png'
 
@@ -15,21 +18,10 @@ import './index.scss'
 const shopIconMap = {
   comment: reviewIcon,
   favour: likeIcon,
+  favourAcitve: likeActiveIcon,
   share: shareIcon,
   collect: collectIcon,
-}
-
-const getOpName = (key, data) => {
-  switch (key) {
-    case 'collect':
-      const { collected } = data
-      return `${collected ? '已' : ''}${SHOP_TYPE_MAP[key]}`
-    case 'favour':
-      const { liked } = data
-      return `${liked ? '已' : ''}${SHOP_TYPE_MAP[key]}`
-    default:
-      return SHOP_TYPE_MAP[key]
-  }
+  collectAcitve: collectActiveIcon,
 }
 
 const getOpNum = (key, data) => {
@@ -51,22 +43,29 @@ const getOpNum = (key, data) => {
   }
 }
 
+const getOpImg = (key, data) => {
+  const { liked, collected } = data
+  if (liked && key === 'favour') return shopIconMap.favourAcitve
+  if (collected && key === 'collect') return shopIconMap.collectAcitve
+  return shopIconMap[key] || ''
+}
+
 export default function ShopHeader(props) {
   const { data, onClick } = props
   const { listName, listDesc, listPic, avatar, nickName } = data
 
   const shopOperations = Object.keys(SHOP_TYPE_MAP).map(key => ({
     type: key,
-    name: getOpName(key, data),
+    name: SHOP_TYPE_MAP[key],
     num: getOpNum(key, data),
-    image: shopIconMap[key],
+    image: getOpImg(key, data),
   }))
 
   return (
     <View className="shopHeader">
       <View className="shopHeader-msg">
         <View className="shopHeader-msg-left">
-          <Image className="shopHeader-author-photo" src={listPic} />
+          <Image className="shopHeader-author-photo" src={getImageUrl(listPic)} />
         </View>
         <View className="shopHeader-msg-right">
           <Text>{listName}</Text>

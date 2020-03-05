@@ -72,7 +72,7 @@ export default class shopEdit extends Component {
         icon: 'success',
         duration: 1000,
       })
-      Taro.navigateTo({
+      Taro.redirectTo({
         url: `/pages/shopDetail/shopDetail?id=${id}`,
       })
     })

@@ -3,6 +3,7 @@ import { View, Image } from '@tarojs/components'
 import { AtIcon } from 'taro-ui'
 import { handlePrice } from '../../../utils/number'
 import {sliceStr} from '../../../utils/string'
+import {getImageUrl} from '../../../utils/image'
 import './index.scss'
 
 // function component 必须首字母大写
@@ -19,7 +20,7 @@ export default function ShopGood(props) {
         onClick && onClick()
       }}
     >
-      <Image className="shopContent-good-image" src={mainImageUrl} />
+      <Image className="shopContent-good-image" src={getImageUrl(mainImageUrl)} />
       <View className="shopContent-good-content">
         {showDelete && (
           <View

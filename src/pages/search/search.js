@@ -115,7 +115,7 @@ class Search extends Component {
   }
 
   create = () => {
-    Taro.navigateTo({
+    Taro.redirectTo({
       url: `/pages/shopContent/shopContent?listId=${this.state.listId}`,
     })
   }

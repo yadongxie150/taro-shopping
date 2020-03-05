@@ -94,7 +94,7 @@ class shopDetailPage extends Component {
   }
 
   edit = () => {
-    Taro.navigateTo({
+    Taro.redirectTo({
       url: `/pages/shopEdit/shopEdit?id=${this.state.id}`,
     })
   }
@@ -236,7 +236,7 @@ class shopDetailPage extends Component {
   }
 
   add = () => {
-    Taro.navigateTo({
+    Taro.redirectTo({
       url: `/pages/search/search?listId=${this.state.id}`,
     })
   }

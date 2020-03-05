@@ -143,7 +143,6 @@ class Shop extends Component {
                 className="shopBox-header-op-icon icon-add"
                 src={addIcon}
               />
-              {/* <Image className="shopBox-header-op-icon" src={moreIcon} /> */}
             </View>
           </View>
           <View className="shopBox-body">
