@@ -1,5 +1,5 @@
 import Taro, { Component } from '@tarojs/taro'
-import { View, Text, Image, ScrollView } from '@tarojs/components'
+import { View, Text, Image, Button } from '@tarojs/components'
 import { AtActionSheet, AtActionSheetItem } from 'taro-ui'
 
 import moreIcon from '../../assets/shopDetail/more.png'
@@ -10,6 +10,7 @@ import taroFetch from '../../utils/request'
 import ShopHeader from './ShopHeader'
 import ShopGood from './ShopGood'
 import AddGood from '../../components/AddGood'
+import ShopDetailMsg from './ShopDetailMsg'
 import './shopDetail.scss'
 
 class shopDetailPage extends Component {
@@ -33,6 +34,7 @@ class shopDetailPage extends Component {
         wishList: {},
       },
       showManage: false,
+      showDetail: false,
     }
   }
 
@@ -94,7 +96,7 @@ class shopDetailPage extends Component {
   }
 
   edit = () => {
-    Taro.redirectTo({
+    Taro.navigateTo({
       url: `/pages/shopEdit/shopEdit?id=${this.state.id}`,
     })
   }
@@ -198,31 +200,8 @@ class shopDetailPage extends Component {
         break
     }
   }
-
-  fetchGoods = () => {
-    const { pageNum, pageSize, id } = this.state
-    taroFetch({
-      url: '/app/goods/getListGoods',
-      method: 'GET',
-      data: {
-        listId: id,
-        pageNum,
-        pageSize,
-      },
-    }).then(res => {
-      this.setState(preState => ({
-        ...preState,
-        data: {
-          ...preState.data,
-          listGood: {
-            ...preState.data.listGood,
-            wishGoods: preState.data.listGood.wishGoods.concat(res.wishGoods),
-          },
-        },
-      }))
-    })
-  }
-
+  
+  /* 滚动逻辑暂时注释
   handleScrollToLower = () => {
     const { pageSize, pageNum, total } = this.state
     if (pageSize * pageNum < total) {
@@ -234,16 +213,35 @@ class shopDetailPage extends Component {
       )
     }
   }
+  */
 
   add = () => {
-    Taro.redirectTo({
+    Taro.navigateTo({
       url: `/pages/search/search?listId=${this.state.id}`,
     })
   }
 
   editGood = () => {
     Taro.navigateTo({
+      url: `/pages/goodList/goodList?listId=${this.state.id}&edit=1`,
+    })
+  }
+
+  gotoGoodList = () => {
+    Taro.navigateTo({
       url: `/pages/goodList/goodList?listId=${this.state.id}`,
+    })
+  }
+
+  openDetail = () => {
+    this.setState({
+      showDetail: true
+    })
+  }
+
+  closeDetail = () => {
+    this.setState({
+      showDetail: false
     })
   }
 
@@ -251,11 +249,19 @@ class shopDetailPage extends Component {
     const {
       data: { listGood, wishList },
       showManage,
+      total,
+      showDetail,
     } = this.state
     const { editPermission } = wishList
+
+    if(showDetail) {
+      return  <ShopDetailMsg data={wishList} onClose={this.closeDetail} />
+    }
+    
     return (
       <View className="shopDetail">
-        <ShopHeader data={wishList} onClick={this.handleShopAction} />
+        {/* <ShopDetailMsg data={wishList} /> */}
+        <ShopHeader data={wishList} onClick={this.openDetail} onEvent={this.handleShopAction} />
         <View className="shopContent">
           <View className="shopContent-head">
             <Text>全部商品</Text>
@@ -275,26 +281,6 @@ class shopDetailPage extends Component {
             )}
           </View>
           <View className="shopContent-body">
-            {/* {listGood.wishGoods.length && (
-              <ScrollView
-                scrollX={false}
-                scrollY
-                scrollWithAnimation
-                scrollTop={0}
-                style={{
-                  height: `800px`,
-                }}
-                onScrollToLower={this.handleScrollToLower}
-              >
-                {listGood.wishGoods.map(good => (
-                  <ShopGood
-                    data={good}
-                    onClick={() => this.handleGoodDetail(good)}
-                    onBuy={() => this.handleBuy(good)}
-                  />
-                ))}
-              </ScrollView>
-            )} */}
             {listGood.wishGoods.length &&
               listGood.wishGoods.map(good => (
                 <ShopGood
@@ -306,6 +292,7 @@ class shopDetailPage extends Component {
             {!listGood.wishGoods.length && (
               <AddGood title="添加商品" onClick={this.add} />
             )}
+            {total && total > 10 && <Button onClick={this.gotoGoodList}>查看更多商品</Button>}
           </View>
         </View>
         <AtActionSheet isOpened={showManage} onClose={this.close}>

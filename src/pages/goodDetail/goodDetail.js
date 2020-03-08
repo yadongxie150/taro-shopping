@@ -93,7 +93,7 @@ class GoodDetail extends Component {
     if (isGood) {
       this.buy()
     } else {
-      Taro.redirectTo({
+      Taro.navigateTo({
         url: `/pages/shopContent/shopContent?id=${id}&listId=${listId}`,
       })
     }

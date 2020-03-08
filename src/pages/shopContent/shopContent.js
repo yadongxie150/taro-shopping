@@ -247,6 +247,7 @@ class shopContent extends Component {
           <View className="shopContent-search">
             <View className="shopContent-search-head">
               <SearchTop
+                placeholder="输入商品名称"
                 showActionButton
                 value={search}
                 onChange={this.handleSearch}

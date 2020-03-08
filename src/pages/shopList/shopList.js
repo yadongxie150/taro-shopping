@@ -1,6 +1,6 @@
 // 清单列表页
 import Taro, { Component } from '@tarojs/taro'
-import { View, ScrollView } from '@tarojs/components'
+import { View } from '@tarojs/components'
 
 import taroFetch from '../../utils/request'
 import ShopListItem from '../../components/ShopListItem'
@@ -19,7 +19,7 @@ class ShopList extends Component {
     this.state = {
       data: [],
       pageNum: 1,
-      pageSize: 10,
+      pageSize: 50,
       total: 0,
     }
   }
@@ -80,17 +80,18 @@ class ShopList extends Component {
     })
   }
 
-  handleScrollToLower = () => {
-    const { total, pageSize, pageNum } = this.state
-    if (pageSize * pageNum < total) {
-      this.setState(
-        {
-          pageNum: pageNum + 1,
-        },
-        this.fetch
-      )
-    }
-  }
+  // 滚动逻辑暂时删除
+  // handleScrollToLower = () => {
+  //   const { total, pageSize, pageNum } = this.state
+  //   if (pageSize * pageNum < total) {
+  //     this.setState(
+  //       {
+  //         pageNum: pageNum + 1,
+  //       },
+  //       this.fetch
+  //     )
+  //   }
+  // }
 
   render() {
     const { data } = this.state
@@ -100,23 +101,13 @@ class ShopList extends Component {
     return (
       <View className="shopList">
         <View className="shopList-box">
-          <ScrollView
-            scrollY
-            scrollWithAnimation
-            scrollTop={0}
-            style={{
-              height: '1000px',
-            }}
-            onScrollToLower={this.handleScrollToLower}
-          >
-            {data.map(item => (
-              <ShopListItem
-                key={item.id}
-                data={item}
-                onClick={() => this.toDetail(item.id)}
-              />
-            ))}
-          </ScrollView>
+          {data.map(item => (
+            <ShopListItem
+              key={item.id}
+              data={item}
+              onClick={() => this.toDetail(item.id)}
+            />
+          ))}
         </View>
       </View>
     )

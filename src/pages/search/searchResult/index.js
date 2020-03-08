@@ -33,7 +33,7 @@ export default class SearchResult extends Component {
             <View className="searchResult-title">商品</View>
             <View>
               {goods.map(item => (
-                <ShopGood data={item} onClick={() => onGoodClick(item.id)} />
+                <ShopGood data={item} onClick={() => onGoodClick(item)} />
               ))}
             </View>
           </View>

@@ -15,6 +15,7 @@ export default class searchTop extends Component {
       showActionButton,
       disabled = false,
       fixed = false,
+      placeholder,
     } = this.props
     return (
       <View className="searchTop">
@@ -22,7 +23,7 @@ export default class searchTop extends Component {
           fixed={fixed}
           disabled={disabled}
           showActionButton={showActionButton}
-          placeholder="输入清单/商品名称"
+          placeholder={placeholder || '输入清单/商品名称'}
           value={value}
           onChange={onChange}
           onFocus={onFocus}

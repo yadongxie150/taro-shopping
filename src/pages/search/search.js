@@ -57,7 +57,7 @@ class Search extends Component {
   }
 
   doSearch = () => {
-    const { search, channel } = this.state
+    const { search, channel, listId } = this.state
     taroFetch({
       url: '/app/search/searchAll',
       data: {
@@ -69,7 +69,7 @@ class Search extends Component {
         const { wishGoods, wishLists } = data
         this.setState({
           hasResult: true,
-          shopList: wishLists,
+          shopList: listId ? [] : wishLists,
           goods: wishGoods,
         })
       })
@@ -91,10 +91,28 @@ class Search extends Component {
     })
   }
 
-  handleGood = id => {
-    Taro.navigateTo({
-      url: `/pages/goodDetail/goodDetail?id=${id}&isGood=1`,
-    })
+  handleGood = good => {
+    const {id, goodChannel} = good
+    const {listId} = this.state
+    if(!listId) {
+      Taro.navigateTo({
+        url: `/pages/goodDetail/goodDetail?id=${id}&isGood=1`,
+      })
+    } else {
+      taroFetch({
+        url: '/app/goods/addWishList',
+        method: 'POST',
+        data: {
+          goodId: id,
+          listId,
+          goodChannel,
+        },
+      }).then(() => {
+        Taro.navigateTo({
+          url: `/pages/shopDetail/shopDetail?id=${listId}`,
+        })
+      })
+    }
   }
 
   handleShop = id => {
@@ -115,7 +133,7 @@ class Search extends Component {
   }
 
   create = () => {
-    Taro.redirectTo({
+    Taro.navigateTo({
       url: `/pages/shopContent/shopContent?listId=${this.state.listId}`,
     })
   }
@@ -130,6 +148,7 @@ class Search extends Component {
       <View className="search">
         <View className="search-head">
           <SearchTop
+            placeholder={listId && '输入商品名称'}
             showActionButton
             value={search}
             onChange={this.handleSearch}

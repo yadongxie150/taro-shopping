@@ -23,11 +23,17 @@ class GoodList extends Component {
       total: 0,
       selectedIds: [],
       isSelectAll: false,
+      isInEdit: false,
     }
   }
 
   componentDidShow() {
-    const { listId = 45 } = this.$router.params
+    const { listId = 45, edit } = this.$router.params
+    console.log(typeof edit, edit)
+    this.setState({
+      listId,
+      isInEdit: !!edit,
+    })
     this.fetch(listId)
   }
 
@@ -49,7 +55,8 @@ class GoodList extends Component {
   }
 
   select = id => () => {
-    const { selectedIds, list } = this.state
+    const { selectedIds, list, isInEdit } = this.state
+    if(isInEdit) return
     if (selectedIds.includes(id)) {
       const thisIndex = selectedIds.findIndex(item => item === id)
       selectedIds.splice(thisIndex, 1)
@@ -96,7 +103,7 @@ class GoodList extends Component {
   }
 
   render() {
-    const { list, selectedIds, isSelectAll } = this.state
+    const { list, selectedIds, isSelectAll, isInEdit } = this.state
     if (list && !list.length) {
       return null
     }
@@ -109,34 +116,38 @@ class GoodList extends Component {
                 className="goodList-box-item"
                 onClick={this.select(item.id)}
               >
-                <Checkbox
-                  className="goodList-box-item-check"
-                  color="#BC1723"
-                  checked={selectedIds.includes(item.id)}
-                />
+                {isInEdit && (
+                  <Checkbox
+                    className="goodList-box-item-check"
+                    color="#BC1723"
+                    checked={selectedIds.includes(item.id)}
+                  />
+                )}
                 <ShopGood data={item} />
               </View>
             )
           })}
         </View>
-        <View className="goodList-operation">
-          <View className="goodList-operation-box">
-            <Radio
-              className="goodList-operation-box-radio"
-              color="#BC1723"
-              checked={isSelectAll}
-              onClick={this.pickAll}
-            >
-              全选
+        {isInEdit && (
+          <View className="goodList-operation">
+            <View className="goodList-operation-box">
+              <Radio
+                className="goodList-operation-box-radio"
+                color="#BC1723"
+                checked={isSelectAll}
+                onClick={this.pickAll}
+              >
+                全选
             </Radio>
-            <View
-              className="goodList-operation-box-delete"
-              onClick={this.delete}
-            >
-              删除
+              <View
+                className="goodList-operation-box-delete"
+                onClick={this.delete}
+              >
+                删除
+            </View>
             </View>
           </View>
-        </View>
+        )}
       </View>
     )
   }

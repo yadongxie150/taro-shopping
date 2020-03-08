@@ -20,7 +20,6 @@ class UserPage extends Component {
     super(props)
     this.state = {
       userInfo: {},
-      isInAbout: false,
     }
   }
 
@@ -28,23 +27,20 @@ class UserPage extends Component {
     const userInfo = await getStorage('userInfo')
     this.setState({
       userInfo: JSON.parse(userInfo),
-      isInAbout: false,
     })
   }
 
   handleAbout = () => {
-    this.setState({
-      isInAbout: true,
+    Taro.navigateTo({
+      url: '/pages/about/about'
     })
   }
 
   render() {
     const {
       userInfo: { avatar, nickName, id },
-      isInAbout,
     } = this.state
 
-    if (isInAbout) return <About />
     return (
       <View className="user">
         <View className="user-header">
@@ -59,8 +55,10 @@ class UserPage extends Component {
           消息通知
         </View> */}
         <View className="user-item">
-          <Image className="user-item-icon" src={ideaIcon} />
-          <OpenTypeButton openType="feedback">意见反馈</OpenTypeButton>
+          <OpenTypeButton openType="feedback">
+            <Image className="user-item-icon" src={ideaIcon} />
+            意见反馈
+          </OpenTypeButton>
         </View>
         <View className="user-item" onClick={this.handleAbout}>
           <Image className="user-item-icon" src={aboutIcon} />

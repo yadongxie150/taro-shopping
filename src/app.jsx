@@ -24,6 +24,7 @@ class App extends Component {
       'pages/home/home',
       'pages/shop/shop',
       'pages/user/user',
+      'pages/about/about',
       'pages/search/search',
       'pages/shopEdit/shopEdit',
       'pages/shopTag/shopTag',

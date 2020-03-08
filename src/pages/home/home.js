@@ -1,5 +1,5 @@
 import Taro, { Component } from '@tarojs/taro'
-import { View, ScrollView } from '@tarojs/components'
+import { View } from '@tarojs/components'
 
 import taroFetch from '../../utils/request'
 
@@ -40,14 +40,6 @@ class Home extends Component {
     })
   }
 
-  handleToBottom = () => {
-    console.log('滚到底部了')
-  }
-
-  handleScroll = () => {
-    console.log('scrolling')
-  }
-
   focusSearch = () => {
     Taro.navigateTo({
       url: '/pages/search/search',
@@ -80,14 +72,9 @@ class Home extends Component {
         <View onClick={this.focusSearch} className="home-search">
           <SearchTop disabled />
         </View>
-        <ScrollView
-          onScrollToLower={this.handleToBottom}
-          onScroll={this.handleScroll}
-        >
-          <Banner data={banner} />
-          <Feature data={selectionList} />
-          <Recommend data={homeList} onClick={this.handelRecommend} />
-        </ScrollView>
+        <Banner data={banner} />
+        <Feature data={selectionList} />
+        <Recommend data={homeList} onClick={this.handelRecommend} />
       </View>
     )
   }

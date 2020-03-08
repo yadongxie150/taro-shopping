@@ -51,7 +51,7 @@ const getOpImg = (key, data) => {
 }
 
 export default function ShopHeader(props) {
-  const { data, onClick } = props
+  const { data, onClick, onEvent } = props
   const { listName, listDesc, listPic, avatar, nickName } = data
 
   const shopOperations = Object.keys(SHOP_TYPE_MAP).map(key => ({
@@ -63,7 +63,7 @@ export default function ShopHeader(props) {
 
   return (
     <View className="shopHeader">
-      <View className="shopHeader-msg">
+      <View className="shopHeader-msg" onClick={onClick}>
         <View className="shopHeader-msg-left">
           <Image className="shopHeader-author-photo" src={getImageUrl(listPic)} />
         </View>
@@ -81,7 +81,7 @@ export default function ShopHeader(props) {
           const { name, type, image, num } = item
           if (type === 'share') {
             return (
-              <OpenTypeButton openType="share" onClick={() => onClick(type)}>
+              <OpenTypeButton openType="share" onClick={() => onEvent(type)}>
                 <View className="shopHeader-op-item">
                   <Image className="shopHeader-op-icon" src={image} />
                   <Text>
@@ -93,7 +93,7 @@ export default function ShopHeader(props) {
             )
           }
           return (
-            <View className="shopHeader-op-item" onClick={() => onClick(type)}>
+            <View className="shopHeader-op-item" onClick={() => onEvent(type)}>
               <Image className="shopHeader-op-icon" src={image} />
               <Text>
                 {num}·{name}

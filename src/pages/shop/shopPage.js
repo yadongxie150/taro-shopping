@@ -124,8 +124,6 @@ class Shop extends Component {
       data: {
         myCollectionLists = [],
         myLists = [],
-        collectListTotal,
-        myListTotal,
       },
       name,
       isSecret,
@@ -164,7 +162,7 @@ class Shop extends Component {
                 className="shopBox-button"
                 onClick={this.gotoShopList('myList')}
               >
-                查看更多({myListTotal})
+                查看更多清单
               </Button>
             )}
           </View>
@@ -192,7 +190,7 @@ class Shop extends Component {
                 className="shopBox-button"
                 onClick={this.gotoShopList('collectList')}
               >
-                查看更多({collectListTotal})
+                查看更多清单
               </Button>
             )}
           </View>
