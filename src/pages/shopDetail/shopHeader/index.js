@@ -65,7 +65,10 @@ export default function ShopHeader(props) {
     <View className="shopHeader">
       <View className="shopHeader-msg" onClick={onClick}>
         <View className="shopHeader-msg-left">
-          <Image className="shopHeader-author-photo" src={getImageUrl(listPic)} />
+          <Image
+            className="shopHeader-author-photo"
+            src={getImageUrl(listPic)}
+          />
         </View>
         <View className="shopHeader-msg-right">
           <Text>{listName}</Text>

@@ -66,14 +66,14 @@ export default class shopEdit extends Component {
         listDesc,
         privacyType: privacyType ? 0 : 1, // 0：公开，1：私有
       },
-    }).then(() => {
+    }).then(({ id: detailId }) => {
       Taro.showToast({
         title: '保存成功',
         icon: 'success',
         duration: 1000,
       })
       Taro.redirectTo({
-        url: `/pages/shopDetail/shopDetail?id=${id}`,
+        url: `/pages/shopDetail/shopDetail?id=${detailId}`,
       })
     })
   }
@@ -128,6 +128,12 @@ export default class shopEdit extends Component {
     }))
   }
 
+  switch = () => {
+    this.setState(preState => ({
+      privacyType: preState.privacyType === 1 ? 0 : 1,
+    }))
+  }
+
   render() {
     const {
       data: { listName, privacyType, listDesc, listPic },
@@ -155,8 +161,9 @@ export default class shopEdit extends Component {
               <View className="des">非公开清单仅自己可见</View>
             </View>
             <Switch
+              color="#BC1723"
               checked={!privacyType}
-              onChange={this.handleForm('privacyType')}
+              onClick={this.switch}
             />
           </View>
           {/* <View className="shopEdit-top-item">

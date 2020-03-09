@@ -1,5 +1,5 @@
 import Taro from '@tarojs/taro'
-import { View, Image } from '@tarojs/components'
+import { View, Image, Text } from '@tarojs/components'
 import { AtIcon } from 'taro-ui'
 import './index.scss'
 

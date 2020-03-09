@@ -4,10 +4,10 @@ import { AtFloatLayout } from 'taro-ui'
 
 import taroFetch from '../../utils/request'
 import { handlePrice } from '../../utils/number'
-import {getImageUrl} from '../../utils/image'
+import { getImageUrl } from '../../utils/image'
 import { GOOD_CHANNEL, GOOD_CHANNEL_APPID } from '../../constants'
 import ShopListItem from '../../components/ShopListItem'
-import ShopGood from '../shopDetail/ShopGood'
+import ShopGood from '../../components/ShopGood'
 
 import './goodDetail.scss'
 
@@ -172,13 +172,17 @@ class GoodDetail extends Component {
             className="goodDetail-swiper"
             circular
             autoplay
-            interval={2000}
+            interval={3000}
           >
-            {imageInfo && imageInfo.length>0 ? imageInfo.map(url => (
-              <SwiperItem>
-                <Image className="goodDetail-image" src={url} />
-              </SwiperItem>
-            )) : <Image className="goodDetail-image" src={getImageUrl()} />}
+            {imageInfo && imageInfo.length > 0 ? (
+              imageInfo.map(url => (
+                <SwiperItem>
+                  <Image className="goodDetail-image" src={url} />
+                </SwiperItem>
+              ))
+            ) : (
+              <Image className="goodDetail-image" src={getImageUrl()} />
+            )}
           </Swiper>
         )}
         {isGood ? (
@@ -215,7 +219,9 @@ class GoodDetail extends Component {
           <View className="goodDetail-content">
             <View className="goodDetail-content-title">{skuName}</View>
             {wishGoodDetail && <ShopGood data={wishGoodDetail} />}
-            <View className="goodDetail-content-des">{goodContent}</View>
+            <View className="goodDetail-content-des">
+              {goodContent || '暂无描述'}
+            </View>
           </View>
         )}
         <View className="goodDetail-action">

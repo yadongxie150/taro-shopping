@@ -100,9 +100,9 @@ class Shop extends Component {
         listName: name,
         privacyType: isSecret ? 1 : 0,
       },
-    }).then(() => {
-      this.fetchShopList()
+    }).then(({ id }) => {
       this.handleClose()
+      this.toDetail(id)
     })
   }
 
@@ -121,10 +121,7 @@ class Shop extends Component {
   render() {
     const {
       showModal,
-      data: {
-        myCollectionLists = [],
-        myLists = [],
-      },
+      data: { myCollectionLists = [], myLists = [] },
       name,
       isSecret,
     } = this.state
@@ -210,6 +207,7 @@ class Shop extends Component {
             </View>
             <Input
               maxLength={20}
+              cursorSpacing={40}
               type="text"
               placeholder="请输入清单标题"
               value={name}

@@ -11,7 +11,7 @@ export default function Banner(props) {
 
   return (
     <View className="home-banner">
-      <Swiper circular autoplay interval={2000}>
+      <Swiper circular autoplay interval={3000}>
         {props.data.map(item => (
           <SwiperItem>
             <Image className="home-banner-image" src={item.url} />

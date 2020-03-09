@@ -1,8 +1,16 @@
 import Taro, { Component } from '@tarojs/taro'
-import { Button, View } from '@tarojs/components'
+import { Image, View, Text } from '@tarojs/components'
 
 import taroFetch from '../../utils/request'
 import { setStorage, getStorage } from '../../utils/storage'
+
+import bkImg from '../../assets/authorize/background.png'
+import logoImg from '../../assets/authorize/logo.png'
+import logoDesImg from '../../assets/authorize/logo-des.png'
+import weixinImg from '../../assets/authorize/weixin.png'
+
+import OpenTypeButton from '../OpenTypeButton'
+import './index.scss'
 
 export default class Authorize extends Component {
   constructor(props) {
@@ -93,6 +101,7 @@ export default class Authorize extends Component {
   }
 
   handleUserInfo = info => {
+    console.log(info)
     this.setState(
       {
         hasAuthorize: true,
@@ -107,9 +116,26 @@ export default class Authorize extends Component {
     const { hasAuthorize } = this.state
     if (!hasAuthorize) {
       return (
-        <Button openType="getUserInfo" onGetUserInfo={this.handleUserInfo}>
-          获取用户信息
-        </Button>
+        <View className="authorize">
+          <View className="authorize-top">
+            <View className="authorize-top-content">
+              <Image className="authorize-img-logo" src={logoImg} />
+              <Image className="authorize-img-logodes" src={logoDesImg} />
+            </View>
+            <Image className="authorize-top-bk" src={bkImg} />
+          </View>
+          <View className="authorize-bottom">
+            <OpenTypeButton
+              openType="getUserInfo"
+              onGetUserInfo={this.handleUserInfo}
+            >
+              <View className="authorize-bottom-action">
+                <Image className="authorize-img-weixin" src={weixinImg} />
+                <Text>授权登录</Text>
+              </View>
+            </OpenTypeButton>
+          </View>
+        </View>
       )
     }
     return <View>{this.props.children}</View>

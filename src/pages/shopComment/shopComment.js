@@ -2,7 +2,7 @@ import Taro, { Component } from '@tarojs/taro'
 import { View, Image, Textarea } from '@tarojs/components'
 
 import taroFetch from '../../utils/request'
-import {getImageUrl} from '../../utils/image'
+import { getImageUrl } from '../../utils/image'
 import './shopComment.scss'
 
 class shopComment extends Component {
@@ -102,7 +102,10 @@ class shopComment extends Component {
       <View className="shopComment">
         <View className="shopComment-shop">
           <View className="shopComment-shop-container">
-            <Image className="shopComment-shop-container-left" src={getImageUrl(listPic)} />
+            <Image
+              className="shopComment-shop-container-left"
+              src={getImageUrl(listPic)}
+            />
             <View className="shopComment-shop-container-right">
               <View className="shopComment-shop-container-right-title">
                 {listName}

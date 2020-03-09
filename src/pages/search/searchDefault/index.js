@@ -1,18 +1,24 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View } from '@tarojs/components'
 import { AtButton } from 'taro-ui'
-
+import { GOOD_CHANNEL } from '../../../constants'
 import './index.scss'
 
 export default class searchDefault extends Component {
   render() {
-    const { listId, onAdd } = this.props
-    const progress = ['打开京东APP', '复制商品标题', '打开好物清单', '点击搜索']
+    const { listId, onAdd, channel } = this.props
+    const channelName = GOOD_CHANNEL[channel]
+    const progress = [
+      `打开${channelName}APP`,
+      '复制商品标题',
+      '打开好物清单',
+      '点击搜索',
+    ]
     return (
       <View className="searchDefault">
         <View className="search-progress">
           <View className="search-progress-header">
-            京东100%的商品都有优惠券或返利
+            {channelName}100%的商品都有优惠券或返利
           </View>
           <View className="search-progress-body">
             {progress.map((des, index) => (
@@ -29,7 +35,7 @@ export default class searchDefault extends Component {
           </View>
         </View>
         <View className="search-add">
-          {listId && <AtButton onClick={onAdd}>创建商品/清单</AtButton>}
+          {listId && <AtButton onClick={onAdd}>创建商品/内容</AtButton>}
         </View>
         {/* <View className="search-exp">
           <View className="search-exp-header">

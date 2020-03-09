@@ -7,7 +7,6 @@ import ideaIcon from '../../assets/user/idea.png'
 
 import { getStorage } from '../../utils/storage'
 import OpenTypeButton from '../../components/OpenTypeButton'
-import About from './about'
 import './user.scss'
 
 class UserPage extends Component {
@@ -32,7 +31,7 @@ class UserPage extends Component {
 
   handleAbout = () => {
     Taro.navigateTo({
-      url: '/pages/about/about'
+      url: '/pages/about/about',
     })
   }
 

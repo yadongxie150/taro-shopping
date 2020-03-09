@@ -2,8 +2,8 @@ import Taro from '@tarojs/taro'
 import { View, Image } from '@tarojs/components'
 
 import { handlePrice } from '../../utils/number'
-import {sliceStr} from '../../utils/string'
-import {getImageUrl} from '../../utils/image'
+import { sliceStr } from '../../utils/string'
+import { getImageUrl } from '../../utils/image'
 import './index.scss'
 
 function ShopListItem(props) {
@@ -22,7 +22,9 @@ function ShopListItem(props) {
       <View className="ShopListItem-right">
         <View className="ShopListItem-right-item">
           <View className="ShopListItem-right-title">{listName}</View>
-          <View className="ShopListItem-right-des">{sliceStr(listDesc, 16)|| '暂无描述'}</View>
+          <View className="ShopListItem-right-des">
+            {sliceStr(listDesc, 16) || '暂无描述'}
+          </View>
         </View>
         <View className="ShopListItem-right-item">
           <View className="ShopListItem-right-content">

@@ -25,6 +25,19 @@
       font-size: 26px;
     }
 
+    &-discount {
+      display: flex;
+      align-items: center;
+      font-size: 20px;
+      color: #BF0000;
+
+      & > Image {
+        width: 37px;
+        height: 24px;
+        margin-right: 10px;
+      }
+    }
+
     &-des {
       font-size: 24px;
       color: #646464;
@@ -33,6 +46,21 @@
     &-footer {
       display: flex;
       justify-content: space-between;
+
+      &-price {
+        display: flex;
+        align-items: center;
+        color: #BF0000;
+        font-size: 36px;
+
+        & > Image {
+          width: 37px;
+          height: 24px;
+          margin-left: 10px;
+          width: 92px;
+          height: 36px;
+        }
+      }
     }
 
     &-close {

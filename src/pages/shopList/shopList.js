@@ -25,7 +25,15 @@ class ShopList extends Component {
   }
 
   componentDidShow() {
-    this.fetch()
+    this.setState(
+      {
+        data: [],
+        pageNum: 1,
+        pageSize: 50,
+        total: 0,
+      },
+      this.fetch
+    )
   }
 
   fetch = () => {
@@ -50,10 +58,10 @@ class ShopList extends Component {
         pageSize,
       },
     }).then(({ wishLists = [], total }) => {
-      this.setState(preState => ({
-        data: preState.data.concat(wishLists),
+      this.setState({
+        data: wishLists,
         total: total,
-      }))
+      })
     })
   }
 
@@ -67,10 +75,10 @@ class ShopList extends Component {
         listType,
       },
     }).then(({ items, total }) => {
-      this.setState(preState => ({
-        data: preState.data.concat(items),
+      this.setState({
+        data: items,
         total: total,
-      }))
+      })
     })
   }
 

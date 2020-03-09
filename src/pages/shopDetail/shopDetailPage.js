@@ -8,7 +8,7 @@ import addIcon from '../../assets/shopDetail/add.png'
 import taroFetch from '../../utils/request'
 
 import ShopHeader from './ShopHeader'
-import ShopGood from './ShopGood'
+import ShopGood from '../../components/ShopGood'
 import AddGood from '../../components/AddGood'
 import ShopDetailMsg from './ShopDetailMsg'
 import './shopDetail.scss'
@@ -24,8 +24,6 @@ class shopDetailPage extends Component {
     super(props)
     this.state = {
       id: '',
-      pageNum: 1,
-      pageSize: 10,
       total: 0,
       data: {
         listGood: {
@@ -200,7 +198,7 @@ class shopDetailPage extends Component {
         break
     }
   }
-  
+
   /* 滚动逻辑暂时注释
   handleScrollToLower = () => {
     const { pageSize, pageNum, total } = this.state
@@ -235,13 +233,13 @@ class shopDetailPage extends Component {
 
   openDetail = () => {
     this.setState({
-      showDetail: true
+      showDetail: true,
     })
   }
 
   closeDetail = () => {
     this.setState({
-      showDetail: false
+      showDetail: false,
     })
   }
 
@@ -254,14 +252,18 @@ class shopDetailPage extends Component {
     } = this.state
     const { editPermission } = wishList
 
-    if(showDetail) {
-      return  <ShopDetailMsg data={wishList} onClose={this.closeDetail} />
+    if (showDetail) {
+      return <ShopDetailMsg data={wishList} onClose={this.closeDetail} />
     }
-    
+
     return (
       <View className="shopDetail">
         {/* <ShopDetailMsg data={wishList} /> */}
-        <ShopHeader data={wishList} onClick={this.openDetail} onEvent={this.handleShopAction} />
+        <ShopHeader
+          data={wishList}
+          onClick={this.openDetail}
+          onEvent={this.handleShopAction}
+        />
         <View className="shopContent">
           <View className="shopContent-head">
             <Text>全部商品</Text>
@@ -292,7 +294,9 @@ class shopDetailPage extends Component {
             {!listGood.wishGoods.length && (
               <AddGood title="添加商品" onClick={this.add} />
             )}
-            {total && total > 10 && <Button onClick={this.gotoGoodList}>查看更多商品</Button>}
+            {total && total > 10 && (
+              <Button onClick={this.gotoGoodList}>查看更多商品</Button>
+            )}
           </View>
         </View>
         <AtActionSheet isOpened={showManage} onClose={this.close}>

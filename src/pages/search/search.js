@@ -92,9 +92,9 @@ class Search extends Component {
   }
 
   handleGood = good => {
-    const {id, goodChannel} = good
-    const {listId} = this.state
-    if(!listId) {
+    const { id, goodChannel } = good
+    const { listId } = this.state
+    if (!listId) {
       Taro.navigateTo({
         url: `/pages/goodDetail/goodDetail?id=${id}&isGood=1`,
       })
@@ -180,7 +180,11 @@ class Search extends Component {
               onGoodClick={this.handleGood}
             />
           ) : (
-            <SearchDefault listId={listId} onAdd={this.create} />
+            <SearchDefault
+              listId={listId}
+              channel={channel}
+              onAdd={this.create}
+            />
           )}
         </View>
       </View>

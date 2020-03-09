@@ -3,7 +3,7 @@ import Taro, { Component } from '@tarojs/taro'
 import { View, Checkbox, Radio } from '@tarojs/components'
 
 import taroFetch from '../../utils/request'
-import ShopGood from '../shopDetail/ShopGood'
+import ShopGood from '../../components/ShopGood'
 
 import './goodList.scss'
 
@@ -18,9 +18,6 @@ class GoodList extends Component {
     super(props)
     this.state = {
       list: [],
-      pageNum: 1,
-      pageSize: 10,
-      total: 0,
       selectedIds: [],
       isSelectAll: false,
       isInEdit: false,
@@ -56,7 +53,7 @@ class GoodList extends Component {
 
   select = id => () => {
     const { selectedIds, list, isInEdit } = this.state
-    if(isInEdit) return
+    if (!isInEdit) return
     if (selectedIds.includes(id)) {
       const thisIndex = selectedIds.findIndex(item => item === id)
       selectedIds.splice(thisIndex, 1)
@@ -109,7 +106,10 @@ class GoodList extends Component {
     }
     return (
       <View className="goodList">
-        <View className="goodList-box">
+        <View
+          className="goodList-box"
+          style={{ paddingBottom: isInEdit ? '50px' : '10px' }}
+        >
           {list.map(item => {
             return (
               <View
@@ -138,13 +138,13 @@ class GoodList extends Component {
                 onClick={this.pickAll}
               >
                 全选
-            </Radio>
+              </Radio>
               <View
                 className="goodList-operation-box-delete"
                 onClick={this.delete}
               >
                 删除
-            </View>
+              </View>
             </View>
           </View>
         )}

@@ -2,7 +2,7 @@ import Taro, { Component } from '@tarojs/taro'
 import { View } from '@tarojs/components'
 
 import ShopListItem from '../../../components/ShopListItem'
-import ShopGood from '../../shopDetail/ShopGood'
+import ShopGood from '../../../components/ShopGood'
 
 import './index.scss'
 

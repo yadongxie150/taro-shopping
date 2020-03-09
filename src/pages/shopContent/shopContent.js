@@ -4,7 +4,7 @@ import { AtTextarea, AtButton, AtFloatLayout } from 'taro-ui'
 
 import taroFetch from '../../utils/request'
 import SearchTop from '../search/searchTop'
-import ShopGood from '../shopDetail/ShopGood'
+import ShopGood from '../../components/ShopGood'
 import AddGood from '../../components/AddGood'
 import ImagePicker from '../../components/ImagePicker'
 import './shopContent.scss'
@@ -79,7 +79,7 @@ class shopContent extends Component {
 
   submit = () => {
     const { title, des, images, good, listId, id, isInEdit } = this.state
-    if(!title){
+    if (!title) {
       Taro.showToast({
         title: '标题必填',
         icon: 'none',
