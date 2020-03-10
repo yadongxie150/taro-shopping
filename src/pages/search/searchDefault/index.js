@@ -18,7 +18,7 @@ export default class searchDefault extends Component {
       <View className="searchDefault">
         <View className="search-progress">
           <View className="search-progress-header">
-            {channelName}100%的商品都有优惠券或返利
+            {channelName}99%的商品都有优惠券或返利
           </View>
           <View className="search-progress-body">
             {progress.map((des, index) => (

@@ -3,7 +3,7 @@
   flex-direction: column;
   width: 100%;
   background-color: #F8F8F8;
-  padding-top: 100px;
+  padding-top: 90px;
 
   &-search {
     position: fixed;
@@ -15,13 +15,11 @@
 }
 
 .shopBox {
-  padding: 16px 0;
-
   &-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 28px 28px;
+    padding: 14px 28px;
     color: #BC1723;
 
     &-op {

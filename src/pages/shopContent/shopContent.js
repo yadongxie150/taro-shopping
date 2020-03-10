@@ -104,14 +104,9 @@ class shopContent extends Component {
       method: 'POST',
       data: params,
     })
-      .then(() => {
-        Taro.showToast({
-          title: '更新成功',
-          icon: 'success',
-          duration: 2000,
-        })
+      .then(({ id: detailId }) => {
         Taro.redirectTo({
-          url: `/pages/shopDetail/shopDetail?id=${listId}`,
+          url: `/pages/goodDetail/goodDetail?id=${detailId}`,
         })
       })
       .catch()
@@ -214,7 +209,7 @@ class shopContent extends Component {
         <View className="shopContent-item">
           <View className="title">标题</View>
           <AtTextarea
-            maxLength={20}
+            maxLength={35}
             placeholder="请输入商品/内容标题"
             value={title}
             onChange={this.handleInput('title')}
@@ -225,7 +220,7 @@ class shopContent extends Component {
           {hasGood && (
             <ShopGood showDelete onDelete={this.handleDeleteGood} data={good} />
           )}
-          {!hasGood && <AddGood title="添加商品" onClick={this.add} />}
+          {!hasGood && <AddGood title="添加商品/内容" onClick={this.add} />}
         </View>
         <View className="shopContent-item">
           <View className="title">介绍</View>

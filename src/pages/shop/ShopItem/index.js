@@ -3,6 +3,7 @@ import { View, Image } from '@tarojs/components'
 
 import { SHOP_STATUS } from '../../../constants'
 import { getImageUrl } from '../../../utils/image'
+import defaultImg from '../../../assets/default.png'
 import './index.scss'
 
 // function component 必须首字母大写
@@ -11,7 +12,7 @@ export default function ShopItem(props) {
     data: {
       listName,
       goodCount,
-      avatar,
+      listPic,
       privacyType,
       colectionCount,
       wishGoods = [],
@@ -21,7 +22,7 @@ export default function ShopItem(props) {
   return (
     <View className="shopItem" onClick={onClick}>
       <View className="shopItem-header">
-        <Image className="shopItem-header-left" src={avatar} />
+        <Image className="shopItem-header-left" src={listPic || defaultImg} />
         <View className="shopItem-header-right">
           <View className="shopItem-header-right-title">{listName}</View>
           <View className="shopItem-header-right-content">

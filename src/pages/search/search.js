@@ -96,7 +96,7 @@ class Search extends Component {
     const { listId } = this.state
     if (!listId) {
       Taro.navigateTo({
-        url: `/pages/goodDetail/goodDetail?id=${id}&isGood=1`,
+        url: `/pages/goodDetail/goodDetail?id=${id}`,
       })
     } else {
       taroFetch({

@@ -20,7 +20,6 @@ class ShopList extends Component {
       data: [],
       pageNum: 1,
       pageSize: 50,
-      total: 0,
     }
   }
 
@@ -30,7 +29,6 @@ class ShopList extends Component {
         data: [],
         pageNum: 1,
         pageSize: 50,
-        total: 0,
       },
       this.fetch
     )
@@ -57,10 +55,9 @@ class ShopList extends Component {
         pageNum,
         pageSize,
       },
-    }).then(({ wishLists = [], total }) => {
+    }).then(({ wishLists = [] }) => {
       this.setState({
         data: wishLists,
-        total: total,
       })
     })
   }
@@ -74,10 +71,9 @@ class ShopList extends Component {
         pageSize,
         listType,
       },
-    }).then(({ items, total }) => {
+    }).then(({ items }) => {
       this.setState({
         data: items,
-        total: total,
       })
     })
   }

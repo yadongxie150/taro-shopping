@@ -76,7 +76,9 @@ export default function ShopHeader(props) {
             <Image className="shopHeader-author-photo" src={avatar} />
             <Text>{nickName}</Text>
           </View>
-          <Text className="shopHeader-des">{sliceStr(listDesc, 50)}</Text>
+          <Text className="shopHeader-des">
+            {sliceStr(listDesc || '暂无描述', 50)}
+          </Text>
         </View>
       </View>
       <View className="shopHeader-op">

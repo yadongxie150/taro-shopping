@@ -71,14 +71,10 @@ class shopDetailPage extends Component {
     const { id, createChannel } = good
     const { id: listId } = this.state
     Taro.navigateTo({
-      url: `/pages/goodDetail/goodDetail?listId=${listId}&id=${id}&isGood=${
-        Number(createChannel) === 1 ? 1 : 0
-      }`,
+      url: `/pages/goodDetail/goodDetail?listId=${listId}&id=${id}&isNotGood=${!Number(
+        createChannel
+      ) === 1}`,
     })
-  }
-
-  handleBuy = good => {
-    console.log(good)
   }
 
   openModal = () => {
@@ -288,12 +284,14 @@ class shopDetailPage extends Component {
                 <ShopGood
                   data={good}
                   onClick={() => this.handleGoodDetail(good)}
-                  onBuy={() => this.handleBuy(good)}
                 />
               ))}
-            {!listGood.wishGoods.length && (
-              <AddGood title="添加商品" onClick={this.add} />
-            )}
+            {!listGood.wishGoods.length &&
+              (editPermission ? (
+                <AddGood title="添加商品/内容" onClick={this.add} />
+              ) : (
+                <View className="empty">暂无商品/内容</View>
+              ))}
             {total && total > 10 && (
               <Button onClick={this.gotoGoodList}>查看更多商品</Button>
             )}

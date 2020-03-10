@@ -31,11 +31,10 @@ class GoodDetail extends Component {
   }
 
   componentDidShow() {
-    const { listId, id, isGood = 1 } = this.$router.params
+    const { listId, id } = this.$router.params
     this.setState({
       listId,
       id,
-      isGood: !!Number(isGood),
     })
     this.fetchGood(id)
   }
@@ -55,6 +54,7 @@ class GoodDetail extends Component {
     }).then(data => {
       this.setState({
         data,
+        isGood: Number(data.createChannel) === 1,
       })
     })
   }
@@ -99,13 +99,13 @@ class GoodDetail extends Component {
     }
   }
 
-  buy = () => {
+  buy = goodId => {
     const { listId } = this.state
     taroFetch({
       url: '/app/goods/getGoodBuyInfo',
       data: {
         listId: listId || '',
-        goodId: this.state.id,
+        goodId: goodId || this.state.id,
       },
     })
       .then(res => {
@@ -142,6 +142,15 @@ class GoodDetail extends Component {
         url: `/pages/shopDetail/shopDetail?id=${listId}`,
       })
     })
+  }
+
+  handleContentGoodBuy = () => {
+    const {
+      data: {
+        wishGoodDetail: { id },
+      },
+    } = this.state
+    this.buy(id)
   }
 
   render() {
@@ -218,7 +227,13 @@ class GoodDetail extends Component {
         ) : (
           <View className="goodDetail-content">
             <View className="goodDetail-content-title">{skuName}</View>
-            {wishGoodDetail && <ShopGood data={wishGoodDetail} />}
+            {wishGoodDetail && (
+              <ShopGood
+                showBuy
+                data={wishGoodDetail}
+                onClick={this.handleContentGoodBuy}
+              />
+            )}
             <View className="goodDetail-content-des">
               {goodContent || '暂无描述'}
             </View>

@@ -19,7 +19,7 @@ export default function ShopDetailMsg(props) {
         <Image className="ShopDetailMsg-author-photo" src={avatar} />
         <Text>{nickName}</Text>
       </View>
-      <View>{listDesc}</View>
+      <View>{listDesc || '暂无描述'}</View>
     </View>
   )
 }
