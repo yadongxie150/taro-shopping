@@ -1,6 +1,9 @@
 import Taro from '@tarojs/taro'
 
-const BASE_URL = 'http://47.101.163.80:8083'
+const isDev = false
+const devUrl = 'http://47.101.163.80:8083'
+const productionUrl = 'https://www.mygoodslist.com'
+const BASE_URL = isDev ? devUrl : productionUrl
 // const BASE_URL = 'http://fpy229.imwork.net'
 
 const setToken = token => Taro.setStorage({ key: 'token', data: token })

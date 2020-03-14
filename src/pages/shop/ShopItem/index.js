@@ -2,8 +2,8 @@ import Taro from '@tarojs/taro'
 import { View, Image } from '@tarojs/components'
 
 import { SHOP_STATUS } from '../../../constants'
-import { getImageUrl } from '../../../utils/image'
-import defaultImg from '../../../assets/default.png'
+import { getShopImageUrl } from '../../../utils/image'
+import goodAddImg from '../../../assets/good/add.png'
 import './index.scss'
 
 // function component 必须首字母大写
@@ -22,7 +22,10 @@ export default function ShopItem(props) {
   return (
     <View className="shopItem" onClick={onClick}>
       <View className="shopItem-header">
-        <Image className="shopItem-header-left" src={listPic || defaultImg} />
+        <Image
+          className="shopItem-header-left"
+          src={getShopImageUrl(listPic)}
+        />
         <View className="shopItem-header-right">
           <View className="shopItem-header-right-title">{listName}</View>
           <View className="shopItem-header-right-content">
@@ -37,7 +40,7 @@ export default function ShopItem(props) {
             <Image className="shopItem-body-item" src={item.mainImageUrl} />
           ))
         ) : (
-          <Image className="shopItem-body-item" src={getImageUrl()} />
+          <Image className="shopItem-body-item" src={goodAddImg} />
         )}
       </View>
     </View>

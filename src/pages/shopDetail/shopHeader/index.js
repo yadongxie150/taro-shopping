@@ -3,7 +3,7 @@ import { View, Image, Text } from '@tarojs/components'
 
 import { SHOP_TYPE_MAP } from '../../../constants'
 import { sliceStr } from '../../../utils/string'
-import { getImageUrl } from '../../../utils/image'
+import { getShopImageUrl } from '../../../utils/image'
 
 import collectIcon from '../../../assets/shopDetail/collect.png'
 import collectActiveIcon from '../../../assets/shopDetail/collect-active.png'
@@ -67,7 +67,7 @@ export default function ShopHeader(props) {
         <View className="shopHeader-msg-left">
           <Image
             className="shopHeader-author-photo"
-            src={getImageUrl(listPic)}
+            src={getShopImageUrl(listPic)}
           />
         </View>
         <View className="shopHeader-msg-right">

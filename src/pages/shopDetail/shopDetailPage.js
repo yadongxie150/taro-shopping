@@ -4,6 +4,7 @@ import { AtActionSheet, AtActionSheetItem } from 'taro-ui'
 
 import moreIcon from '../../assets/shopDetail/more.png'
 import addIcon from '../../assets/shopDetail/add.png'
+import emptyImg from '../../assets/shop/empty.png'
 
 import taroFetch from '../../utils/request'
 
@@ -290,7 +291,7 @@ class shopDetailPage extends Component {
               (editPermission ? (
                 <AddGood title="添加商品/内容" onClick={this.add} />
               ) : (
-                <View className="empty">暂无商品/内容</View>
+                <Image className="empty" src={emptyImg} />
               ))}
             {total && total > 10 && (
               <Button onClick={this.gotoGoodList}>查看更多商品</Button>

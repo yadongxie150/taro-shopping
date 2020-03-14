@@ -4,7 +4,7 @@ import { AtFloatLayout } from 'taro-ui'
 
 import taroFetch from '../../utils/request'
 import { handlePrice } from '../../utils/number'
-import { getImageUrl } from '../../utils/image'
+import { getGoodImageUrl } from '../../utils/image'
 import { GOOD_CHANNEL, GOOD_CHANNEL_APPID } from '../../constants'
 import ShopListItem from '../../components/ShopListItem'
 import ShopGood from '../../components/ShopGood'
@@ -190,7 +190,7 @@ class GoodDetail extends Component {
                 </SwiperItem>
               ))
             ) : (
-              <Image className="goodDetail-image" src={getImageUrl()} />
+              <Image className="goodDetail-image" src={getGoodImageUrl()} />
             )}
           </Swiper>
         )}

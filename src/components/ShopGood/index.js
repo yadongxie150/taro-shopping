@@ -3,7 +3,7 @@ import { View, Image } from '@tarojs/components'
 import { AtIcon } from 'taro-ui'
 import { handlePrice } from '../../utils/number'
 import { sliceStr } from '../../utils/string'
-import { getImageUrl } from '../../utils/image'
+import { getGoodImageUrl } from '../../utils/image'
 import discountImg from '../../assets/good/discount.png'
 import discountPriceImg from '../../assets/good/dicount-pirce.png'
 import './index.scss'
@@ -31,7 +31,7 @@ export default function ShopGood(props) {
     >
       <Image
         className="shopContent-good-image"
-        src={getImageUrl(mainImageUrl)}
+        src={getGoodImageUrl(mainImageUrl)}
       />
       <View className="shopContent-good-content">
         {showDelete && (
@@ -49,7 +49,7 @@ export default function ShopGood(props) {
         {isGood && discount && (
           <View className="shopContent-good-content-discount">
             <Image src={discountImg} />
-            {discount}元劵
+            {handlePrice(discount)}元劵
           </View>
         )}
         {!isGood && (
