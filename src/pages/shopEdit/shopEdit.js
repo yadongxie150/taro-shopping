@@ -33,7 +33,7 @@ export default class shopEdit extends Component {
     }
   }
 
-  componentDidShow() {
+  componentDidMount() {
     const { id = 1 } = this.$router.params
     this.fetchData(id)
   }
@@ -67,15 +67,13 @@ export default class shopEdit extends Component {
         listDesc,
         privacyType: privacyType ? 0 : 1, // 0：公开，1：私有
       },
-    }).then(({ id: detailId }) => {
+    }).then(() => {
       Taro.showToast({
         title: '保存成功',
         icon: 'success',
         duration: 1000,
       })
-      Taro.redirectTo({
-        url: `/pages/shopDetail/shopDetail?id=${detailId}`,
-      })
+      Taro.navigateBack()
     })
   }
 
@@ -120,6 +118,7 @@ export default class shopEdit extends Component {
   }
 
   updateState = (key, value) => {
+    console.log(key, value)
     this.setState(preState => ({
       data: {
         ...preState.data,

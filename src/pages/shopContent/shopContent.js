@@ -31,7 +31,7 @@ class shopContent extends Component {
     }
   }
 
-  componentDidShow() {
+  componentDidMount() {
     const { listId, id } = this.$router.params
     this.setState(
       {
@@ -105,9 +105,13 @@ class shopContent extends Component {
       data: params,
     })
       .then(({ id: detailId }) => {
-        Taro.redirectTo({
-          url: `/pages/goodDetail/goodDetail?id=${detailId}`,
-        })
+        if (isInEdit) {
+          Taro.navigateBack()
+        } else {
+          Taro.redirectTo({
+            url: `/pages/goodDetail/goodDetail?id=${detailId}`,
+          })
+        }
       })
       .catch()
   }
