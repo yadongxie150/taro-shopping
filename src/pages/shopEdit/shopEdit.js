@@ -10,6 +10,7 @@ import {
 } from '@tarojs/components'
 
 import taroFetch, { BASE_URL, getToken } from '../../utils/request'
+import { getShopImageUrl } from '../../utils/image'
 
 import './shopEdit.scss'
 
@@ -111,7 +112,6 @@ export default class shopEdit extends Component {
             const {
               data: { fileUrl },
             } = data
-            console.log('fileUrl', fileUrl)
             this.updateState('listPic', fileUrl)
           },
         })
@@ -152,7 +152,7 @@ export default class shopEdit extends Component {
           </View>
           <View className="shopEdit-top-item">
             <Text>封面</Text>
-            <Image className="shopEdit-image" src={listPic} />
+            <Image className="shopEdit-image" src={getShopImageUrl(listPic)} />
             <View onClick={this.uploadImage}>选择封面图片</View>
           </View>
           <View className="shopEdit-top-item">

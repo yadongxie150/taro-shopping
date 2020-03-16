@@ -291,7 +291,7 @@ class shopDetailPage extends Component {
               (editPermission ? (
                 <AddGood title="添加商品/内容" onClick={this.add} />
               ) : (
-                <Image className="empty" src={emptyImg} />
+                <View className="empty">暂无商品/内容</View>
               ))}
             {total && total > 10 && (
               <Button onClick={this.gotoGoodList}>查看更多商品</Button>

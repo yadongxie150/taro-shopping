@@ -174,8 +174,11 @@ class GoodDetail extends Component {
     const finalPrice = Number(price) - Number(discount)
     return (
       <View className="goodDetail">
-        {isGood ? (
-          <Image className="goodDetail-image" src={mainImageUrl} />
+        {isGood || !imageInfo ? (
+          <Image
+            className="goodDetail-image"
+            src={getGoodImageUrl(mainImageUrl)}
+          />
         ) : (
           <Swiper
             className="goodDetail-swiper"
@@ -183,15 +186,16 @@ class GoodDetail extends Component {
             autoplay
             interval={3000}
           >
-            {imageInfo && imageInfo.length > 0 ? (
+            {imageInfo &&
+              imageInfo.length > 0 &&
               imageInfo.map(url => (
                 <SwiperItem>
-                  <Image className="goodDetail-image" src={url} />
+                  <Image
+                    className="goodDetail-image"
+                    src={getGoodImageUrl(url)}
+                  />
                 </SwiperItem>
-              ))
-            ) : (
-              <Image className="goodDetail-image" src={getGoodImageUrl()} />
-            )}
+              ))}
           </Swiper>
         )}
         {isGood ? (
