@@ -31,11 +31,10 @@ class GoodDetail extends Component {
   }
 
   componentDidShow() {
-    const { listId, id, editPermission } = this.$router.params
+    const { listId, id } = this.$router.params
     this.setState({
       listId,
       id,
-      editPermission,
     })
     this.fetchGood(id)
   }
@@ -169,9 +168,9 @@ class GoodDetail extends Component {
         goodContent,
         wishGoodDetail,
         imageInfo,
+        editPermission
       },
       isGood,
-      editPermission,
     } = this.state
     const finalPrice = Number(price) - Number(discount)
     return (
@@ -246,7 +245,7 @@ class GoodDetail extends Component {
           </View>
         )}
         <View className="goodDetail-action">
-          {editPermission ? (
+          {Number(editPermission) ? (
             <View className="goodDetail-action-box">
               <View
                 className="goodDetail-action-collect"

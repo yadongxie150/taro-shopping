@@ -69,7 +69,7 @@ class shopDetailPage extends Component {
   }
 
   handleGoodDetail = good => {
-    const { id, createChannel } = good
+    const { id } = good
     const {
       id: listId,
       data: {
