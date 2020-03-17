@@ -31,10 +31,11 @@ class GoodDetail extends Component {
   }
 
   componentDidShow() {
-    const { listId, id } = this.$router.params
+    const { listId, id, editPermission } = this.$router.params
     this.setState({
       listId,
       id,
+      editPermission,
     })
     this.fetchGood(id)
   }
@@ -170,6 +171,7 @@ class GoodDetail extends Component {
         imageInfo,
       },
       isGood,
+      editPermission,
     } = this.state
     const finalPrice = Number(price) - Number(discount)
     return (
@@ -244,20 +246,32 @@ class GoodDetail extends Component {
           </View>
         )}
         <View className="goodDetail-action">
-          <View className="goodDetail-action-box">
-            <View
-              className="goodDetail-action-collect"
-              onClick={this.handleCollect}
-            >
-              收藏到清单
+          {editPermission ? (
+            <View className="goodDetail-action-box">
+              <View
+                className="goodDetail-action-collect"
+                onClick={this.handleCollect}
+              >
+                收藏到清单
+              </View>
+              <View
+                className="goodDetail-action-buy"
+                onClick={this.handleBuyEdit}
+              >
+                {isGood ? '购买' : '编辑'}
+              </View>
             </View>
-            <View
-              className="goodDetail-action-buy"
-              onClick={this.handleBuyEdit}
-            >
-              {isGood ? '购买' : '编辑'}
+          ) : (
+            <View className="goodDetail-action-box">
+              <View
+                className="goodDetail-action-collect"
+                style={{ borderRadius: '100px' }}
+                onClick={this.handleCollect}
+              >
+                收藏到清单
+              </View>
             </View>
-          </View>
+          )}
         </View>
         <AtFloatLayout isOpened={showModal}>
           <View className="taro-modal">

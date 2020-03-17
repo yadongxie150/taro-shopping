@@ -70,11 +70,14 @@ class shopDetailPage extends Component {
 
   handleGoodDetail = good => {
     const { id, createChannel } = good
-    const { id: listId } = this.state
+    const {
+      id: listId,
+      data: {
+        wishList: { editPermission },
+      },
+    } = this.state
     Taro.navigateTo({
-      url: `/pages/goodDetail/goodDetail?listId=${listId}&id=${id}&isNotGood=${!Number(
-        createChannel
-      ) === 1}`,
+      url: `/pages/goodDetail/goodDetail?listId=${listId}&id=${id}&editPermission=${editPermission}`,
     })
   }
 

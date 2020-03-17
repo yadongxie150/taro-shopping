@@ -106,11 +106,19 @@ export default class shopEdit extends Component {
             'Mini-Token': token,
           },
           success: response => {
-            const data = JSON.parse(response.data)
-            const {
-              data: { fileUrl },
-            } = data
-            this.updateState('listPic', fileUrl)
+            if (response.statusCode === 200) {
+              const result = JSON.parse(response.data)
+              const {
+                data: { fileUrl },
+              } = result
+              this.updateState('listPic', fileUrl)
+            } else {
+              Taro.showToast({
+                title: '上传图片出错',
+                duration: 1000,
+              })
+              console.log(response)
+            }
           },
         })
       },
