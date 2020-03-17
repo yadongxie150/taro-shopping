@@ -25,11 +25,12 @@ class GoodList extends Component {
   }
 
   componentDidShow() {
-    const { listId = 45, edit } = this.$router.params
+    const { listId, edit, editPermission } = this.$router.params
     console.log(typeof edit, edit)
     this.setState({
       listId,
       isInEdit: !!edit,
+      editPermission,
     })
     this.fetch(listId)
   }
@@ -99,6 +100,14 @@ class GoodList extends Component {
     })
   }
 
+  goToDetail = good => () => {
+    const {isInEdit, listId, editPermission} = this.state
+    if(isInEdit) return
+    Taro.navigateTo({
+      url: `/pages/goodDetail/goodDetail?listId=${listId}&id=${good.id}&editPermission=${editPermission}`,
+    })
+  }
+
   render() {
     const { list, selectedIds, isSelectAll, isInEdit } = this.state
     if (list && !list.length) {
@@ -123,7 +132,7 @@ class GoodList extends Component {
                     checked={selectedIds.includes(item.id)}
                   />
                 )}
-                <ShopGood data={item} />
+                <ShopGood data={item} onClick={this.goToDetail(item)} />
               </View>
             )
           })}
