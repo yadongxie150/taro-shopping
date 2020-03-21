@@ -99,13 +99,13 @@ class GoodDetail extends Component {
     }
   }
 
-  buy = goodId => {
+  buy = () => {
     const { listId } = this.state
     taroFetch({
       url: '/app/goods/getGoodBuyInfo',
       data: {
         listId: listId || '',
-        goodId: goodId || this.state.id,
+        goodId: this.state.id,
       },
     })
       .then(res => {
@@ -150,7 +150,7 @@ class GoodDetail extends Component {
         wishGoodDetail: { id },
       },
     } = this.state
-    this.buy(id)
+    this.buy()
   }
 
   render() {
@@ -168,7 +168,7 @@ class GoodDetail extends Component {
         goodContent,
         wishGoodDetail,
         imageInfo,
-        editPermission
+        editPermission,
       },
       isGood,
     } = this.state
@@ -245,7 +245,7 @@ class GoodDetail extends Component {
           </View>
         )}
         <View className="goodDetail-action">
-          {Number(editPermission) ? (
+          {isGood ? (
             <View className="goodDetail-action-box">
               <View
                 className="goodDetail-action-collect"
@@ -257,18 +257,28 @@ class GoodDetail extends Component {
                 className="goodDetail-action-buy"
                 onClick={this.handleBuyEdit}
               >
-                {isGood ? '购买' : '编辑'}
+                购买
               </View>
             </View>
           ) : (
             <View className="goodDetail-action-box">
               <View
                 className="goodDetail-action-collect"
-                style={{ borderRadius: '100px' }}
+                style={{
+                  borderRadius: !Number(editPermission) && '100px',
+                }}
                 onClick={this.handleCollect}
               >
                 收藏到清单
               </View>
+              {Number(editPermission) && (
+                <View
+                  className="goodDetail-action-buy"
+                  onClick={this.handleBuyEdit}
+                >
+                  编辑
+                </View>
+              )}
             </View>
           )}
         </View>

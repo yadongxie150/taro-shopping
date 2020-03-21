@@ -101,8 +101,8 @@ class GoodList extends Component {
   }
 
   goToDetail = good => () => {
-    const {isInEdit, listId, editPermission} = this.state
-    if(isInEdit) return
+    const { isInEdit, listId, editPermission } = this.state
+    if (isInEdit) return
     Taro.navigateTo({
       url: `/pages/goodDetail/goodDetail?listId=${listId}&id=${good.id}&editPermission=${editPermission}`,
     })

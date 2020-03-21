@@ -6,11 +6,11 @@
     left: 0px;
     top: 0px;
     width: 100%;
-    padding: 30px;
     background-color: #ffffff;
 
     &-container {
       display: flex;
+      padding: 30px 20px 30px  30px;
 
       &-left {
         width: 100px;
@@ -20,6 +20,7 @@
 
       &-right {
         margin-left: 25px;
+        flex: 1;
 
         &-title {}
 

@@ -3,6 +3,7 @@ import { View, Image, Textarea } from '@tarojs/components'
 
 import taroFetch from '../../utils/request'
 import { getShopImageUrl } from '../../utils/image'
+import { sliceStr } from '../../utils/string'
 import './shopComment.scss'
 
 class shopComment extends Component {
@@ -108,10 +109,10 @@ class shopComment extends Component {
             />
             <View className="shopComment-shop-container-right">
               <View className="shopComment-shop-container-right-title">
-                {listName}
+                {sliceStr(listName, 20)}
               </View>
               <View className="shopComment-shop-container-right-des">
-                {listDesc}
+                {sliceStr(listDesc, 40) || '暂无描述'}
               </View>
             </View>
           </View>

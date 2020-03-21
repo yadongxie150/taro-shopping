@@ -226,11 +226,11 @@ class shopDetailPage extends Component {
   }
 
   gotoGoodList = () => {
-    const {data: {
-      wishList: {
-        editPermission
-      }
-    }} = this.state
+    const {
+      data: {
+        wishList: { editPermission },
+      },
+    } = this.state
     Taro.navigateTo({
       url: `/pages/goodList/goodList?listId=${this.state.id}&editPermission=${editPermission}`,
     })
