@@ -2,7 +2,7 @@ import Taro from '@tarojs/taro'
 import { View, Image } from '@tarojs/components'
 
 import { SHOP_STATUS } from '../../../constants'
-import { getShopImageUrl } from '../../../utils/image'
+import { getShopImageUrl, getGoodImageUrl } from '../../../utils/image'
 import goodAddImg from '../../../assets/good/add.png'
 import './index.scss'
 
@@ -37,7 +37,7 @@ export default function ShopItem(props) {
       <View className="shopItem-body">
         {wishGoods && wishGoods.length > 0 ? (
           wishGoods.map(item => (
-            <Image className="shopItem-body-item" src={item.mainImageUrl} />
+            <Image className="shopItem-body-item" src={getGoodImageUrl(item.mainImageUrl)} />
           ))
         ) : (
           <Image className="shopItem-body-item" src={goodAddImg} />
