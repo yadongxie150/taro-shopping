@@ -47,8 +47,15 @@ class shopDetailPage extends Component {
   }
 
   onShareAppMessage() {
+    const {
+      data: {
+        wishList: {
+          listName
+        }
+      }
+    } = this.state
     return {
-      title: '清单详情页',
+      title: listName || '清单详情页',
       path: `/pages/shopDetail/shopDetail?id=${this.state.id}`,
     }
   }

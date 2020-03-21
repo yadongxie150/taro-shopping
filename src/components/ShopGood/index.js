@@ -10,7 +10,7 @@ import './index.scss'
 
 // function component 必须首字母大写
 export default function ShopGood(props) {
-  const { data, showBuy, showDelete, onBuy, onClick, onDelete } = props
+  const { data, showBuy, showDelete, onClick, onDelete } = props
   // createChannel: 1商品 2内容
   const {
     skuName,
@@ -66,10 +66,6 @@ export default function ShopGood(props) {
             {showBuy && (
               <View
                 className="shopContent-good-btn"
-                onClick={e => {
-                  e.stopPropagation()
-                  onBuy()
-                }}
               >
                 去购买
               </View>

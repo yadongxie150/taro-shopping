@@ -23,6 +23,8 @@ export default function Feature(props) {
     return null
   }
 
+  const listData = props.data.slice(0, 3)
+
   return (
     <View className="home-feature">
       <View className="home-feature-header">
@@ -32,7 +34,7 @@ export default function Feature(props) {
         </Button>
       </View>
       <View className="home-feature-body">
-        {props.data.map(item => (
+        {listData.map(item => (
           <Categary
             onClick={() => toShopDetail(item.id)}
             data={item}

@@ -109,7 +109,7 @@ class shopContent extends Component {
           Taro.navigateBack()
         } else {
           Taro.redirectTo({
-            url: `/pages/goodDetail/goodDetail?id=${detailId}`,
+            url: `/pages/goodDetail/goodDetail?id=${detailId}&listId=${listId}`,
           })
         }
       })

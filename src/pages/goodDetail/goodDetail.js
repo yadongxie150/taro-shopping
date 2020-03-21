@@ -144,15 +144,6 @@ class GoodDetail extends Component {
     })
   }
 
-  handleContentGoodBuy = () => {
-    const {
-      data: {
-        wishGoodDetail: { id },
-      },
-    } = this.state
-    this.buy()
-  }
-
   render() {
     const {
       showModal,
@@ -236,7 +227,7 @@ class GoodDetail extends Component {
               <ShopGood
                 showBuy
                 data={wishGoodDetail}
-                onClick={this.handleContentGoodBuy}
+                onClick={this.buy}
               />
             )}
             <View className="goodDetail-content-des">
