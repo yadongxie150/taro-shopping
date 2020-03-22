@@ -49,10 +49,8 @@ class shopDetailPage extends Component {
   onShareAppMessage() {
     const {
       data: {
-        wishList: {
-          listName
-        }
-      }
+        wishList: { listName },
+      },
     } = this.state
     return {
       title: listName || '清单详情页',

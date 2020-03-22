@@ -63,13 +63,7 @@ export default function ShopGood(props) {
               ¥{handlePrice(finalPrice)}
               <Image src={discountPriceImg} />
             </View>
-            {showBuy && (
-              <View
-                className="shopContent-good-btn"
-              >
-                去购买
-              </View>
-            )}
+            {showBuy && <View className="shopContent-good-btn">去购买</View>}
           </View>
         )}
       </View>

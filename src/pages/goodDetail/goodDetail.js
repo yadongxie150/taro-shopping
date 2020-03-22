@@ -224,11 +224,7 @@ class GoodDetail extends Component {
           <View className="goodDetail-content">
             <View className="goodDetail-content-title">{skuName}</View>
             {wishGoodDetail && (
-              <ShopGood
-                showBuy
-                data={wishGoodDetail}
-                onClick={this.buy}
-              />
+              <ShopGood showBuy data={wishGoodDetail} onClick={this.buy} />
             )}
             <View className="goodDetail-content-des">
               {goodContent || '暂无描述'}

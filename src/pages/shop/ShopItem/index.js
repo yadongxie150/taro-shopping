@@ -37,7 +37,10 @@ export default function ShopItem(props) {
       <View className="shopItem-body">
         {wishGoods && wishGoods.length > 0 ? (
           wishGoods.map(item => (
-            <Image className="shopItem-body-item" src={getGoodImageUrl(item.mainImageUrl)} />
+            <Image
+              className="shopItem-body-item"
+              src={getGoodImageUrl(item.mainImageUrl)}
+            />
           ))
         ) : (
           <Image className="shopItem-body-item" src={goodAddImg} />

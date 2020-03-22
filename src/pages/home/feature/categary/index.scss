@@ -3,6 +3,8 @@
   flex-direction: column;
   background-color: #ffffff;
   border-radius: 6px;
+  width: 204px;
+  height: 100%;
 
   &-image {
     width: 204px;
@@ -13,6 +15,6 @@
   &-title {
     text-align: center;
     font-size: 26px;
-    padding: 8px 18px;
+    padding: 8px;
   }
 }

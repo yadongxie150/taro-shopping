@@ -1,4 +1,6 @@
 .shopComment {
+  width: 100%;
+  min-height: calc(100vh - 180px);
   background-color: #F8F8F8;
 
   &-shop {
@@ -34,9 +36,10 @@
   }
 
   &-comment {
-    padding: 120px 0 160px 0;
+    padding: 180px 0 160px 0;
     &-head {
       color: #828282;
+      margin-bottom: 10px;
     }
 
     &-body {}
