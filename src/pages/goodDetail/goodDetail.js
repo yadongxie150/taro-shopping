@@ -164,8 +164,12 @@ class GoodDetail extends Component {
       isGood,
     } = this.state
     const finalPrice = Number(price) - Number(discount)
+    const isMaxDes = goodContent && goodContent.length > 100
     return (
-      <View className="goodDetail">
+      <View
+        className="goodDetail"
+        style={{ paddingBottom: isMaxDes ? '75px' : 0 }}
+      >
         {isGood || !imageInfo ? (
           <Image
             className="goodDetail-image"

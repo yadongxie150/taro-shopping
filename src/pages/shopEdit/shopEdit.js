@@ -65,7 +65,7 @@ export default class shopEdit extends Component {
         listName,
         listPic,
         listDesc,
-        privacyType: privacyType ? 0 : 1, // 0：公开，1：私有
+        privacyType, // 0：公开，1：私有
       },
     }).then(() => {
       Taro.showToast({
@@ -137,7 +137,10 @@ export default class shopEdit extends Component {
 
   switch = () => {
     this.setState(preState => ({
-      privacyType: preState.privacyType === 1 ? 0 : 1,
+      data: {
+        ...preState.data,
+        privacyType: preState.data.privacyType === 1 ? 0 : 1,
+      },
     }))
   }
 
